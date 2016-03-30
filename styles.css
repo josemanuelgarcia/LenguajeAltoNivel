@@ -1,0 +1,50 @@
+body {
+	font-family:Arial, sans-serif;
+	font-size: 16pt;
+	background: #707070;
+}
+
+p {
+	line-height:18pt;
+	color:#FFF;
+}
+
+#header {
+    text-align: center;
+	color:#F00;
+}
+
+#blockly {
+	border:1px solid #CCC;
+	padding-left:0;
+	height:800px;
+}
+
+#blockly_editor {
+	width:49%;
+	float:left;
+}
+
+#description {
+	width:49%;
+	float:right;
+	margin-top:0;
+}
+
+#button_run {
+	margin-left:2%;
+}
+
+#codigo_generado {
+    width:35%;
+	float:rigth;    
+}
+
+footer {
+    clear: both;
+    position: relative;
+    z-index: 10;
+    height: 3em;
+    margin-top: -3em;
+    text-align: center;
+}

@@ -1,0 +1,31 @@
+<html>
+<head>
+	<title>Lenguaje de alto nivel para robot arduino</title>
+	<link rel="stylesheet" type="text/css" href="styles.css" />
+	<!-- function that gets called once Blockly frame loads //-->
+	<script type="text/javascript">
+		window.blockly_loaded = function(blockly) {
+			return window.Blockly = blockly;
+		}
+	</script>
+</head>
+<body>
+	<h1 id="header">Lenguaje de alto nivel para robot arduino</h1>
+	<div id="blockly_editor">
+		<!-- Blockly will be injected in the iframe below //-->
+		<iframe id="blockly" src="blockly.html" width="100%"></iframe>
+	</div>
+    
+	<button id="button_run">
+		Run Code Block
+	</button>
+    
+    <div id="codigo_generado">
+        <p id="codigo"></p>
+    </div>
+</body>
+<footer>
+    <p>Trabajo realizado por: Jose Manuel Garcia Fernandez</p>
+    <p>Universidad de Oviedo</p> 
+</footer>
+</html>
