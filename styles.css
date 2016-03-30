@@ -36,8 +36,8 @@ p {
 }
 
 #codigo_generado {
-    width:35%;
-	float:rigth;    
+    margin-left:2%;  
+    float:left;
 }
 
 footer {

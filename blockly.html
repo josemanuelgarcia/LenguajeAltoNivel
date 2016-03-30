@@ -8,8 +8,10 @@
     <script src="javascript.js"></script>
     <script src="bloques/ruedas.js"></script>
     <script src="bloques/pinza.js"></script>
-    <script src="bloques/bucles.js"></script>
     <script src="bloques/principal.js"></script>
+    <script src="blockly/blocks/logic.js"></script>
+    <script src="blockly/blocks/loops.js"></script>
+    <script src="blockly/blocks/math.js"></script>
     <style>
       html, body {
         background-color: #fff;
@@ -52,9 +54,20 @@
         <block type="cerrar_pinza"></block>
       </category>
       <category name="Bucles">
-          <block type="bucle_if"></block>
-          <block type="bucle_for"></block>
-          <block type="bucle_while"></block>
+            <block type="controls_repeat_ext"></block>
+            <block type="controls_repeat"></block>
+      </category>
+       <category name="Logico">
+          <block type="controls_if"></block>
+          <block type="logic_compare"></block>
+      </category>
+       <category name="Operaciones matematicas">
+          <block type="math_number"></block>
+          <block type="math_single"></block>
+          <block type="math_trig"></block>
+          <block type="math_number_property"></block>
+          <block type="math_change"></block>
+          <block type="math_round"></block>
       </category>
     </xml>
   </body>

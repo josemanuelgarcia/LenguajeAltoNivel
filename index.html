@@ -7,6 +7,12 @@
 		window.blockly_loaded = function(blockly) {
 			return window.Blockly = blockly;
 		}
+        
+        window.run_code = function() {
+			code = window.Blockly.JavaScript.workspaceToCode();
+             var div = document.getElementById("codigo");
+             div.textContent = code+"qaaa";
+		}
 	</script>
 </head>
 <body>
@@ -14,13 +20,12 @@
 	<div id="blockly_editor">
 		<!-- Blockly will be injected in the iframe below //-->
 		<iframe id="blockly" src="blockly.html" width="100%"></iframe>
-	</div>
-    
-	<button id="button_run">
-		Run Code Block
-	</button>
+	</div>	
     
     <div id="codigo_generado">
+        <button id="button_run" onclick="run_code()">
+		Run Code Block
+	    </button>
         <p id="codigo"></p>
     </div>
 </body>
