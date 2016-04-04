@@ -1,25 +1,73 @@
+<!DOCTYPE html>
 <html>
 <head>
+    <meta charset="utf-8">
+    <script src="blockly/blockly_uncompressed.js"></script>
+    <script src="blockly/generators/javascript.js"></script>
+    <script src="blockly/msg/js/es.js"></script>
+    <script src="javascript.js"></script>
+    <script src="bloques/ruedas.js"></script>
+    <script src="bloques/pinza.js"></script>
+    <script src="bloques/principal.js"></script>
+    <script src="blockly/blocks/logic.js"></script>
+    <script src="blockly/blocks/loops.js"></script>
+    <script src="blockly/blocks/math.js"></script>
+    <style>
+              html, body {
+        background-color: #fff;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        height: 100%;
+      }
+      .blocklySvg {
+        height: 100%;
+        width: 100%;
+      }
+    </style> 
 	<title>Lenguaje de alto nivel para robot arduino</title>
 	<link rel="stylesheet" type="text/css" href="styles.css" />
 	<!-- function that gets called once Blockly frame loads //-->
-	<script type="text/javascript">
-		window.blockly_loaded = function(blockly) {
-			return window.Blockly = blockly;
-		}
-        
-        window.run_code = function() {
-			code = window.Blockly.JavaScript.workspaceToCode();
-             var div = document.getElementById("codigo");
-             div.textContent = code+"qaaa";
-		}
-	</script>
 </head>
 <body>
 	<h1 id="header">Lenguaje de alto nivel para robot arduino</h1>
 	<div id="blockly_editor">
-		<!-- Blockly will be injected in the iframe below //-->
-		<iframe id="blockly" src="blockly.html" width="100%"></iframe>
+	<div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
+    <xml id="toolbox" style="display: none">
+      <category name="Movimientos ruedas">
+        <block type="girar_hacia"></block>
+        <block type="mover_hacia"></block>
+        <block type="parar"></block>
+        <block type="parar_tiempo"></block>
+        <block type="ir_a"></block>
+      </category>
+      <category name="Movimientos pinza">
+        <block type="subir_pinza"></block>
+        <block type="bajar_pinza"></block>
+        <block type="abrir_pinza"></block>
+        <block type="cerrar_pinza"></block>
+      </category>
+      <category name="Bucles">
+            <block type="controls_repeat_ext"></block>
+            <block type="controls_repeat"></block>
+      </category>
+       <category name="Logico">
+          <block type="controls_if"></block>
+          <block type="logic_compare"></block>
+      </category>
+       <category name="Operaciones matematicas">
+          <block type="math_number"></block>
+          <block type="math_single"></block>
+          <block type="math_trig"></block>
+          <block type="math_number_property"></block>
+          <block type="math_change"></block>
+          <block type="math_round"></block>
+      </category>
+    </xml>
+    
+    <xml id="startBlocks" style="display: none">
+         <block type="bloque_principal"></block>
+    </xml>
 	</div>	
     
     <div id="codigo_generado">
@@ -28,9 +76,23 @@
 	    </button>
         <p id="codigo"></p>
     </div>
-</body>
-<footer>
+    <footer>
     <p>Trabajo realizado por: Jose Manuel Garcia Fernandez</p>
     <p>Universidad de Oviedo</p> 
-</footer>
+    </footer>
+	<script>
+     var workspace = Blockly.inject('blocklyDiv',
+        {media: '../../media/',
+         toolbox: document.getElementById('toolbox')});
+          Blockly.Xml.domToWorkspace(workspace,
+        document.getElementById('startBlocks'));
+               
+        function run_code() {
+			code = Blockly.JavaScript.workspaceToCode(workspace);
+             var div = document.getElementById("codigo");
+             div.textContent = code;
+		}
+	</script>
+</body>
+
 </html>
