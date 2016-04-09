@@ -384,3 +384,5 @@ Blockly.Msg.LISTS_INDEX_OF_INPUT_IN_LIST = Blockly.Msg.LISTS_INLIST;
 Blockly.Msg.PROCEDURES_DEFRETURN_COMMENT = Blockly.Msg.PROCEDURES_DEFNORETURN_COMMENT;
 Blockly.Msg.BAJAR_PINZA_DIST = "Bajar pinza  %1 centimetros";
 Blockly.Msg.SUBIR_PINZA_DIST = "Subir pinza  %1 centimetros";
+Blockly.Msg.IR_A_RUEDAS = "Ir a coordenada X: %1 Y: %2";
+Blockly.Msg.PARAR_TIEMPO = "Parar  %1 milisegundos";

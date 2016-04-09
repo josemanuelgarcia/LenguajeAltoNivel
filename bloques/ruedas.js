@@ -13,11 +13,27 @@ Blockly.Blocks['parar'] = {
 
 Blockly.Blocks['ir_a'] = {
   init: function() {
-    this.appendDummyInput()
-        .appendField("Ir a coordenada X:")
-        .appendField(new Blockly.FieldTextInput("0"), "coordenadaX")
-        .appendField(" Y:")
-        .appendField(new Blockly.FieldTextInput("0"), "coordenadaY");
+    this.jsonInit({
+      "message0": Blockly.Msg.IR_A_RUEDAS,
+      "args0": [
+        {
+          "type": "field_input",
+          "name": "X",
+          "text": "10"
+        },
+        {
+          "type": "field_input",
+          "name": "Y",
+          "text": "10"
+        }
+      ]
+    });    
+
+    this.getField('X').setValidator(
+        Blockly.FieldTextInput.nonnegativeIntegerValidator);
+    this.getField('Y').setValidator(
+        Blockly.FieldTextInput.nonnegativeIntegerValidator);
+
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(210);
@@ -59,11 +75,25 @@ Blockly.Blocks['mover_hacia'] = {
 };
 
 Blockly.Blocks['parar_tiempo'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("Parar")
-        .appendField(new Blockly.FieldTextInput("0"), "segundos")
-        .appendField("segundos");
+ init: function() {
+       this.jsonInit({
+      "message0": Blockly.Msg.PARAR_TIEMPO,
+      "args0": [
+        {
+          "type": "field_input",
+          "name": "SEG",
+          "text": "10"
+        }
+      ],
+      "previousStatement": null,
+      "nextStatement": null,
+      "colour": Blockly.Blocks.loops.HUE,
+      "tooltip": Blockly.Msg.CONTROLS_REPEAT_TOOLTIP,
+      "helpUrl": Blockly.Msg.CONTROLS_REPEAT_HELPURL
+    });
+    
+    this.getField('SEG').setValidator(
+        Blockly.FieldTextInput.nonnegativeIntegerValidator);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(210);

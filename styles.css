@@ -4,11 +4,6 @@ body {
 	background: #707070;
 }
 
-p {
-	line-height:18pt;
-	color:#FFF;
-}
-
 #header {
     text-align: center;
 	color:#F00;
@@ -23,6 +18,8 @@ p {
 #blockly_editor {
 	width:49%;
 	float:left;
+    margin: 20px; 
+
 }
 
 #description {
@@ -32,11 +29,19 @@ p {
 }
 
 #button_run {
-	margin-left:2%;
+    width:85%;
+    
 }
 
 #codigo_generado {
-    margin-left:2%;  
+    margin-left:2%; 
+    width:45%; 
+    float:right;
+}
+#codigo {
+    margin-top:2%; 
+    width:85%; 
+    height: 625px;
 }
 
 footer {
