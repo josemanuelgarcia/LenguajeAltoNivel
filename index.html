@@ -10,10 +10,12 @@
     <script src="bloques/ruedas.js"></script>
     <script src="bloques/pinza.js"></script>
     <script src="bloques/principal.js"></script>
+    <script src="bloques/sensores.js"></script>
     <script src="blockly/blocks/logic.js"></script>
     <script src="blockly/blocks/loops.js"></script>
     <script src="blockly/blocks/math.js"></script>
     <script src="blockly/blocks/variables.js"></script>
+
     <style>
         html,
         body {
@@ -52,6 +54,8 @@
                 <block type="cerrar_pinza"></block>
             </category>
             <category name="Sensores">
+                <block type="detectar_linea"></block>
+                <block type="distancia_obstaculo"></block>
             </category>
             <category name="Bucles">
                 <block type="controls_repeat"></block>
@@ -86,6 +90,7 @@
         </button>
 
         <textarea readonly id="codigo"></textarea>
+        <div id="miDiv"></div>
     </div>
     <footer>
         <p>Trabajo realizado por: Jose Manuel Garcia Fernandez</p>
@@ -97,13 +102,26 @@
          toolbox: document.getElementById('toolbox')});
           Blockly.Xml.domToWorkspace(workspace,
         document.getElementById('startBlocks'));
+         var text='';
                
         function run_code() {
 			code = Blockly.JavaScript.workspaceToCode(workspace);
              var div = document.getElementById("codigo");
-             div.textContent = code;
+             
+             var iframe = document.createElement('iframe');
+    iframe.id = 'iframe';
+    iframe.style.display = 'none';
+    document.body.appendChild(iframe);
+    iframe.src = 'metodos_predet.txt';
+    setTimeout(function(){
+        var text = document.getElementById('iframe').contentDocument.body.firstChild.innerHTML;
+        div.textContent = code + text;
+    }, 1000);
+             
+
 		}
     </script>
+
 </body>
 
 </html>

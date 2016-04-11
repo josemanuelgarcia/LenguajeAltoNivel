@@ -1,7 +1,7 @@
 Blockly.JavaScript['bloque_principal'] = function(block) {
     var statements_variables = Blockly.JavaScript.statementToCode(block, 'variables');
     var statements_cuerpo = Blockly.JavaScript.statementToCode(block, 'cuerpo');
-    var code = statements_variables + '\n setup(){\n}\n loop(){\n' + statements_cuerpo + '}';
+    var code = '#include <Servo.h>\nServo servoI;\nServo servoD;'+statements_variables + '\nsetup() {\n servoI.attach(8);\n servoD.attach(9);\n}\nloop() {\n' + statements_cuerpo + '}\n';
     return code;
 };
 
@@ -78,7 +78,7 @@ Blockly.JavaScript['controls_whileUntil'] = function(block) {
     if (mode == 'WHILE')
         return 'while(' + code_if + ') {\n' + code_do + '}\n';
     else
-        return 'do {\n' + code_do + '} while(' + code_if +')\n';
+        return 'do {\n' + code_do + '} while(' + code_if + ')\n';
 
 };
 
@@ -115,3 +115,19 @@ Blockly.JavaScript['variables_set'] = function(block) {
     var value = block.getInputTargetBlock('VALUE');
     return nombre + '=' + value + ';';
 };
+
+Blockly.JavaScript['detectar_linea'] = function(block) {
+  var dropdown_id_sensor = block.getFieldValue('id_sensor');
+  // TODO: Assemble JavaScript into code variable.
+  var code = 'hay_linea('+dropdown_id_sensor+');\n';
+  return code;
+};
+
+Blockly.JavaScript['distancia_obstaculo'] = function(block) {
+  var text_centimetros = block.getFieldValue('centimetros');
+  var dropdown_id_sensor = block.getFieldValue('id_sensor');
+  // TODO: Assemble JavaScript into code variable.
+  var code = '...';
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};  
