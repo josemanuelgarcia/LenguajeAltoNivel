@@ -1,7 +1,7 @@
 Blockly.JavaScript['bloque_principal'] = function(block) {
     var statements_variables = Blockly.JavaScript.statementToCode(block, 'variables');
     var statements_cuerpo = Blockly.JavaScript.statementToCode(block, 'cuerpo');
-    var code = '#include <Servo.h>\nServo servoI;\nServo servoD;'+statements_variables + '\nsetup() {\n servoI.attach(8);\n servoD.attach(9);\n}\nloop() {\n' + statements_cuerpo + '}\n';
+    var code = '#include <Servo.h>\nServo servoI;\nServo servoD;\nServo servoP;\n#define GMAX 110\n#define GMIN 10\nint gradosPinza = GMIN;'+statements_variables + '\nloop() {\n' + statements_cuerpo + '}\n\n';
     return code;
 };
 
@@ -20,7 +20,7 @@ Blockly.JavaScript['ir_a'] = function(block) {
 Blockly.JavaScript['girar_hacia'] = function(block) {
     var dropdown_direccion = block.getFieldValue('direccion');
     var angle_grados = block.getFieldValue('grados');
-    var code = 'girar(' + dropdown_direccion + ',' + angle_grados + ');\n';
+    var code = 'girar(' + dropdown_direccion + ',' + angle_grados + ');\n'; 
     return code;
 };
 
@@ -119,7 +119,7 @@ Blockly.JavaScript['variables_set'] = function(block) {
 Blockly.JavaScript['detectar_linea'] = function(block) {
   var dropdown_id_sensor = block.getFieldValue('id_sensor');
   // TODO: Assemble JavaScript into code variable.
-  var code = 'hay_linea('+dropdown_id_sensor+');\n';
+  var code = 'hay_linea('+dropdown_id_sensor+')';
   return code;
 };
 
