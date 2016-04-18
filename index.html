@@ -40,7 +40,7 @@
     <div id="blockly_editor">
         <div id="blocklyDiv" style="height: 650px; "></div>
         <xml id="toolbox" style="display: none">
-            <category name="Movimientos ruedas">
+            <category name="Movimientos robot">
                 <block type="girar_hacia"></block>
                 <block type="mover_hacia"></block>
                 <block type="parar"></block>
@@ -67,11 +67,6 @@
             </category>
             <category name="Operaciones matematicas">
                 <block type="math_number"></block>
-                <block type="math_single"></block>
-                <block type="math_trig"></block>
-                <block type="math_number_property"></block>
-                <block type="math_change"></block>
-                <block type="math_round"></block>
             </category>
             <category name="Variables">
                 <block type="variables_get"></block>
@@ -82,12 +77,50 @@
         <xml id="startBlocks" style="display: none">
             <block type="bloque_principal"></block>
         </xml>
+        
+<xml id="seguirLineaSimple" style="display: none">
+            <block type="bloque_principal">
+                <value name="variables">
+                        <block type="variables_set">
+                                <field name="VAR">ha_terminado</field>
+                                <value name="VALUE">
+                                    <block type="math_number">
+                                        <field name="NUM">1</field>
+                                    </block>
+                                </value>                   
+                        </block>
+                </value>
+                <value name="cuerpo">
+                    <block type="controls_whileUntil">
+                        <field name="MODE">WHILE</field>
+                         <value name="BOOL">
+                        <block type="logic_compare" inline="true">
+                            <field name="OP">EQ</field>
+                            <value name="A">
+                                <block type="variables_get" >
+                                <field name="VAR">ha_terminado</field>
+                                </block>
+                            </value>
+                            <value name="B">
+                                <block type="math_number">
+                                <field name="NUM">1</field>
+                                </block>
+                            </value>
+                        </block>
+                        </value>
+                    </block>
+                </value>            
+            </block>
+
+</xml>
+
     </div>
 
     <div id="codigo_generado">
         <button id="button_run" onclick="run_code()">
             Generar codigo arduino
         </button>
+        <button id="button_seguir" onclick="cargarSeguirLinea()"> Seguir linea program</button>
 
         <textarea readonly id="codigo"></textarea>
         <div id="miDiv"></div>
@@ -109,17 +142,21 @@
              var div = document.getElementById("codigo");
              
              var iframe = document.createElement('iframe');
-    iframe.id = 'iframe';
-    iframe.style.display = 'none';
-    document.body.appendChild(iframe);
-    iframe.src = 'metodos_predet.txt';
-    setTimeout(function(){
-        var text = document.getElementById('iframe').contentDocument.body.firstChild.innerHTML;
-        div.textContent = code + text;
-    }, 1000);
-             
-
+            iframe.id = 'iframe';
+            iframe.style.display = 'none';
+            document.body.appendChild(iframe);
+            iframe.src = 'metodos_predet.txt';
+            setTimeout(function(){
+                var text = document.getElementById('iframe').contentDocument.body.firstChild.innerHTML;
+                div.textContent = code.replace(/var /g,"int ") +text ;
+            }, 1000);                   
 		}
+        
+        function cargarSeguirLinea() {
+            
+            Blockly.Xml.domToWorkspace(workspace,
+            document.getElementById('seguirLineaSimple'));        
+        }
     </script>
 
 </body>

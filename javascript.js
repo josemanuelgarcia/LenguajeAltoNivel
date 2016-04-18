@@ -1,7 +1,10 @@
 Blockly.JavaScript['bloque_principal'] = function(block) {
     var statements_variables = Blockly.JavaScript.statementToCode(block, 'variables');
     var statements_cuerpo = Blockly.JavaScript.statementToCode(block, 'cuerpo');
-    var code = '#include <Servo.h>\nServo servoI;\nServo servoD;\nServo servoP;\n#define GMAX 110\n#define GMIN 10\nint gradosPinza = GMIN;'+statements_variables + '\nloop() {\n' + statements_cuerpo + '}\n\n';
+    
+    var code = '#include <Servo.h>\nServo servoI;\nServo servoD;\nServo servoP;\n#define GMAX 110\n#define GMIN 10\nint gradosPinza = GMIN;\n'+statements_variables + '\nloop() {\n' + statements_cuerpo + '}\n\n';
+    
+    
     return code;
 };
 
@@ -83,12 +86,19 @@ Blockly.JavaScript['controls_whileUntil'] = function(block) {
 };
 
 Blockly.JavaScript['logic_compare'] = function(block) {
-    var code1 = block.getInputTargetBlock('A');
+    var code1 = Blockly.JavaScript.statementToCode(block, 'A');
     var operador = block.getFieldValue('OP');
-    var code2 = block.getInputTargetBlock('B');
+    var code2 = Blockly.JavaScript.statementToCode(block, 'B')
+    
+    if(code1 == ''){
+        code1 = block.getInputTargetBlock('A');
+    }  
+   if(code2 == ''){
+        code2 = block.getInputTargetBlock('B');
+    }
 
     if (operador == 'EQ') {
-        operador = '=';
+        operador = '==';
     } else if (operador == 'NEQ') {
         operador = '!='
     } else if (operador == 'LT') {
@@ -116,6 +126,11 @@ Blockly.JavaScript['variables_set'] = function(block) {
     return nombre + '=' + value + ';';
 };
 
+Blockly.JavaScript['variables_get'] = function(block) {
+    var nombre = block.getFieldValue('VAR');
+    return nombre;
+};
+
 Blockly.JavaScript['detectar_linea'] = function(block) {
   var dropdown_id_sensor = block.getFieldValue('id_sensor');
   // TODO: Assemble JavaScript into code variable.
@@ -127,7 +142,7 @@ Blockly.JavaScript['distancia_obstaculo'] = function(block) {
   var text_centimetros = block.getFieldValue('centimetros');
   var dropdown_id_sensor = block.getFieldValue('id_sensor');
   // TODO: Assemble JavaScript into code variable.
-  var code = '...';
+  var code = 'hay_obstaculo('+text_centimetros+','+dropdown_id_sensor+')';
   // TODO: Change ORDER_NONE to the correct strength.
-  return [code, Blockly.JavaScript.ORDER_NONE];
+  return code;
 };  
