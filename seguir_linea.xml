@@ -18,7 +18,7 @@
                                 <field name="OP">EQ</field>
                                 <value name="A">
                                     <block type="variables_get" >
-                                    <field name="VAR">ha_terminado</field>
+                                        <field name="VAR">ha_terminado</field>
                                     </block>
                                 </value>
                                 <value name="B">
@@ -28,10 +28,58 @@
                                 </value>
                             </block>
                         </value>
-                        <value name="DO">
+                        <value name="DO">                             
+                             <block type="controls_if" inline="true">
+                                <mutation else="0"></mutation>
+                                <value name="IF0">
+                                    <block type="detectar_linea" >
+                                        <field name="id_sensor">1</field>
+                                    </block>
+                                </value>
+                                <statement name="DO0">
+                                      <block type="controls_if" inline="true">
+                                            <mutation else="0"></mutation>
+                                            <value name="IF0">
+                                                <block type="detectar_linea" >
+                                                    <field name="id_sensor">2</field>
+                                                </block>
+                                            </value>
+                                            <statement name="DO0">
+                                                <block type="controls_if" inline="true">
+                                                    <mutation else="0"></mutation>
+                                                    <value name="IF0">
+                                                        <block type="detectar_linea" >
+                                                            <field name="id_sensor">3</field>
+                                                        </block>
+                                                    </value>
+                                                    <statement name="DO0">
+                                                             <block type="controls_if" inline="true">
+                                                                    <mutation else="0"></mutation>
+                                                                    <value name="IF0">
+                                                                        <block type="detectar_linea" >
+                                                                            <field name="id_sensor">4</field>
+                                                                        </block>
+                                                                    </value>
+                                                                    <statement name="DO0">
+                                                                        <block type="parar"></block>
+                                                                        <block type="variables_set">
+                                                                               <field name="VAR">ha_terminado</field>
+                                                                                <value name="VALUE">
+                                                                                    <block type="math_number">
+                                                                                        <field name="NUM">0</field>
+                                                                                    </block>
+                                                                                </value>   
+                                                                        </block>
+                                                                    </statement>
+                                                               </block>
+                                                    </statement>
+                                                </block> 
+                                            </statement>
+                                        </block>
+                                </statement>         
+                             </block>
                         </value>
                     </block>
                 </value>            
             </block>
-
 </xml>
