@@ -62,7 +62,8 @@ void retroceder(int centimetros) {
   // este se va un poco a la derecha, lo giro un poco a la izquierda
   servoD.write(0);
   servoI.write(0);
-  delay(25); // AJUSTAR A CADA ROBOT
+  delay(25); // AJUSTAR A CAD
+  A ROBOT
   servoD.write(90);
   servoI.write(90);
 }
@@ -112,7 +113,6 @@ void bajar_piza(int centimetros) {
 }
 
 void actualizarTodosLosSensores(){ 
-  
   for(int i=0; i < 6; i++){
     sensor[i] =  digitalRead(pinesSensores[i]);
   }

@@ -195,9 +195,9 @@
             iframe.id = 'iframe';
             iframe.style.display = 'none';
             document.body.appendChild(iframe);
-            iframe.src = 'metodos_predet.txt';
+            iframe.src = 'prueba1.txt';
             setTimeout(function(){
-                var text = document.getElementById('iframe').contentDocument.body.firstChild.innerHTML;
+                var text = document.getElementById('iframe').contentDocument.body.firstChild.textContent;
                 div.textContent = code.replace(/var /g,"int ") +text ;
             }, 1000);                   
 		}

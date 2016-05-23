@@ -1,0 +1,16 @@
+#include <Servo.h>
+#define GMAX 110
+#define GMIN 10
+
+Servo servoI;
+Servo servoD;
+Servo servoP;
+
+int gradosPinza = GMIN;
+
+int pinesSensores[] = {2,3};
+int sensor[2];
+
+int LINEA = 0;
+int NO_LINEA = 1;
+

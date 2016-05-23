@@ -2,7 +2,7 @@ Blockly.JavaScript['bloque_principal'] = function(block) {
     var statements_variables = Blockly.JavaScript.statementToCode(block, 'variables');
     var statements_cuerpo = Blockly.JavaScript.statementToCode(block, 'cuerpo');
     
-    var code = '#include <Servo.h>\nServo servoI;\nServo servoD;\nServo servoP;\n#define GMAX 110\n#define GMIN 10\nint gradosPinza = GMIN;\n'+statements_variables + '\nloop() {\n' + statements_cuerpo + '}\n\n';
+    var code = statements_variables + '\nvoid loop() {\n' + statements_cuerpo + '}\n\n';
     
     
     return code;

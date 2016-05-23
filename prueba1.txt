@@ -1,0 +1,72 @@
+
+void setup() { 
+
+    Serial.begin(9600);
+    servoI.attach(7);
+    servoD.attach(6);
+        
+    pinMode(2 , INPUT);
+    pinMode(3 , INPUT);
+}
+
+void girar(String lado, int grados) {
+    if(lado=='DERECHA')
+        rotarDerecha(grados);
+    else
+        rotarIzquierda(grados);
+}
+
+void rotarDerecha(int grados) {
+  servoD.write(0);
+  servoI.write(0);
+  delay(5.56*grados);//AJUSTAR AL ROBOT
+  servoD.write(90);
+  servoI.write(90);
+}
+
+void rotarIzquierda(int grados) {
+  servoD.write(180);
+  servoI.write(180);
+  delay(5.56*grados);//AJUSTAR AL ROBOT
+  servoD.write(90);
+  servoI.write(90);
+}
+
+void avanzar(int centimetros) {
+  servoD.write(180); // alante
+  servoI.write(0); // alante
+  return true;
+}
+
+void retroceder(int centimetros) {
+  servoD.write(0); // atras
+  servoI.write(180); // atras
+}
+
+void parar_todo(int centimetros) {
+  servoD.write(90);
+  servoI.write(90);
+}
+
+void actualizarTodosLosSensores(){ 
+  for(int i=0; i < 2; i++){
+    sensor[i] =  digitalRead(pinesSensores[i]);
+  }
+  
+  // 4 lecturas adicionales
+  // Se guardan las lineas
+  for(int i=0; i < 4; i++){
+    delay(15);
+    
+     for(int i=0; i < 2; i++){
+       if (digitalRead(pinesSensores[i]) == LINEA )
+          sensor[i] = LINEA;
+     }
+  }
+}
+
+bool hay_linea(int id_sensor) {
+    return sensor[id_sensor-1] == LINEA ;
+}
+
+
