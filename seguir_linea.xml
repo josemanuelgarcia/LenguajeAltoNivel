@@ -1,85 +1,84 @@
-<xml id="seguirLineaSimple" style="display: none">
+        <xml id="seguirLineaSimple" style="display: none">
             <block type="bloque_principal">
-                <value name="variables">
-                        <block type="variables_set">
-                                <field name="VAR">ha_terminado</field>
-                                <value name="VALUE">
-                                    <block type="math_number">
-                                        <field name="NUM">1</field>
-                                    </block>
-                                </value>                   
-                        </block>
-                </value>
+                <value name="variables"></value>
                 <value name="cuerpo">
-                    <block type="controls_whileUntil">
-                        <field name="MODE">WHILE</field>
-                         <value name="BOOL">
-                            <block type="logic_compare" inline="true">
-                                <field name="OP">EQ</field>
-                                <value name="A">
-                                    <block type="variables_get" >
-                                        <field name="VAR">ha_terminado</field>
-                                    </block>
-                                </value>
-                                <value name="B">
-                                    <block type="math_number">
-                                    <field name="NUM">1</field>
-                                    </block>
-                                </value>
+                    <block type="controls_if" inline="true">
+                        <mutation else="0"></mutation>
+                        <value name="IF0">
+                            <block type="detectar_linea">
+                                <field name="id_sensor">1</field>
                             </block>
                         </value>
-                        <value name="DO">                             
-                             <block type="controls_if" inline="true">
+                        <statement name="DO0">
+                            <block type="controls_if" inline="true">
                                 <mutation else="0"></mutation>
                                 <value name="IF0">
-                                    <block type="detectar_linea" >
-                                        <field name="id_sensor">1</field>
+                                    <block type="detectar_linea">
+                                        <field name="id_sensor">2</field>
                                     </block>
                                 </value>
                                 <statement name="DO0">
-                                      <block type="controls_if" inline="true">
-                                            <mutation else="0"></mutation>
-                                            <value name="IF0">
-                                                <block type="detectar_linea" >
-                                                    <field name="id_sensor">2</field>
-                                                </block>
-                                            </value>
-                                            <statement name="DO0">
-                                                <block type="controls_if" inline="true">
-                                                    <mutation else="0"></mutation>
-                                                    <value name="IF0">
-                                                        <block type="detectar_linea" >
-                                                            <field name="id_sensor">3</field>
-                                                        </block>
-                                                    </value>
-                                                    <statement name="DO0">
-                                                             <block type="controls_if" inline="true">
-                                                                    <mutation else="0"></mutation>
-                                                                    <value name="IF0">
-                                                                        <block type="detectar_linea" >
-                                                                            <field name="id_sensor">4</field>
-                                                                        </block>
-                                                                    </value>
-                                                                    <statement name="DO0">
-                                                                        <block type="parar"></block>
-                                                                        <block type="variables_set">
-                                                                               <field name="VAR">ha_terminado</field>
-                                                                                <value name="VALUE">
-                                                                                    <block type="math_number">
-                                                                                        <field name="NUM">0</field>
-                                                                                    </block>
-                                                                                </value>   
-                                                                        </block>
-                                                                    </statement>
-                                                               </block>
-                                                    </statement>
-                                                </block> 
-                                            </statement>
-                                        </block>
-                                </statement>         
-                             </block>
-                        </value>
+                                    <block type="controls_if" inline="true">
+                                        <mutation else="0"></mutation>
+                                        <value name="IF0">
+                                            <block type="detectar_linea">
+                                                <field name="id_sensor">3</field>
+                                            </block>
+                                        </value>
+                                        <statement name="DO0">
+                                            <block type="mover_hacia">
+                                                <field name="direccion">delante</field>
+                                                <field name="metros">1</field>
+                                            </block>
+                                        </statement>
+                                    </block>
+                                </statement>
+                            </block>
+                        </statement>
+                        <next>
+                            <block type="controls_if" inline="true">
+                                <mutation else="0"></mutation>
+                                <value name="IF0">
+                                    <clock type="logic_compare">
+                                        <field name="OP">EQ</field>
+                                        <value name="A">
+                                            <block type="detectar_linea">
+                                                <field name="id_sensor">1</field>
+                                            </block>
+                                        </value>
+                                         <value name="B">
+                                            <block type="math_number">
+                                                <field name="NUM">0</field>
+                                            </block>
+                                          </value>
+                                    </block>
+                                   
+                                </value>
+                                <statement name="DO0">
+                                    <block type="girar_hacia">
+                                        <field name="direccion">derecha</field>
+                                        <field name="grados">10</field>
+                                    </block>
+                                </statement>
+                                <next>
+                                    <block type="controls_if" inline="true">
+                                        <mutation else="0"></mutation>
+                                        <value name="IF0">
+                                            <block type="detectar_linea">
+                                                <field name="id_sensor">3</field>
+                                            </block>
+                                        </value>
+                                        <statement name="DO0">
+                                            <block type="girar_hacia">
+                                                <field name="direccion">izquierda</field>
+                                                <field name="grados">10</field>
+                                            </block>
+                                        </statement>
+                                    </block>
+                                </next>
+                            </block>
+                        </next>
                     </block>
-                </value>            
+                </value>
             </block>
-</xml>
+        </xml>
