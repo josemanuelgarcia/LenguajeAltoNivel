@@ -25,7 +25,7 @@
             overflow: hidden;
             height: 100%;
         }
-        
+      
         .blocklySvg {
             height: 100%;
             width: 100%;
@@ -35,9 +35,9 @@
     <link rel="stylesheet" type="text/css" href="styles.css" />
 </head>
 
-<body>  
-    <iframe id='iframe' src = 'prueba1.txt' style="visibility:hidden;" onload='readMetodos()'> </iframe>
-    <iframe id='iframe2' src = 'cabecera.txt' style="visibility:hidden;" onload='readCabecera()'> </iframe>
+<body>
+    <iframe id='iframe' src='prueba1.txt' style="visibility:hidden;" onload='readMetodos()'> </iframe>
+    <iframe id='iframe2' src='cabecera.txt' style="visibility:hidden;" onload='readCabecera()'> </iframe>
     <h1 id="header">Lenguaje de alto nivel para robot arduino</h1>
     <div id="blockly_editor">
         <div id="blocklyDiv" style="height: 650px; "></div>
@@ -87,31 +87,58 @@
                     <block type="controls_if" inline="true">
                         <mutation else="0"></mutation>
                         <value name="IF0">
-                            <block type="detectar_linea">
-                                <field name="id_sensor">1</field>
+                            <block type="logic_compare">
+                                <field name="OP">EQ</field>
+                                <value name="A">
+                                    <block type="detectar_linea">
+                                        <field name="id_sensor">1</field>
+                                    </block>
+                                </value>
+                                <value name="B">
+                                    <block type="math_number">
+                                        <field name="NUM">0</field>
+                                    </block>
+                                </value>
                             </block>
                         </value>
                         <statement name="DO0">
                             <block type="controls_if" inline="true">
                                 <mutation else="0"></mutation>
                                 <value name="IF0">
-                                    <block type="detectar_linea">
-                                        <field name="id_sensor">2</field>
+                                    <block type="logic_compare">
+                                        <field name="OP">EQ</field>
+                                        <value name="A">
+                                            <block type="detectar_linea">
+                                                <field name="id_sensor">2</field>
+                                            </block>
+                                        </value>
+                                        <value name="B">
+                                            <block type="math_number">
+                                                <field name="NUM">0</field>
+                                            </block>
+                                        </value>
                                     </block>
                                 </value>
                                 <statement name="DO0">
                                     <block type="controls_if" inline="true">
                                         <mutation else="0"></mutation>
                                         <value name="IF0">
-                                            <block type="detectar_linea">
-                                                <field name="id_sensor">3</field>
+                                            <block type="logic_compare">
+                                                <field name="OP">EQ</field>
+                                                <value name="A">
+                                                    <block type="detectar_linea">
+                                                        <field name="id_sensor">3</field>
+                                                    </block>
+                                                </value>
+                                                <value name="B">
+                                                    <block type="math_number">
+                                                        <field name="NUM">0</field>
+                                                    </block>
+                                                </value>
                                             </block>
                                         </value>
                                         <statement name="DO0">
-                                            <block type="mover_hacia">
-                                                <field name="direccion">delante</field>
-                                                <field name="metros">1</field>
-                                            </block>
+                                            <block type="parar"></block>
                                         </statement>
                                     </block>
                                 </statement>
@@ -121,11 +148,113 @@
                             <block type="controls_if" inline="true">
                                 <mutation else="0"></mutation>
                                 <value name="IF0">
+                                    <block type="detectar_linea">
+                                        <field name="id_sensor">1</field>
+                                    </block>
+                                </value>
+                                <statement name="DO0">
+                                    <block type="controls_if" inline="true">
+                                        <mutation else="0"></mutation>
+                                        <value name="IF0">
+                                            <block type="detectar_linea">
+                                                <field name="id_sensor">2</field>
+                                            </block>
+                                        </value>
+                                        <statement name="DO0">
+                                            <block type="controls_if" inline="true">
+                                                <mutation else="0"></mutation>
+                                                <value name="IF0">
+                                                    <block type="detectar_linea">
+                                                        <field name="id_sensor">3</field>
+                                                    </block>
+                                                </value>
+                                                <statement name="DO0">
+                                                    <block type="mover_hacia">
+                                                        <field name="direccion">delante</field>
+                                                        <field name="metros">1</field>
+                                                    </block>
+                                                </statement>
+                                            </block>
+                                        </statement>
+                                    </block>
+                                </statement>
+                                <next>
+                                    <block type="controls_if" inline="true">
+                                        <mutation else="0"></mutation>
+                                        <value name="IF0">
+                                            <block type="logic_compare">
+                                                <field name="OP">EQ</field>
+                                                <value name="A">
+                                                    <block type="detectar_linea">
+                                                        <field name="id_sensor">1</field>
+                                                    </block>
+                                                </value>
+                                                <value name="B">
+                                                    <block type="math_number">
+                                                        <field name="NUM">0</field>
+                                                    </block>
+                                                </value>
+                                            </block>
+                                        </value>
+                                        <statement name="DO0">
+                                            <block type="girar_hacia">
+                                                <field name="direccion">derecha</field>
+                                                <field name="grados">10</field>
+                                            </block>
+                                        </statement>
+                                        <next>
+                                            <block type="controls_if" inline="true">
+                                                <mutation else="0"></mutation>
+                                                <value name="IF0">
+                                                    <block type="detectar_linea">
+                                                        <field name="id_sensor">3</field>
+                                                    </block>
+                                                </value>
+                                                <statement name="DO0">
+                                                    <block type="girar_hacia">
+                                                        <field name="direccion">izquierda</field>
+                                                        <field name="grados">10</field>
+                                                    </block>
+                                                </statement>
+                                            </block>
+                                        </next>
+                                    </block>
+                                </next>
+                            </block>
+                </value>
+                </block>
+        </xml>
+
+        <xml id="seguirLineaObstaculos" style="display: none">
+            <block type="bloque_principal">
+                <value name="variables"></value>
+                <value name="cuerpo">
+                    <block type="controls_if" inline="true">
+                        <mutation else="0"></mutation>
+                        <value name="IF0">
+                            <block type="logic_compare">
+                                <field name="OP">EQ</field>
+                                <value name="A">
+                                    <block type="detectar_linea">
+                                        <field name="id_sensor">1</field>
+                                    </block>
+                                </value>
+                                <value name="B">
+                                    <block type="math_number">
+                                        <field name="NUM">0</field>
+                                    </block>
+                                </value>
+                            </block>
+                        </value>
+                        <statement name="DO0">
+                            <block type="controls_if" inline="true">
+                                <mutation else="0"></mutation>
+                                <value name="IF0">
                                     <block type="logic_compare">
                                         <field name="OP">EQ</field>
                                         <value name="A">
                                             <block type="detectar_linea">
-                                                <field name="id_sensor">1</field>
+                                                <field name="id_sensor">2</field>
                                             </block>
                                         </value>
                                         <value name="B">
@@ -134,36 +263,172 @@
                                             </block>
                                         </value>
                                     </block>
-
                                 </value>
                                 <statement name="DO0">
-                                    <block type="girar_hacia">
-                                        <field name="direccion">derecha</field>
-                                        <field name="grados">10</field>
+                                    <block type="controls_if" inline="true">
+                                        <mutation else="0"></mutation>
+                                        <value name="IF0">
+                                            <block type="logic_compare">
+                                                <field name="OP">EQ</field>
+                                                <value name="A">
+                                                    <block type="detectar_linea">
+                                                        <field name="id_sensor">3</field>
+                                                    </block>
+                                                </value>
+                                                <value name="B">
+                                                    <block type="math_number">
+                                                        <field name="NUM">0</field>
+                                                    </block>
+                                                </value>
+                                            </block>
+                                        </value>
+                                        <statement name="DO0">
+                                            <block type="parar"></block>
+                                        </statement>
+                                    </block>
+                                </statement>
+                            </block>
+                        </statement>
+                        <next>
+                            <block type="controls_if" inline="true">
+                                <mutation else="0"></mutation>
+                                <value name="IF0">
+                                    <block type="detectar_linea">
+                                        <field name="id_sensor">1</field>
+                                    </block>
+                                </value>
+                                <statement name="DO0">
+                                    <block type="controls_if" inline="true">
+                                        <mutation else="0"></mutation>
+                                        <value name="IF0">
+                                            <block type="detectar_linea">
+                                                <field name="id_sensor">2</field>
+                                            </block>
+                                        </value>
+                                        <statement name="DO0">
+                                            <block type="controls_if" inline="true">
+                                                <mutation else="0"></mutation>
+                                                <value name="IF0">
+                                                    <block type="detectar_linea">
+                                                        <field name="id_sensor">3</field>
+                                                    </block>
+                                                </value>
+                                                <statement name="DO0">
+                                                    <block type="mover_hacia">
+                                                        <field name="direccion">delante</field>
+                                                        <field name="metros">1</field>
+                                                    </block>
+                                                </statement>
+                                            </block>
+                                        </statement>
                                     </block>
                                 </statement>
                                 <next>
                                     <block type="controls_if" inline="true">
                                         <mutation else="0"></mutation>
                                         <value name="IF0">
-                                            <block type="detectar_linea">
-                                                <field name="id_sensor">3</field>
+                                            <block type="logic_compare">
+                                                <field name="OP">EQ</field>
+                                                <value name="A">
+                                                    <block type="detectar_linea">
+                                                        <field name="id_sensor">1</field>
+                                                    </block>
+                                                </value>
+                                                <value name="B">
+                                                    <block type="math_number">
+                                                        <field name="NUM">0</field>
+                                                    </block>
+                                                </value>
                                             </block>
                                         </value>
                                         <statement name="DO0">
                                             <block type="girar_hacia">
-                                                <field name="direccion">izquierda</field>
+                                                <field name="direccion">derecha</field>
                                                 <field name="grados">10</field>
                                             </block>
                                         </statement>
+                                        <next>
+                                            <block type="controls_if" inline="true">
+                                                <mutation else="0"></mutation>
+                                                <value name="IF0">
+                                                    <block type="detectar_linea">
+                                                        <field name="id_sensor">3</field>
+                                                    </block>
+                                                </value>
+                                                <statement name="DO0">
+                                                    <block type="girar_hacia">
+                                                        <field name="direccion">izquierda</field>
+                                                        <field name="grados">10</field>
+                                                    </block>
+                                                </statement>
+                                                <next>
+                                                    <block type="controls_if" inline="true">
+                                                        <mutation else="0"></mutation>
+                                                        <value name="IF0">
+                                                            <block type="distancia_obstaculo">
+                                                                <field name="centimetros">10</field>
+                                                                <field name="id_sensor">5</field>
+                                                            </block>
+                                                        </value>
+                                                        <statement name="DO0">
+                                                            <block type="abrir_pinza">
+                                                                <next>
+                                                                    <block type="bajar_pinza">
+                                                                        <field name="DIST">15</field>
+                                                                        <next>
+
+                                                                            <block type="cerrar_pinza">
+                                                                                <next>
+                                                                                    <block type="subir_pinza">
+                                                                                        <field name="DIST">15</field>
+                                                                                        <next>
+                                                                                            <block type="girar_hacia">
+                                                                                                <field name="direccion">derecha</field>
+                                                                                                <field name="grados">90</field>
+                                                                                                <next>
+                                                                                                    <block type="bajar_pinza">
+                                                                                                        <field name="DIST">15</field>
+                                                                                                        <next>
+                                                                                                            <block type="abrir_pinza">
+                                                                                                                <next>
+                                                                                                                    <block type="subir_pinza">
+                                                                                                                        <field name="DIST">15</field>
+                                                                                                                        <next>
+                                                                                                                            <block type="girar_hacia">
+                                                                                                                                <field name="direccion">izquierda</field>
+                                                                                                                                <field name="grados">90</field>
+                                                                                                                            </block>
+                                                                                                                        </next>
+                                                                                                                    </block>
+                                                                                                                </next>
+                                                                                                            </block>
+                                                                                                        </next>
+                                                                                                    </block>
+                                                                                                </next>
+                                                                                            </block>
+                                                                                        </next>
+
+                                                                                    </block>
+
+                                                                                </next>
+                                                                            </block>
+                                                                        </next>
+                                                                    </block>
+                                                                </next>
+                                                            </block>
+                                                        </statement>
+                                                    </block>
+                                                </next>
+                                            </block>
+                                        </next>
                                     </block>
                                 </next>
                             </block>
-                        </next>
-                    </block>
                 </value>
-            </block>
+                </block>
         </xml>
+
+
 
     </div>
 
@@ -171,7 +436,10 @@
         <button id="button_run" onclick="run_code()">
             Generar codigo arduino
         </button>
+        <button id="button_limpiar" onclick="limpiarWorkSpace()">Limpiar Workspace</button>
         <button id="button_seguir" onclick="cargarSeguirLinea()"> Seguir linea program</button>
+        <button id="button_seguir_obstaculos" onclick="cargarSeguirLineaObstaculos()"> Seguir linea con obstaculos</button>
+        <button id="button_laberinto_cajas" onclick="cargarLaberintoCajas()">Laberinto de cajas</button>
 
         <textarea readonly id="codigo"></textarea>
         <div id="miDiv"></div>
@@ -204,11 +472,28 @@
        }
 
         function cargarSeguirLinea() {    
-             Blockly.mainWorkspace.clear();
+            Blockly.mainWorkspace.clear();
             Blockly.Xml.domToWorkspace(workspace,
             document.getElementById('seguirLineaSimple'));        
         }
         
+        function limpiarWorkSpace(){
+            Blockly.mainWorkspace.clear();
+            Blockly.Xml.domToWorkspace(workspace,
+            document.getElementById('startBlocks')); 
+        }
+        
+        function cargarSeguirLineaObstaculos(){
+           Blockly.mainWorkspace.clear();
+           Blockly.Xml.domToWorkspace(workspace,
+           document.getElementById('seguirLineaObstaculos')); 
+        }
+        
+        function cargarLaberintoCajas(){
+            Blockly.mainWorkspace.clear();
+           Blockly.Xml.domToWorkspace(workspace,
+           document.getElementById('laberintoCajas'));
+        }
     </script>
 
 </body>

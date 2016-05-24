@@ -46,7 +46,7 @@ Blockly.Blocks['girar_hacia'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("Girar hacia")
-        .appendField(new Blockly.FieldDropdown([["derecha", "DERECHA"], ["izquierda", "IZQUIERDA"]]), "direccion")
+        .appendField(new Blockly.FieldDropdown([["derecha", "derecha"], ["izquierda", "izquierda"]]), "direccion")
         .appendField(",")
         .appendField(new Blockly.FieldAngle(90), "grados")
         .appendField("grados");

@@ -37,7 +37,6 @@ void rotarIzquierda(int grados) {
 void avanzar(int centimetros) {
   servoD.write(180); // alante
   servoI.write(0); // alante
-  return true;
 }
 
 void retroceder(int centimetros) {
@@ -68,6 +67,7 @@ void actualizarTodosLosSensores(){
 }
 
 bool hay_linea(int id_sensor) {
+    actualizarTodosLosSensores();
     return sensor[id_sensor-1] == LINEA ;
 }
 
