@@ -4,8 +4,25 @@
                 
                 </value>
                 <value name="cuerpo">
-                    
-                    
+                    <block type="abrir_pinza">
+                        <block type="girar_hacia">
+                            <field name="direccion">izquierda</field>
+                            <field name="grados">90</field>
+                            <next>
+                            <block type="controls_if" inline="true">
+                                <mutation else="0"></mutation>
+                                <value name="IF0">
+                                    <block type="distancia_obstaculo">
+                                        <field name="centimetros">10</field>
+                                        <field name="id_sensor">5</field>
+                                    </block>
+                                </value>
+                                <statement name="DO0">
+                                
+                                </statement>
+                            </block>
+                            </next>
+                        </block>>                    
                 </value>
             </block>
         </xml>

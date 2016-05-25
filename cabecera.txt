@@ -6,11 +6,17 @@
 Servo servoI;
 Servo servoD;
 Servo servoP;
+Servo servoPMove;
 
 int gradosPinza = GMIN;
+const long tiempoPaso = 4850 / 24;
+ int posicionY = 0;
 
 int pinesSensores[] = {1,2,3};
-int sensor[2];
+int sensor[3];
+
+int pinesTrig[] = {8,10,12};
+int pinesEcho[] = {9,11,13};
 
 int LINEA = 0;
 int NO_LINEA = 1;

@@ -23,14 +23,14 @@ Blockly.JavaScript['ir_a'] = function(block) {
 Blockly.JavaScript['girar_hacia'] = function(block) {
     var dropdown_direccion = block.getFieldValue('direccion');
     var angle_grados = block.getFieldValue('grados');
-    var code = 'girar(' + dropdown_direccion + ',' + angle_grados + ');\n'; 
+    var code = 'girar("' + dropdown_direccion + '",' + angle_grados + ');\n'; 
     return code;
 };
 
 Blockly.JavaScript['mover_hacia'] = function(block) {
     var dropdown_direccion = block.getFieldValue('direccion');
     var text_metros = block.getFieldValue('metros');
-    var code = 'mover_hacia(' + dropdown_direccion + ',' + text_metros + ');\n';
+    var code = 'mover_hacia("' + dropdown_direccion + '",' + text_metros + ');\n';
     return code;
 };
 
@@ -58,7 +58,7 @@ Blockly.JavaScript['abrir_pinza'] = function(block) {
 };
 
 Blockly.JavaScript['cerrar_pinza'] = function(block) {
-    var code = 'cerar_pinza();\n';
+    var code = 'cerrar_pinza();\n';
     return code;
 };
 

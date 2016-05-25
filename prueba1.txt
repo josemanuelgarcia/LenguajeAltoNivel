@@ -3,19 +3,34 @@
 void setup() { 
 
     Serial.begin(9600);
-    servoI.attach(7);
-    servoD.attach(6);
-        
+    servoI.attach(4);
+    servoD.attach(5);
+    servoP.attach(6);
+    servoPMove.attach(7);
+            
     pinMode(1 , INPUT);    
     pinMode(2 , INPUT);
     pinMode(3 , INPUT);
+    
+    //Ultrasonidos
+    for(int i=0; i<3;i++){
+          pinMode(pinesTrig[i] , OUTPUT);
+          pinMode(pinesEcho[i], INPUT);
+    }
 }
 
 void girar(String lado, int grados) {
-    if(lado=='DERECHA')
+    if(lado=="derecha")
         rotarDerecha(grados);
     else
         rotarIzquierda(grados);
+}
+
+void mover_hacia(String direccion, int cents) {
+    if(direccion=="delante")
+        avanzar(cents);
+   else
+        retroceder(cents);
 }
 
 void rotarDerecha(int grados) {
@@ -35,8 +50,8 @@ void rotarIzquierda(int grados) {
 }
 
 void avanzar(int centimetros) {
-  servoD.write(180); // alante
-  servoI.write(0); // alante
+  servoD.write(110); // alante
+  servoI.write(70); // alante
 }
 
 void retroceder(int centimetros) {
@@ -44,13 +59,13 @@ void retroceder(int centimetros) {
   servoI.write(180); // atras
 }
 
-void parar_todo(int centimetros) {
+void parar_todo() {
   servoD.write(90);
   servoI.write(90);
 }
 
 void actualizarTodosLosSensores(){ 
-  for(int i=0; i < 2; i++){
+  for(int i=0; i < 3; i++){
     sensor[i] =  digitalRead(pinesSensores[i]);
   }
   
@@ -59,7 +74,7 @@ void actualizarTodosLosSensores(){
   for(int i=0; i < 4; i++){
     delay(15);
     
-     for(int i=0; i < 2; i++){
+     for(int i=0; i < 3; i++){
        if (digitalRead(pinesSensores[i]) == LINEA )
           sensor[i] = LINEA;
      }
@@ -70,5 +85,57 @@ bool hay_linea(int id_sensor) {
     actualizarTodosLosSensores();
     return sensor[id_sensor-1] == LINEA ;
 }
+
+void abrir_pinza(){
+    while ( gradosPinza < GMAX){
+            gradosPinza = gradosPinza+1;
+            servoP.write(gradosPinza);
+        }
+}
+
+void cerrar_pinza(){
+    while ( gradosPinza > GMIN){
+        gradosPinza = gradosPinza-1;
+        servoP.write(gradosPinza);
+    }
+}
+
+void subir_pinza(int centimetros) {
+    if ( centimetros < 0 || centimetros > 24 )
+    return;
+
+  int movimiento = centimetros - posicionY;
+  int tiempoY = tiempoPaso  * centimetros;
+
+  if (movimiento < 0) {
+    servoPMove.write(0);
+    delay(-tiempoY);
+    servoPMove.write(90);
+  } else {
+    servoPMove.write(180);
+    delay(tiempoY);
+    servoPMove.write(90);
+  }
+  
+
+  posicionY = centimetros;
+}
+
+void bajar_pinza(int centimetros) {
+    servoPMove.write(centimetros);
+}
+
+bool hay_obstaculo(int distancia_param, int id_sensor) {
+  digitalWrite(pinesTrig[id_sensor-1], LOW); /* Por seguridad volvemos a poner el Trig a LOW*/
+  delayMicroseconds(5);
+  digitalWrite(pinesTrig[id_sensor-1], HIGH); /* Emitimos el pulso ultrasónico */
+  delayMicroseconds(10);
+  long tiempoRespuesta = pulseIn(pinesEcho[id_sensor-1], HIGH); /* Medimos la longitud del
+   pulso entrante Cuanto tiempo tarda la entrada en pasar de HIGH a LOW
+   retorna microsegundos */
+  long distancia = int(0.017 * tiempoRespuesta);
+  return distancia_param<distancia;
+}
+
 
 
