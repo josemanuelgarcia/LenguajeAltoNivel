@@ -40,15 +40,9 @@ Blockly.JavaScript['parar_tiempo'] = function(block) {
     return code;
 };
 
-Blockly.JavaScript['subir_pinza'] = function(block) {
+Blockly.JavaScript['mover_pinza'] = function(block) {
     var distancia = block.getFieldValue('DIST');
-    var code = 'subir_pinza(' + distancia + ');\n';
-    return code;
-};
-
-Blockly.JavaScript['bajar_pinza'] = function(block) {
-    var distancia = block.getFieldValue('DIST');
-    var code = 'bajar_pinza(' + distancia + ');\n';
+    var code = 'mover_pinza(' + distancia + ');\n';
     return code;
 };
 

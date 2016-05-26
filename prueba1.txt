@@ -36,7 +36,7 @@ void mover_hacia(String direccion, int cents) {
 void rotarDerecha(int grados) {
   servoD.write(0);
   servoI.write(0);
-  delay(5.56*grados);//AJUSTAR AL ROBOT
+  delay(7.86*grados);//AJUSTAR AL ROBOT
   servoD.write(90);
   servoI.write(90);
 }
@@ -44,7 +44,7 @@ void rotarDerecha(int grados) {
 void rotarIzquierda(int grados) {
   servoD.write(180);
   servoI.write(180);
-  delay(5.56*grados);//AJUSTAR AL ROBOT
+  delay(7.9*grados);//AJUSTAR AL ROBOT
   servoD.write(90);
   servoI.write(90);
 }
@@ -100,12 +100,12 @@ void cerrar_pinza(){
     }
 }
 
-void subir_pinza(int centimetros) {
-    if ( centimetros < 0 || centimetros > 24 )
+void mover_pinza(int coordenada) {
+    if ( coordenada < 0 || coordenada > 24 )
     return;
 
-  int movimiento = centimetros - posicionY;
-  int tiempoY = tiempoPaso  * centimetros;
+  int movimiento = coordenada - posicionY;
+  int tiempoY = tiempoPaso  * coordenada;
 
   if (movimiento < 0) {
     servoPMove.write(0);
@@ -115,14 +115,9 @@ void subir_pinza(int centimetros) {
     servoPMove.write(180);
     delay(tiempoY);
     servoPMove.write(90);
-  }
-  
+  } 
 
-  posicionY = centimetros;
-}
-
-void bajar_pinza(int centimetros) {
-    servoPMove.write(centimetros);
+  posicionY = coordenada;
 }
 
 bool hay_obstaculo(int distancia_param, int id_sensor) {
