@@ -3,22 +3,21 @@
 
 <head>
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <script src="blockly/blockly_uncompressed.js"></script>
-    <script src="blockly/generators/javascript.js"></script>
-    <script src="blockly/msg/js/es.js"></script>
-    <script src="javascript.js"></script>
-    <script src="bloques/ruedas.js"></script>
-    <script src="bloques/pinza.js"></script>
-    <script src="bloques/principal.js"></script>
-    <script src="bloques/sensores.js"></script>
-    <script src="blockly/blocks/logic.js"></script>
-    <script src="blockly/blocks/loops.js"></script>
-    <script src="blockly/blocks/math.js"></script>
-    <script src="blockly/blocks/variables.js"></script>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+        window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')
+    </script>
+   
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    
+     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+     <link href="styles.css" rel="stylesheet">
 
     <title>Lenguaje de alto nivel para robot arduino</title>
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
 
 </head>
 
@@ -28,283 +27,78 @@
             <div class="navbar-header">
                 <a class="navbar-brand" href="#">Lenguaje de alto nivel para robot arduino</a>
             </div>
-            <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="#" onclick="limpiarWorkSpace()">Limpiar Workspace</a>
-                    </li>
-                    <li>
-                        <a href="#" onclick="cargarSeguirLinea()">Seguir Linea</a>
-                    </li>
-                    <li>
-                        <a href="#" onclick="cargarSeguirLineaObstaculos()">Seguir Linea con Obstaculos</a>
-                    </li>
-                    <li>
-                        <a href="#" onclick="cargarLaberintoCajas()">Laberinto cajas</a>
-                    </li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                </ul>
-            </div>
         </div>
     </nav>
-    <iframe id='iframe' src='prueba1.txt' style="visibility:hidden;height: 0%;" onload='readMetodos()'> </iframe>
-    <iframe id='iframe2' src='cabecera.txt' style="visibility:hidden;height: 0%;" onload='readCabecera()'> </iframe>
 
-    <div class="container-fluid">
-        <div class="row">
-            <div id="blockly_editor" class="col-md-8">
-                <div id="blocklyDiv" style="height:700px"></div>
-                <xml id="toolbox" style="display: none">
-                    <category name="Movimientos robot">
-                        <block type="girar_hacia"></block>
-                        <block type="mover_hacia"></block>
-                        <block type="parar"></block>
-                        <block type="parar_tiempo"></block>
-                        <block type="ir_a"></block>
-                    </category>
-                    <category name="Movimientos pinza">
-                        <block type="mover_pinza"></block>
-                        <block type="abrir_pinza"></block>
-                        <block type="cerrar_pinza"></block>
-                    </category>
-                    <category name="Sensores">
-                        <block type="detectar_linea"></block>
-                        <block type="distancia_obstaculo"></block>
-                    </category>
-                    <category name="Bucles">
-                        <block type="controls_repeat"></block>
-                        <block type="controls_whileUntil"></block>
-                    </category>
-                    <category name="Logico">
-                        <block type="controls_if"></block>
-                        <block type="logic_compare"></block>
-                    </category>
-                    <category name="Operaciones matematicas">
-                        <block type="math_number"></block>
-                    </category>
-                    <category name="Variables">
-                        <block type="variables_get"></block>
-                        <block type="variables_set"></block>
-                    </category>
-                </xml>
-
-                <xml id="startBlocks" style="display: none">
-                    <block type="bloque_principal"></block>
-                </xml>
-
-                <xml id="seguirLineaSimple" style="display: none">
-                    <block type="bloque_principal">
-                        <value name="variables"></value>
-                        <value name="cuerpo">
-                            <block type="controls_if" inline="true">
-                                <mutation else="0"></mutation>
-                                <value name="IF0">
-                                    <block type="logic_compare">
-                                        <field name="OP">EQ</field>
-                                        <value name="A">
-                                            <block type="detectar_linea">
-                                                <field name="id_sensor">1</field>
-                                            </block>
-                                        </value>
-                                        <value name="B">
-                                            <block type="math_number">
-                                                <field name="NUM">0</field>
-                                            </block>
-                                        </value>
-                                    </block>
-                                </value>
-                                <statement name="DO0">
-                                    <block type="controls_if" inline="true">
-                                        <mutation else="0"></mutation>
-                                        <value name="IF0">
-                                            <block type="logic_compare">
-                                                <field name="OP">EQ</field>
-                                                <value name="A">
-                                                    <block type="detectar_linea">
-                                                        <field name="id_sensor">2</field>
-                                                    </block>
-                                                </value>
-                                                <value name="B">
-                                                    <block type="math_number">
-                                                        <field name="NUM">0</field>
-                                                    </block>
-                                                </value>
-                                            </block>
-                                        </value>
-                                        <statement name="DO0">
-                                            <block type="controls_if" inline="true">
-                                                <mutation else="0"></mutation>
-                                                <value name="IF0">
-                                                    <block type="logic_compare">
-                                                        <field name="OP">EQ</field>
-                                                        <value name="A">
-                                                            <block type="detectar_linea">
-                                                                <field name="id_sensor">3</field>
-                                                            </block>
-                                                        </value>
-                                                        <value name="B">
-                                                            <block type="math_number">
-                                                                <field name="NUM">0</field>
-                                                            </block>
-                                                        </value>
-                                                    </block>
-                                                </value>
-                                                <statement name="DO0">
-                                                    <block type="parar"></block>
-                                                </statement>
-                                            </block>
-                                        </statement>
-                                    </block>
-                                </statement>
-                                <next>
-                                    <block type="controls_if" inline="true">
-                                        <mutation else="0"></mutation>
-                                        <value name="IF0">
-                                            <block type="detectar_linea">
-                                                <field name="id_sensor">1</field>
-                                            </block>
-                                        </value>
-                                        <statement name="DO0">
-                                            <block type="controls_if" inline="true">
-                                                <mutation else="0"></mutation>
-                                                <value name="IF0">
-                                                    <block type="detectar_linea">
-                                                        <field name="id_sensor">2</field>
-                                                    </block>
-                                                </value>
-                                                <statement name="DO0">
-                                                    <block type="controls_if" inline="true">
-                                                        <mutation else="0"></mutation>
-                                                        <value name="IF0">
-                                                            <block type="detectar_linea">
-                                                                <field name="id_sensor">3</field>
-                                                            </block>
-                                                        </value>
-                                                        <statement name="DO0">
-                                                            <block type="mover_hacia">
-                                                                <field name="direccion">delante</field>
-                                                                <field name="metros">1</field>
-                                                            </block>
-                                                        </statement>
-                                                    </block>
-                                                </statement>
-                                            </block>
-                                        </statement>
-                                        <next>
-                                            <block type="controls_if" inline="true">
-                                                <mutation else="0"></mutation>
-                                                <value name="IF0">
-                                                    <block type="logic_compare">
-                                                        <field name="OP">EQ</field>
-                                                        <value name="A">
-                                                            <block type="detectar_linea">
-                                                                <field name="id_sensor">1</field>
-                                                            </block>
-                                                        </value>
-                                                        <value name="B">
-                                                            <block type="math_number">
-                                                                <field name="NUM">0</field>
-                                                            </block>
-                                                        </value>
-                                                    </block>
-                                                </value>
-                                                <statement name="DO0">
-                                                    <block type="girar_hacia">
-                                                        <field name="direccion">derecha</field>
-                                                        <field name="grados">10</field>
-                                                    </block>
-                                                </statement>
-                                                <next>
-                                                    <block type="controls_if" inline="true">
-                                                        <mutation else="0"></mutation>
-                                                        <value name="IF0">
-                                                            <block type="logic_compare">
-                                                                <field name="OP">EQ</field>
-                                                                <value name="A">
-                                                                    <block type="detectar_linea">
-                                                                        <field name="id_sensor">3</field>
-                                                                    </block>
-                                                                </value>
-                                                                <value name="B">
-                                                                    <block type="math_number">
-                                                                        <field name="NUM">0</field>
-                                                                    </block>
-                                                                </value>
-                                                            </block>
-                                                        </value>
-                                                        <statement name="DO0">
-                                                            <block type="girar_hacia">
-                                                                <field name="direccion">izquierda</field>
-                                                                <field name="grados">10</field>
-                                                            </block>
-                                                        </statement>
-                                                    </block>
-                                                </next>
-                                            </block>
-                                        </next>
-                                    </block>
-                        </value>
-                        </block>
-                </xml>
-
-                <xml id="laberintoCajas" style="display: none">
-                    <block type="bloque_principal">
-                        <value name="variables">
-
-                        </value>
-                        <value name="cuerpo">
-                            <block type="girar_hacia">
-                                <field name="direccion">izquierda</field>
-                                <field name="grados">90</field>
-                                <next>
-                                    <block type="controls_if" inline="true">
-                                        <mutation else="1"></mutation>
-                                        <value name="IF0">
-                                            <block type="logic_compare">
-                                                <field name="OP">EQ</field>
-                                                <value name="A">
-                                                    <block type="distancia_obstaculo">
-                                                        <field name="centimetros">10</field>
-                                                        <field name="id_sensor">5</field>
-                                                    </block>
-                                                </value>
-                                                <value name="B">
-                                                    <block type="math_number">
-                                                        <field name="NUM">0</field>
-                                                    </block>
-                                                </value>
-                                            </block>
-
-                                        </value>
-                                        <statement name="DO0">
-                                            <block type="mover_hacia">
-                                                <field name="direccion">delante</field>
-                                                <field name="metros">1</field>
-                                            </block>
-                                        </statement>
-                                        <statement name="ELSE">
-                                            <block type="girar_hacia">
-                                                <field name="direccion">derecha</field>
-                                                <field name="grados">180</field>
-                                            </block>
-                                        </statement>
-                                    </block>
-                                </next>
-                            </block>>
-                        </value>
-                    </block>
-                </xml>
-
-
+    <!-- Carousel
+    ================================================== -->
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+            <div class="item active">
+                <img class="first-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="First slide">
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1>Example headline.</h1>
+                        <p>Note: If you're viewing this page via a <code>file://</code> URL, the "next" and "previous" Glyphicon
+                            buttons on the left and right might not load/display properly due to web browser security rules.</p>
+                        <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <img class="second-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Second slide">
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1>Another example headline.</h1>
+                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at
+                            eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                        <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
+                    </div>
+                </div>
             </div>
 
-            <div id="codigo_generado" class="col-md-4">
-                <button id="button_run" class="btn btn-primary" onclick="run_code()">Generar codigo arduino</button>
-                <textarea readonly id="codigo" class="form-control" style="height:650px"></textarea>
-                <div id="miDiv"></div>
+        </div>
+        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+    <!-- /.carousel -->
+
+    <!-- Marketing messaging and featurettes
+    ================================================== -->
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+
+    <div class="container marketing">
+
+        <!-- Three columns of text below the carousel -->
+        <div class="row">
+            <div class="col-lg-6">
+                <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image"
+                    width="140" height="140">
+                <h2>Programar placa</h2>
+                <p>Descripcion</p>
+                <p><a class="btn btn-default" href="app_placa.html" role="button">Ir a aplicación &raquo;</a></p>
+            </div>
+            <!-- /.col-lg-4 -->
+            <div class="col-lg-6">
+                <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image"
+                    width="140" height="140">
+                <h2>Programar robot</h2>
+                <p>Descripcion</p>
+                <p><a class="btn btn-default" href="app_robot.html" role="button">Ir a aplicación &raquo;</a></p>
             </div>
         </div>
+        <!-- /.row -->
     </div>
 
     <footer class="footer">
@@ -312,54 +106,6 @@
             <p class="text-muted">Trabajo realizado por: Jose Manuel Garcia Fernandez - Universidad de Oviedo</p>
         </div>
     </footer>
-
-    <script>
-        var workspace = Blockly.inject('blocklyDiv',
-        {media: '../../media/',
-         toolbox: document.getElementById('toolbox')});
-          Blockly.Xml.domToWorkspace(workspace,
-        document.getElementById('startBlocks'));
-         var text='';
-         var cabecera='';
-               
-        function run_code() {
-			code = Blockly.JavaScript.workspaceToCode(workspace);
-            var div = document.getElementById("codigo");          
-            div.textContent = cabecera + code.replace(/var /g,"int ") + text ;                
-		}
-        
-        function readMetodos(){
-            text = document.getElementById('iframe').contentDocument.body.firstChild.textContent;
-        }
-                
-        function readCabecera() {
-            cabecera = document.getElementById('iframe2').contentDocument.body.firstChild.textContent;
-       }
-
-        function cargarSeguirLinea() {    
-            Blockly.mainWorkspace.clear();
-            Blockly.Xml.domToWorkspace(workspace,
-            document.getElementById('seguirLineaSimple'));        
-        }
-        
-        function limpiarWorkSpace(){
-            Blockly.mainWorkspace.clear();
-            Blockly.Xml.domToWorkspace(workspace,
-            document.getElementById('startBlocks')); 
-        }
-        
-        function cargarSeguirLineaObstaculos(){
-           Blockly.mainWorkspace.clear();
-           Blockly.Xml.domToWorkspace(workspace,
-           document.getElementById('seguirLineaObstaculos')); 
-        }
-        
-        function cargarLaberintoCajas(){
-            Blockly.mainWorkspace.clear();
-           Blockly.Xml.domToWorkspace(workspace,
-           document.getElementById('laberintoCajas'));
-        }
-    </script>
 </body>
 
 </html>
