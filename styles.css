@@ -1,54 +1,31 @@
-body {
-	font-family:Arial, sans-serif;
-	font-size: 16pt;
-	background: #707070;
+html,body,.container
+{
+    height:100%;
 }
-
-#header {
-    text-align: center;
-	color:#F00;
+.container
+{
+    display:table;
+    width: 100%;
+    margin-top: -50px;
+    padding-top: 50px;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
-
-#blockly {
-	border:1px solid #CCC;
-	padding-left:0;
-	height:800px;
+.row
+{
+    height: 100%;
+    display: table-row;
 }
-
-#blockly_editor {
-	width:49%;
-	float:left;
-    margin: 20px; 
-
+.col-md-3.no-float, .col-md-9.no-float {
+    float: none; /* thanks baxabbit */
 }
-
-#description {
-	width:49%;
-	float:right;
-	margin-top:0;
+.col-md-3
+{
+    display: table-cell;
+    width: 30%;
 }
-
-#button_run {
-    width:85%;
-    
-}
-
-#codigo_generado {
-    margin-left:2%; 
-    width:45%; 
-    float:right;
-}
-#codigo {
-    margin-top:2%; 
-    width:85%; 
-    height: 625px;
-}
-
-footer {
-    clear: both;
-    position: relative;
-    z-index: 10;
-    height: 3em;
-    margin-top: -3em;
-    text-align: center;
+.col-md-9
+{
+    display: table-cell;
+    width: 70%;
 }

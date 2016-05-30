@@ -4,7 +4,6 @@
                 
                 </value>
                 <value name="cuerpo">
-                    <block type="abrir_pinza">
                         <block type="girar_hacia">
                             <field name="direccion">izquierda</field>
                             <field name="grados">90</field>
