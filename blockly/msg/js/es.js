@@ -385,3 +385,5 @@ Blockly.Msg.PROCEDURES_DEFRETURN_COMMENT = Blockly.Msg.PROCEDURES_DEFNORETURN_CO
 Blockly.Msg.MOVER_PINZA_DIST = "Mover pinza a la coordenada  %1";
 Blockly.Msg.IR_A_RUEDAS = "Ir a coordenada X: %1 Y: %2";
 Blockly.Msg.PARAR_TIEMPO = "Parar  %1 milisegundos";
+Blockly.Msg.TAM_TABLERO = "Tamaño tablero: %1 X %2";
+Blockly.Msg.POS_INICIAL = "Posición inicial, X: %1 Y: %2";
