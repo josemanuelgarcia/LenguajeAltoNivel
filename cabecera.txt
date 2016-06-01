@@ -10,8 +10,9 @@ Servo servoPMove;
 
 int gradosPinza = GMIN;
 const long tiempoPaso = 5000 / 10;
- int posicionY = 10;
+int posicionY = 10;
 
+//Cambiar a analogicos
 int pinesSensores[] = {1,2,3};
 int sensor[3];
 

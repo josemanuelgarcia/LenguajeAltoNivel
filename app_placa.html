@@ -5,24 +5,105 @@
     <meta charset="utf-8">
     <script src="blockly/blockly_uncompressed.js"></script>
     <script src="blockly/generators/javascript.js"></script>
-    <script src="blockly/msg/js/es.js"></script>
     <script src="javascript.js"></script>
-    <script src="bloques/ruedas.js"></script>
-    <script src="bloques/pinza.js"></script>
+    <script src="javas_placa.js"></script>
+    <script src="blockly/msg/js/es.js"></script>
     <script src="bloques/principal.js"></script>
-    <script src="bloques/sensores.js"></script>
     <script src="blockly/blocks/logic.js"></script>
     <script src="blockly/blocks/loops.js"></script>
     <script src="blockly/blocks/math.js"></script>
+    <script src="bloques/pines.js"></script>
+    <script src="bloques/pines.js"></script>
+    <script src="bloques/complementos.js"></script>
     <script src="blockly/blocks/variables.js"></script>
 
     <title>Lenguaje de alto nivel para robot arduino</title>
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
 
 </head>
 
 <body>
-    <h1>Pagina en construcción</h1>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="index.html">Lenguaje de alto nivel para robot arduino</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+            </div>
+        </div>
+    </nav>
+    <iframe id='iframe' src='prueba1.txt' style="visibility:hidden;height: 0%;"> </iframe>
+    <iframe id='iframe2' src='cabecera.txt' style="visibility:hidden;height: 0%;"> </iframe>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div id="blockly_editor" class="col-md-7">
+                <div id="blocklyDiv" style="height:700px"></div>
+                <xml id="toolbox" style="display: none">
+                    <category name="Bucles">
+                        <block type="controls_repeat">
+                        </block>
+                        <block type="controls_whileUntil"></block>
+                    </category>
+                    <category name="Logico">
+                        <block type="controls_if"></block>
+                        <block type="logic_compare"></block>
+                    </category>
+                    <category name="Operaciones matematicas">
+                        <block type="math_number"></block>
+                        <block type="math_arithmetic"></block>
+                    </category>
+                    <category name="Variables">
+                        <block type="variables_get"></block>
+                        <block type="variables_set"></block>
+                    </category>
+                    <category name="Pines">
+                        <block type="definir_pin_digital"></block>
+                        <block type="leer_pin_digital"></block>
+                        <block type="escribir_pin_digital"></block>
+                        <block type="leer_pin_analogico"></block>
+                        <block type="escribir_pin_analogico"></block>
+                    </category>
+                    <category name="Complmentos">
+                        <block type="esperar"></block>
+                        <block type="leer_ultrasonidos"></block>
+                        <block type="map"></block>
+                        <block type="zumbador"></block>
+
+                    </category>
+                </xml>
+
+                <xml id="startBlocks" style="display: none">
+                    <block type="bloque_principal_placa"></block>
+                </xml>
+            </div>
+            <div id="codigo_generado" class="col-md-5">
+                <button id="button_run" class="btn btn-primary" onclick="run_code()">Generar codigo arduino</button>
+                <textarea readonly id="codigo" class="form-control" style="height:650px"></textarea>
+                <div id="miDiv"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="text-muted">Trabajo realizado por: Jose Manuel Garcia Fernandez - Universidad de Oviedo</p>
+        </div>
+    </footer>
+
+    <script>
+        var workspace = Blockly.inject('blocklyDiv',
+        {media: '../../media/',
+         toolbox: document.getElementById('toolbox')});
+          Blockly.Xml.domToWorkspace(workspace,
+        document.getElementById('startBlocks'));
+        function run_code() {
+			code = Blockly.JavaScript.workspaceToCode(workspace);
+            var div = document.getElementById("codigo");          
+            div.textContent = code.replace(/var /g,"int ");                
+		}
+    </script>
 </body>
 
 </html>

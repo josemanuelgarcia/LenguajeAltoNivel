@@ -17,7 +17,11 @@ void setup() {
           pinMode(pinesTrig[i] , OUTPUT);
           pinMode(pinesEcho[i], INPUT);
     }
+    
+    //Sensor colision 
+    pinMode(3, INPUT); 
 }
+
 
 void girar(String lado, int grados) {
     if(lado=="derecha")
@@ -101,6 +105,8 @@ void cerrar_pinza(){
 }
 
 void mover_pinza(int coordenada) {
+//TODO cambiar con el sensor de colision
+  String sensor= String(digitalRead(6));
     if ( coordenada < 0 || coordenada > 24 )
     return;
 

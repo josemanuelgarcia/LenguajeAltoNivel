@@ -101,7 +101,7 @@ Blockly.JavaScript['controls_whileUntil'] = function (block) {
 Blockly.JavaScript['logic_compare'] = function (block) {
     var code1 = Blockly.JavaScript.statementToCode(block, 'A');
     var operador = block.getFieldValue('OP');
-    var code2 = Blockly.JavaScript.statementToCode(block, 'B')
+    var code2 = Blockly.JavaScript.statementToCode(block, 'B');
 
     if (code1 == '') {
         code1 = block.getInputTargetBlock('A');
@@ -135,7 +135,7 @@ Blockly.JavaScript['controls_repeat'] = function (block) {
 
 Blockly.JavaScript['variables_set'] = function (block) {
     var nombre = block.getFieldValue('VAR');
-    var value = block.getInputTargetBlock('VALUE');
+    var value = Blockly.JavaScript.statementToCode(block, 'VALUE');
     return nombre + '=' + value + ';';
 };
 
@@ -146,7 +146,6 @@ Blockly.JavaScript['variables_get'] = function (block) {
 
 Blockly.JavaScript['detectar_linea'] = function (block) {
     var dropdown_id_sensor = block.getFieldValue('id_sensor');
-    // TODO: Assemble JavaScript into code variable.
     var code = 'hay_linea(' + dropdown_id_sensor + ')';
     return code;
 };
