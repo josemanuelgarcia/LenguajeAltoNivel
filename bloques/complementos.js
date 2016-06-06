@@ -6,7 +6,7 @@ Blockly.Blocks['esperar'] = {
             .appendField("milisegundos");
         this.setPreviousStatement(true);
         this.setNextStatement(true);
-        this.setColour(65);
+        this.setColour(290);
         this.setTooltip('');
         this.setHelpUrl('http://www.example.com/');
     }
@@ -20,7 +20,7 @@ Blockly.Blocks['leer_ultrasonidos'] = {
             .appendField("Pin Tig")
             .appendField(new Blockly.FieldTextInput("0"), "P_trig");
         this.setOutput(true);
-        this.setColour(65);
+        this.setColour(290);
         this.setTooltip('');
         this.setHelpUrl('http://www.example.com/');
     }
@@ -40,7 +40,7 @@ Blockly.Blocks['map'] = {
             .appendField("A máximo")
             .appendField(new Blockly.FieldTextInput("0"), "a_max");
         this.setOutput(true);
-        this.setColour(65);
+        this.setColour(290);
         this.setTooltip('');
         this.setHelpUrl('http://www.example.com/');
     }
@@ -57,7 +57,7 @@ Blockly.Blocks['zumbador'] = {
             .appendField(new Blockly.FieldTextInput("100"), "timpo");
         this.setPreviousStatement(true);
         this.setNextStatement(true);
-        this.setColour(65);
+        this.setColour(290);
         this.setTooltip('');
         this.setHelpUrl('http://www.example.com/');
     }

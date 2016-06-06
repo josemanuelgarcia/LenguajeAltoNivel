@@ -18,10 +18,11 @@ void setup() {
           pinMode(pinesEcho[i], INPUT);
     }
     
-    //Sensor colision 
-    pinMode(3, INPUT); 
-}
+    parar_todo();
+    mover_pinza(0);
+    mover_pinza(3);
 
+}
 
 void girar(String lado, int grados) {
     if(lado=="derecha")
@@ -90,14 +91,14 @@ bool hay_linea(int id_sensor) {
     return sensor[id_sensor-1] == LINEA ;
 }
 
-void abrir_pinza(){
+void cerrar_pinza(){
     while ( gradosPinza < GMAX){
             gradosPinza = gradosPinza+1;
             servoP.write(gradosPinza);
         }
 }
 
-void cerrar_pinza(){
+void abrir_pinza(){
     while ( gradosPinza > GMIN){
         gradosPinza = gradosPinza-1;
         servoP.write(gradosPinza);
@@ -105,23 +106,28 @@ void cerrar_pinza(){
 }
 
 void mover_pinza(int coordenada) {
-//TODO cambiar con el sensor de colision
-  String sensor= String(digitalRead(6));
-    if ( coordenada < 0 || coordenada > 24 )
+   if ( coordenada < 0 || coordenada > 5 )
     return;
 
   int movimiento = coordenada - posicionY;
   int tiempoY = tiempoPaso  * coordenada;
 
-  if (movimiento < 0) {
-    servoPMove.write(0);
-    delay(-tiempoY);
+  if(coordenada==0) {
+    while(analogRead(A0)){
+      servoPMove.write(0);
+    }
     servoPMove.write(90);
-  } else {
-    servoPMove.write(180);
-    delay(tiempoY);
-    servoPMove.write(90);
-  } 
+  } else{
+    if (movimiento < 0) {
+      servoPMove.write(0);
+      delay(-tiempoY);
+      servoPMove.write(90);
+    } else {
+      servoPMove.write(180);
+      delay(tiempoY);
+      servoPMove.write(90);
+    } 
+  }
 
   posicionY = coordenada;
 }
@@ -131,7 +137,14 @@ bool hay_obstaculo(int distancia_param, int id_sensor) {
   delayMicroseconds(5);
   digitalWrite(pinesTrig[id_sensor-1], HIGH); /* Emitimos el pulso ultrasónico */
   delayMicroseconds(10);
-  long tiempoRespuesta = pulseIn(pinesEcho[id_sensor-1], HIGH); /* Medimos la longitud del
+  //Hacemos varias medidas 
+  int medida1=pinesEcho[id_sensor-1];
+  int medida2 =pinesEcho[id_sensor-1];
+  int medida3=pinesEcho[id_sensor-1];
+  int medida4=pinesEcho[id_sensor-1];
+  int medida= medida1+medida2+medida3+medida4/4;
+  
+  long tiempoRespuesta = pulseIn(medida, HIGH); /* Medimos la longitud del
    pulso entrante Cuanto tiempo tarda la entrada en pasar de HIGH a LOW
    retorna microsegundos */
   long distancia = int(0.017 * tiempoRespuesta);

@@ -45,6 +45,10 @@
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" onclick="upload()">Cargar en la placa</a>
+
+                    </li>
                 </ul>
             </div>
         </div>
@@ -397,46 +401,45 @@
                                                             <block type="girar_hacia">
                                                                 <field name="direccion">izquierda</field>
                                                                 <field name="grados">10</field>
-                                                                <next>
-                                                                    <block type="controls_if" inline="true">
-                                                                        <mutation else="0"></mutation>
-                                                                        <value name="IF0">
-                                                                            <block type="distancia_obstaculo">
-                                                                                <field name="centimetros">10</field>
-                                                                                <field name="id_sensor">5</field>
-                                                                            </block>
-                                                                        </value>
-                                                                        <statement name="DO0">
-
-                                                                            <block type="parar">
+                                                            </block>
+                                                        </statement>
+                                                        <next>
+                                                            <block type="controls_if" inline="true">
+                                                                <mutation else="0"></mutation>
+                                                                <value name="IF0">
+                                                                    <block type="distancia_obstaculo">
+                                                                        <field name="centimetros">8</field>
+                                                                        <field name="id_sensor">5</field>
+                                                                    </block>
+                                                                </value>
+                                                                <statement name="DO0">
+                                                                    <block type="parar">
+                                                                        <next>
+                                                                            <block type="abrir_pinza">
                                                                                 <next>
-                                                                                    <block type="abrir_pinza">
+                                                                                    <block type="mover_pinza">
+                                                                                        <field name="DIST">0</field>
                                                                                         <next>
-                                                                                            <block type="mover_pinza">
-                                                                                                <field name="DIST">0</field>
+                                                                                            <block type="cerrar_pinza">
                                                                                                 <next>
-                                                                                                    <block type="cerrar_pinza">
+                                                                                                    <block type="mover_pinza">
+                                                                                                        <field name="DIST">3</field>
                                                                                                         <next>
-                                                                                                            <block type="mover_pinza">
-                                                                                                                <field name="DIST">8</field>
+                                                                                                            <block type="girar_hacia">
+                                                                                                                <field name="direccion">derecha</field>
+                                                                                                                <field name="grados">90</field>
                                                                                                                 <next>
-                                                                                                                    <block type="girar_hacia">
-                                                                                                                        <field name="direccion">derecha</field>
-                                                                                                                        <field name="grados">90</field>
+                                                                                                                    <block type="mover_pinza">
+                                                                                                                        <field name="DIST">0</field>
                                                                                                                         <next>
-                                                                                                                            <block type="mover_pinza">
-                                                                                                                                <field name="DIST">0</field>
+                                                                                                                            <block type="abrir_pinza">
                                                                                                                                 <next>
-                                                                                                                                    <block type="abrir_pinza">
+                                                                                                                                    <block type="mover_pinza">
+                                                                                                                                        <field name="DIST">3</field>
                                                                                                                                         <next>
-                                                                                                                                            <block type="mover_pinza">
-                                                                                                                                                <field name="DIST">10</field>
-                                                                                                                                                <next>
-                                                                                                                                                    <block type="girar_hacia">
-                                                                                                                                                        <field name="direccion">izquierda</field>
-                                                                                                                                                        <field name="grados">90</field>
-                                                                                                                                                    </block>
-                                                                                                                                                </next>
+                                                                                                                                            <block type="girar_hacia">
+                                                                                                                                                <field name="direccion">izquierda</field>
+                                                                                                                                                <field name="grados">90</field>
                                                                                                                                             </block>
                                                                                                                                         </next>
                                                                                                                                     </block>
@@ -454,11 +457,11 @@
                                                                                     </block>
                                                                                 </next>
                                                                             </block>
-                                                                        </statement>
+                                                                        </next>
                                                                     </block>
-                                                                </next>
+                                                                </statement>
                                                             </block>
-                                                        </statement>
+                                                        </next>
                                                     </block>
                                                 </next>
                                             </block>

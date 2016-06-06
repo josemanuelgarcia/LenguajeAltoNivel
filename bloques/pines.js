@@ -26,12 +26,29 @@ Blockly.Blocks['leer_pin_digital'] = {
 };
 
 Blockly.Blocks['escribir_pin_digital'] = {
-  init: function () {
-    this.appendDummyInput()
-      .appendField("Escribir en  pin digital")
-      .appendField(new Blockly.FieldTextInput("0"), "n_pin")
-      .appendField("el valor")
-      .appendField(new Blockly.FieldTextInput("0"), "valor");
+init: function () {
+    this.jsonInit({
+      "message0": Blockly.Msg.ESCRIBIR_PIN_DIGITAL,
+      "args0": [
+        {
+          "type": "field_input",
+          "name": "n_pin",
+          "text": "2"
+        },
+        {
+          "type": "field_input",
+          "name": "valor",
+          "text": "1"
+        }
+      ],
+      "previousStatement": null,
+      "nextStatement": null,
+    });
+
+    this.getField('n_pin').setValidator(
+      Blockly.FieldTextInput.nonnegativeIntegerValidator);
+    this.getField('valor').setValidator(
+      Blockly.FieldTextInput.nonnegativeIntegerValidator);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(65);
@@ -54,11 +71,28 @@ Blockly.Blocks['leer_pin_analogico'] = {
 
 Blockly.Blocks['escribir_pin_analogico'] = {
   init: function () {
-    this.appendDummyInput()
-      .appendField("Escribir en  pin analogico")
-      .appendField(new Blockly.FieldTextInput("0"), "n_pin")
-      .appendField("el valor")
-      .appendField(new Blockly.FieldTextInput("0"), "valor");
+    this.jsonInit({
+      "message0": Blockly.Msg.ESCRIBIR_PIN_ANALOGICO,
+      "args0": [
+        {
+          "type": "field_input",
+          "name": "n_pin",
+          "text": "2"
+        },
+        {
+          "type": "field_input",
+          "name": "valor",
+          "text": "1"
+        }
+      ],
+      "previousStatement": null,
+      "nextStatement": null,
+    });
+
+    this.getField('n_pin').setValidator(
+      Blockly.FieldTextInput.nonnegativeIntegerValidator);
+    this.getField('valor').setValidator(
+      Blockly.FieldTextInput.nonnegativeIntegerValidator);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(65);

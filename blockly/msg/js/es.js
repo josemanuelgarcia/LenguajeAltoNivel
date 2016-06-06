@@ -387,3 +387,9 @@ Blockly.Msg.IR_A_RUEDAS = "Ir a coordenada X: %1 Y: %2";
 Blockly.Msg.PARAR_TIEMPO = "Parar  %1 milisegundos";
 Blockly.Msg.TAM_TABLERO = "Tamaño tablero: %1 X %2";
 Blockly.Msg.POS_INICIAL = "Posición inicial, X: %1 Y: %2";
+Blockly.Msg.GIRAR_SERVO = "Girar servo %1 a %2 grados";
+Blockly.Msg.DEFINIR_SERVO = "Definir servo, %1 en el pin %2";
+Blockly.Msg.ESCRIBIR_PIN_ANALOGICO = "Escribir en pin analógilo %1 el valor %2";
+Blockly.Msg.LEER_PIN_ANALOGICO = "Leer pin analogico %1";
+Blockly.Msg.ESCRIBIR_PIN_DIGITAL = "Escribir en pin digital %1 el valor %2";
+

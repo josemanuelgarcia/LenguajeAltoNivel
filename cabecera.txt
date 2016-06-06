@@ -9,7 +9,7 @@ Servo servoP;
 Servo servoPMove;
 
 int gradosPinza = GMIN;
-const long tiempoPaso = 5000 / 10;
+const long tiempoPaso = 5000 / 5;
 int posicionY = 10;
 
 //Cambiar a analogicos
