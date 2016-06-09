@@ -36,7 +36,7 @@ init: function () {
           "text": "2"
         },
         {
-          "type": "field_input",
+          "type": "input_value",
           "name": "valor",
           "text": "1"
         }
@@ -47,9 +47,8 @@ init: function () {
 
     this.getField('n_pin').setValidator(
       Blockly.FieldTextInput.nonnegativeIntegerValidator);
-    this.getField('valor').setValidator(
-      Blockly.FieldTextInput.nonnegativeIntegerValidator);
     this.setPreviousStatement(true);
+    
     this.setNextStatement(true);
     this.setColour(65);
     this.setTooltip('');
@@ -80,7 +79,7 @@ Blockly.Blocks['escribir_pin_analogico'] = {
           "text": "2"
         },
         {
-          "type": "field_input",
+          "type": "input_value",
           "name": "valor",
           "text": "1"
         }
@@ -90,8 +89,6 @@ Blockly.Blocks['escribir_pin_analogico'] = {
     });
 
     this.getField('n_pin').setValidator(
-      Blockly.FieldTextInput.nonnegativeIntegerValidator);
-    this.getField('valor').setValidator(
       Blockly.FieldTextInput.nonnegativeIntegerValidator);
     this.setPreviousStatement(true);
     this.setNextStatement(true);

@@ -30,6 +30,20 @@
                 <a class="navbar-brand" href="index.html">Lenguaje de alto nivel para robot arduino</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#" onclick="limpiarWorkSpace()">Limpiar Workspace</a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="cargarEncenderApagarLed()">Encender/Apagar Led</a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="cargarEncenderApagarLedLuminosidad()">Encender/Apagar Led con sensor</a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="cargarAbrirPuerta()">Abrir puerta con sensor</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>
@@ -80,6 +94,298 @@
                 <xml id="startBlocks" style="display: none">
                     <block type="bloque_principal_placa"></block>
                 </xml>
+
+                <xml id="encenderApagarLed" style="display: none">
+                    <block type="bloque_principal_placa">
+                        <value name="variables">
+                            <block type="variables_set">
+                                <field name="VAR">pulsadorAnterior</field>
+                                <value name="VALUE">
+                                    <block type="math_number">
+                                        <field name="NUM">0</field>
+                                    </block>
+                                </value>
+                                <next>
+                                    <block type="variables_set">
+                                        <field name="VAR">led</field>
+                                        <value name="VALUE">
+                                            <block type="math_number">
+                                                <field name="NUM">0</field>
+                                            </block>
+                                    </block>
+                                </next>
+                            </block>
+                            </value>
+                            <value name="pines">
+                                <block type="definir_pin_digital">
+                                    <field name="TIpo">OUTPUT</field>
+                                    <field name="n_pin">13</field>
+                                </block>
+                            </value>
+                            <value name="código">
+                                <block type="variables_set">
+                                    <field name="VAR">pulsador</field>
+                                    <value name="VALUE">
+                                        <block type="leer_pin_digital">
+                                            <field name="n_pin">2</field>
+                                        </block>
+                                    </value>
+                                    <next>
+                                        <block type="controls_if" inline="true">
+                                            <mutation else="0"></mutation>
+                                            <value name="IF0">
+                                                <block type="logic_compare">
+                                                    <field name="OP">EQ</field>
+                                                    <value name="A">
+                                                        <block type="variables_get">
+                                                            <field name="VAR">pulsadorAnterior</field>
+                                                        </block>
+                                                    </value>
+                                                    <value name="B">
+                                                        <block type="math_number">
+                                                            <field name="NUM">1</field>
+                                                        </block>
+                                                    </value>
+                                                </block>
+                                            </value>
+                                            <statement name="DO0">
+                                                <block type="controls_if" inline="true">
+                                                    <mutation else="0"></mutation>
+                                                    <value name="IF0">
+                                                        <block type="logic_compare">
+                                                            <field name="OP">EQ</field>
+                                                            <value name="A">
+                                                                <block type="variables_get">
+                                                                    <field name="VAR">pulsador</field>
+                                                                </block>
+                                                            </value>
+                                                            <value name="B">
+                                                                <block type="math_number">
+                                                                    <field name="NUM">0</field>
+                                                                </block>
+                                                            </value>
+                                                        </block>
+                                                    </value>
+                                                    <statement name="DO0">
+                                                        <block type="controls_if" inline="true">
+                                                            <mutation elseif="1"></mutation>
+                                                            <value name="IF0">
+                                                                <block type="logic_compare">
+                                                                    <field name="OP">EQ</field>
+                                                                    <value name="A">
+                                                                        <block type="variables_get">
+                                                                            <field name="VAR">led</field>
+                                                                        </block>
+                                                                    </value>
+                                                                    <value name="B">
+                                                                        <block type="math_number">
+                                                                            <field name="NUM">0</field>
+                                                                        </block>
+                                                                    </value>
+                                                                </block>
+                                                            </value>
+                                                            <statement name="DO0">
+                                                                <block type="variables_set">
+                                                                    <field name="VAR">led</field>
+                                                                    <value name="VALUE">
+                                                                        <block type="math_number">
+                                                                            <field name="NUM">1</field>
+                                                                        </block>
+                                                                    </value>
+                                                                </block>
+                                                            </statement>
+                                                            <value name="IF1">
+                                                                <block type="logic_compare">
+                                                                    <field name="OP">EQ</field>
+                                                                    <value name="A">
+                                                                        <block type="variables_get">
+                                                                            <field name="VAR">led</field>
+                                                                        </block>
+                                                                    </value>
+                                                                    <value name="B">
+                                                                        <block type="math_number">
+                                                                            <field name="NUM">1</field>
+                                                                        </block>
+                                                                    </value>
+                                                                </block>
+                                                            </value>
+                                                            <statement name="DO1">
+                                                                <block type="variables_set">
+                                                                    <field name="VAR">led</field>
+                                                                    <value name="VALUE">
+                                                                        <block type="math_number">
+                                                                            <field name="NUM">0</field>
+                                                                        </block>
+                                                                    </value>
+                                                                </block>
+                                                            </statement>
+                                                            <next>
+                                                                <block type="escribir_pin_digital">
+                                                                    <field name="n_pin">13</field>
+                                                                    <value name="valor">
+                                                                        <block type="variables_get">
+                                                                            <field name="VAR">led</field>
+                                                                        </block>
+                                                                    </value>
+                                                                </block>
+                                                            </next>
+                                                        </block>
+                                                    </statement>
+                                                </block>
+                                            </statement>
+                                            <next>
+                                                <block type="variables_set">
+                                                    <field name="VAR">pulsadorAnterior</field>
+                                                    <value name="VALUE">
+                                                        <block type="variables_get">
+                                                            <field name="VAR">pulsador</field>
+                                                        </block>
+                                                    </value>
+                                                </block>
+                                            </next>
+                                        </block>
+                                    </next>
+                                </block>
+                    </block>
+                </xml>
+
+                <xml id="encenderApagarLedLuminosidad" style="display: none">
+                    <block type="bloque_principal_placa">
+                        <value name="pines">
+                            <block type="definir_pin_digital">
+                                <field name="TIpo">OUTPUT</field>
+                                <field name="n_pin">13</field>
+                            </block>
+                        </value>
+                        <value name="código">
+                            <block type="variables_set">
+                                <field name="VAR">NivelLuz</field>
+                                <value name="VALUE">
+                                    <block type="leer_pin_analogico">
+                                        <field name="n_pin">0</field>
+                                    </block>
+                                </value>
+                                <next>
+                                    <block type="esperar">
+                                        <field name="tiempo">1000</field>
+                                        <next>
+                                            <block type="controls_if" inline="true">
+                                                <mutation elseif="1"></mutation>
+                                                <value name="IF0">
+                                                    <block type="logic_compare">
+                                                        <field name="OP">GT</field>
+                                                        <value name="A">
+                                                            <block type="variables_get">
+                                                                <field name="VAR">NivelLuz</field>
+                                                            </block>
+                                                        </value>
+                                                        <value name="B">
+                                                            <block type="math_number">
+                                                                <field name="NUM">150</field>
+                                                            </block>
+                                                        </value>
+                                                    </block>
+                                                </value>
+                                                <statement name="DO0">
+                                                    <block type="escribir_pin_digital">
+                                                        <field name="n_pin">13</field>
+                                                        <value name="valor">
+                                                            <block type="math_number">
+                                                                <field name="NUM">1</field>
+                                                            </block>
+                                                        </value>
+                                                    </block>
+                                                </statement>
+                                                <value name="IF1">
+                                                    <block type="logic_compare">
+                                                        <field name="OP">LTE</field>
+                                                        <value name="A">
+                                                            <block type="variables_get">
+                                                                <field name="VAR">NivelLuz</field>
+                                                            </block>
+                                                        </value>
+                                                        <value name="B">
+                                                            <block type="math_number">
+                                                                <field name="NUM">150</field>
+                                                            </block>
+                                                        </value>
+                                                    </block>
+                                                </value>
+                                                <statement name="DO1">
+                                                    <block type="escribir_pin_digital">
+                                                        <field name="n_pin">13</field>
+                                                        <value name="valor">
+                                                            <block type="math_number">
+                                                                <field name="NUM">0</field>
+                                                            </block>
+                                                        </value>
+                                                    </block>
+                                                </statement>
+                                            </block>
+                                        </next>
+                                    </block>
+                                </next>
+                            </block>
+                        </value>
+                    </block>
+                </xml>
+
+                <xml id="abrirPuertaUltraS" style="display: none">
+                    <block type="bloque_principal_placa">
+                        <value name="pines">
+                            <block type="definir_servo">
+                                <field name="NOMBRE">servo_1</field>
+                                <field name="PIN">10</field>
+                            </block>
+                        </value>
+                        <value name="código">
+                            <block type="controls_if" inline="true">
+                                <mutation else="0"></mutation>
+                                <value name="IF0">
+                                    <block type="logic_compare">
+                                        <field name="OP">GT</field>
+                                        <value name="A">
+                                            <block type="leer_ultrasonidos">
+                                                <field name="p_echo">12</field>
+                                                <field name="P_trig">13</field>
+                                            </block>
+                                        </value>
+                                        <value name="B">
+                                            <block type="math_number">
+                                                <field name="NUM">5</field>
+                                            </block>
+                                        </value>
+                                    </block>
+                                </value>
+                                <statement name="DO0">
+                                    <block type="girar_servo">
+                                        <field name="NOMBRE">servo_1</field>
+                                        <value name="GRADOS">
+                                            <block type="math_number">
+                                                <field name="NUM">0</field>
+                                            </block>
+                                        </value>
+                                        <next>
+                                            <block type="esperar">
+                                                <field name="tiempo">5000</field>
+                                                <next>
+                                                    <block type="girar_servo">
+                                                        <field name="NOMBRE">servo_1</field>
+                                                        <value name="GRADOS">
+                                                            <block type="math_number">
+                                                                <field name="NUM">90</field>
+                                                            </block>
+                                                        </value>
+                                                    </block>
+                                                </next>
+                                            </block>
+                                        </next>
+                                    </block>
+                                </statement>
+                            </block>
+                        </value>
+                    </block>
+                </xml>
             </div>
             <div id="codigo_generado" class="col-md-5">
                 <button id="button_run" class="btn btn-primary" onclick="run_code()">Generar codigo arduino</button>
@@ -104,8 +410,32 @@
         function run_code() {
 			code = Blockly.JavaScript.workspaceToCode(workspace);
             var div = document.getElementById("codigo");          
-            div.textContent = code.replace(/var /g,"int ");                
+            div.textContent = "#include <Servo.h>\n"+code.replace(/var /g,"int ");                
 		}
+
+        function limpiarWorkSpace(){
+            Blockly.mainWorkspace.clear();
+            Blockly.Xml.domToWorkspace(workspace,
+            document.getElementById('startBlocks')); 
+        }
+
+        function cargarEncenderApagarLed() {    
+            Blockly.mainWorkspace.clear();
+            Blockly.Xml.domToWorkspace(workspace,
+            document.getElementById('encenderApagarLed'));        
+        }
+
+        function cargarEncenderApagarLedLuminosidad() {
+            Blockly.mainWorkspace.clear();
+            Blockly.Xml.domToWorkspace(workspace,
+            document.getElementById('encenderApagarLedLuminosidad')); 
+        }
+
+        function cargarAbrirPuerta() {
+            Blockly.mainWorkspace.clear();
+            Blockly.Xml.domToWorkspace(workspace,
+            document.getElementById('abrirPuertaUltraS')); 
+        }
     </script>
 </body>
 

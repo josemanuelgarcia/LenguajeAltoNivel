@@ -101,3 +101,18 @@ Blockly.Blocks['parar_tiempo'] = {
     this.setHelpUrl('http://www.example.com/');
   }
 };
+
+Blockly.Blocks['mover_casilla'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Avanzar hacia ")
+        .appendField(new Blockly.FieldDropdown([["ADELANTE", "ADELANTE"], ["DERECHA", "DERECHA"], ["IZQUIERDA", "IZQUIERDA"], ["ATRAS", "ATRAS"]]), "direccion")
+        .appendField(new Blockly.FieldTextInput("0"), "casillas")
+        .appendField("casillas");
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(210);
+    this.setTooltip('');
+    this.setHelpUrl('http://www.example.com/');
+  }
+};

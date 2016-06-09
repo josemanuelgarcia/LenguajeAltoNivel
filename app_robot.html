@@ -45,10 +45,6 @@
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="#" onclick="upload()">Cargar en la placa</a>
-
-                    </li>
                 </ul>
             </div>
         </div>
@@ -67,6 +63,7 @@
                         <block type="parar"></block>
                         <block type="parar_tiempo"></block>
                         <block type="ir_a"></block>
+                        <block type="mover_casilla"></block>
                     </category>
                     <category name="Movimientos pinza">
                         <block type="mover_pinza"></block>
@@ -87,6 +84,7 @@
                     </category>
                     <category name="Operaciones matematicas">
                         <block type="math_number"></block>
+                        <block type="math_arithmetic"></block>
                     </category>
                     <category name="Variables">
                         <block type="variables_get"></block>
@@ -583,6 +581,7 @@
            Blockly.Xml.domToWorkspace(workspace,
            document.getElementById('laberintoCajas'));
         }
+         
     </script>
 </body>
 
