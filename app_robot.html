@@ -49,7 +49,6 @@
             </div>
         </div>
     </nav>
-    <iframe id='iframe' src='prueba1.txt' style="visibility:hidden;height: 0%;" onload='readMetodos()'> </iframe>
     <iframe id='iframe2' src='cabecera.txt' style="visibility:hidden;height: 0%;" onload='readCabecera()'> </iframe>
 
     <div class="container-fluid">
@@ -522,7 +521,13 @@
             </div>
 
             <div id="codigo_generado" class="col-md-5">
-                <button id="button_run" class="btn btn-primary" onclick="run_code()">Generar codigo arduino</button>
+                <center>
+                    <div id="botones_codigo" style="width:100%">
+                        <button id="button_run" style="width:40%" class="btn btn-primary" onclick="run_code()">Generar codigo arduino</button>
+                        <button id="button_load" style="width:40%" class="btn btn-primary" onclick="load_code()">Cargar código</button>
+                    </div>
+                </center>
+                <br></br>
                 <textarea readonly id="codigo" class="form-control" style="height:650px"></textarea>
                 <div id="miDiv"></div>
             </div>
@@ -541,18 +546,13 @@
          toolbox: document.getElementById('toolbox')});
           Blockly.Xml.domToWorkspace(workspace,
         document.getElementById('startBlocks'));
-         var text='';
          var cabecera='';
                
         function run_code() {
 			code = Blockly.JavaScript.workspaceToCode(workspace);
             var div = document.getElementById("codigo");          
-            div.textContent = cabecera + code.replace(/var /g,"int ") + text ;                
+            div.textContent = cabecera + code.replace(/var /g,"int ") ;                
 		}
-        
-        function readMetodos(){
-            text = document.getElementById('iframe').contentDocument.body.firstChild.textContent;
-        }
                 
         function readCabecera() {
             cabecera = document.getElementById('iframe2').contentDocument.body.firstChild.textContent;
@@ -582,6 +582,10 @@
            document.getElementById('laberintoCajas'));
         }
          
+        function load_code() {
+
+            
+        } 
     </script>
 </body>
 

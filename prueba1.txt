@@ -19,6 +19,7 @@ void setup() {
     
     parar_todo();
     mover_pinza(0);
+
     mover_pinza(3);
 
 }
@@ -120,22 +121,22 @@ void mover_pinza(int coordenada) {
   posicionY = coordenada;
 }
 
+
 bool hay_obstaculo(int distancia_param, int id_sensor) {
   digitalWrite(pinesTrig[id_sensor-1], LOW); /* Por seguridad volvemos a poner el Trig a LOW*/
   delayMicroseconds(5);
   digitalWrite(pinesTrig[id_sensor-1], HIGH); /* Emitimos el pulso ultrasónico */
   delayMicroseconds(10);
   //Hacemos varias medidas 
-  int medida1=pinesEcho[id_sensor-1];
-  int medida2 =pinesEcho[id_sensor-1];
-  int medida3=pinesEcho[id_sensor-1];
-  int medida4=pinesEcho[id_sensor-1];
-  int medida= medida1+medida2+medida3+medida4/4;
+  int medida=pinesEcho[id_sensor-1];
   
-  long tiempoRespuesta = pulseIn(medida, HIGH); /* Medimos la longitud del
-   pulso entrante Cuanto tiempo tarda la entrada en pasar de HIGH a LOW
-   retorna microsegundos */
-  long distancia = int(0.017 * tiempoRespuesta);
+ 
+  int distancia1 = int(0.017 * pulseIn(medida, HIGH));
+  int distancia2 = int(0.017 * pulseIn(medida, HIGH));
+  int distancia3 = int(0.017 * pulseIn(medida, HIGH));
+  int distancia4 = int(0.017 * pulseIn(medida, HIGH));
+  
+  int distancia=(distancia1+distancia2+distanci3+distancia4)/4;
   return distancia_param<distancia;
 }
 

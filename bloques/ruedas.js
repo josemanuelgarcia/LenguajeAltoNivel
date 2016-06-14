@@ -62,10 +62,7 @@ Blockly.Blocks['mover_hacia'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("Mover hacia")
-        .appendField(new Blockly.FieldDropdown([["delante", "delante"], ["atras", "atras"]]), "direccion")
-        .appendField(",")
-        .appendField(new Blockly.FieldTextInput("0"), "metros")
-        .appendField("metros");
+        .appendField(new Blockly.FieldDropdown([["delante", "delante"], ["atras", "atras"]]), "direccion");
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(210);
