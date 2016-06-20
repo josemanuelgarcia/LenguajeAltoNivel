@@ -1,7 +1,7 @@
-var array_bloques = [];
+var array_bloques = [8];
 
 var array_codigo = ["void girar(String lado, int grados) {\nif(lado==\"derecha\"){\n servoD.write(0);\n servoI.write(0);\n delay(7.86*grados);\n} else{\nservoD.write(180);\nservoI.write(180);\ndelay(5.56*grados);\n}\nservoD.write(90);\nservoI.write(90);\n}\n",
-    "void mover_hacia(String direccion) {\nif(direccion==\"delante\"){\n servoD.write(110);\n servoI.write(70);\n} else{\nservoD.write(0);\nservoI.write(180);\n}\nservoD.write(90);\nservoI.write(90);\n}\n",
+    "void mover_hacia(String direccion) {\nif(direccion==\"delante\"){\n servoD.write(110);\n servoI.write(70);\n} else{\nservoD.write(0);\nservoI.write(180);\n}\n}\n",
     "void parar_todo() {\n  servoD.write(90);\n  servoI.write(90);\n}\n",
     "void actualizarTodosLosSensores() {\n  for(int i=0; i < 3; i++){\n   sensor[i] =  digitalRead(pinesSensores[i]);\n  }\n  for(int i=0; i < 4; i++){\n   delay(15);\n   for(int i=0; i < 3; i++){\n    if (digitalRead(pinesSensores[i]) == LINEA )\n      sensor[i] = LINEA;\n    }\n  }\n}\n",
     "bool hay_linea(int id_sensor) {\n  actualizarTodosLosSensores();\n  return sensor[id_sensor-1] == LINEA;\n}\n",
@@ -57,7 +57,7 @@ Blockly.JavaScript['mover_hacia'] = function (block) {
 
 Blockly.JavaScript['parar_tiempo'] = function (block) {
     var text_segundos = block.getFieldValue('SEG');
-    var code = 'parar_ruedas(' + text_segundos + ');\n';
+    var code = 'delay(' + text_segundos + ');\n';
     return code;
 };
 

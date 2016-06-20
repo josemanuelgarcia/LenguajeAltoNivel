@@ -49,10 +49,16 @@
             </div>
         </div>
     </nav>
-    <iframe id='iframe2' src='cabecera.txt' style="visibility:hidden;height: 0%;" onload='readCabecera()'> </iframe>
+    <iframe id='iframe2' src='cabecera.txt' style="visibility:hidden;display:none;" onload='readCabecera()'> </iframe>
 
     <div class="container-fluid">
-        <div class="row">
+        <br></br>
+        <div class="page-header">
+            <center>
+                <h1>Editor del robot</h1>
+            </center>
+        </div>
+        <div class="row-fluid">
             <div id="blockly_editor" class="col-md-7">
                 <div id="blocklyDiv" style="height:700px"></div>
                 <xml id="toolbox" style="display: none">
@@ -528,17 +534,11 @@
                     </div>
                 </center>
                 <br></br>
-                <textarea readonly id="codigo" class="form-control" style="height:650px"></textarea>
+                <textarea readonly id="codigo" class="form-control" style="height:630px"></textarea>
                 <div id="miDiv"></div>
             </div>
         </div>
     </div>
-
-    <footer class="footer">
-        <div class="container">
-            <p class="text-muted">Trabajo realizado por: Jose Manuel Garcia Fernandez - Universidad de Oviedo</p>
-        </div>
-    </footer>
 
     <script>
         var workspace = Blockly.inject('blocklyDiv',
