@@ -3,23 +3,23 @@
 
 <head>
     <meta charset="utf-8">
-    <script src="blockly/blockly_uncompressed.js"></script>
-    <script src="blockly/generators/javascript.js"></script>
-    <script src="blockly/msg/js/es.js"></script>
-    <script src="javascript.js"></script>
-    <script src="bloques/ruedas.js"></script>
-    <script src="bloques/pinza.js"></script>
-    <script src="bloques/principal.js"></script>
-    <script src="bloques/sensores.js"></script>
-    <script src="bloques/posicionamiento.js"></script>
-    <script src="blockly/blocks/logic.js"></script>
-    <script src="blockly/blocks/loops.js"></script>
-    <script src="blockly/blocks/math.js"></script>
-    <script src="blockly/blocks/variables.js"></script>
+    <script src="../blockly/blockly_uncompressed.js"></script>
+    <script src="../blockly/generators/javascript.js"></script>
+    <script src="../blockly/msg/js/es.js"></script>
+    <script src="../javascript.js"></script>
+    <script src="../bloques/ruedas.js"></script>
+    <script src="../bloques/pinza.js"></script>
+    <script src="../bloques/principal.js"></script>
+    <script src="../bloques/sensores.js"></script>
+    <script src="../bloques/posicionamiento.js"></script>
+    <script src="../blockly/blocks/logic.js"></script>
+    <script src="../blockly/blocks/loops.js"></script>
+    <script src="../blockly/blocks/math.js"></script>
+    <script src="../blockly/blocks/variables.js"></script>
 
     <title>Lenguaje de alto nivel para robot arduino</title>
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="styles.css" rel="stylesheet">
+    <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../styles.css" rel="stylesheet">
 
 </head>
 
@@ -52,7 +52,7 @@
     <iframe id='iframe2' src='cabecera.txt' style="visibility:hidden;display:none;" onload='readCabecera()'> </iframe>
 
     <div class="container-fluid">
-        <br></br>
+        <br><br/>
         <div class="page-header">
             <center>
                 <h1>Editor del robot</h1>
@@ -533,7 +533,7 @@
                         <button id="button_load" style="width:40%" class="btn btn-primary" onclick="load_code()">Cargar código</button>
                     </div>
                 </center>
-                <br></br>
+                <br><br/>
                 <textarea readonly id="codigo" class="form-control" style="height:630px"></textarea>
                 <div id="miDiv"></div>
             </div>
