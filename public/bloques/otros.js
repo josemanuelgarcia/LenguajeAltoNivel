@@ -29,16 +29,17 @@ Blockly.Blocks['leer_ultrasonidos'] = {
 Blockly.Blocks['map'] = {
     init: function () {
         this.appendDummyInput()
-            .appendField(" Map, valor recibido:")
+            .appendField(" Mapear valor")
             .appendField(new Blockly.FieldTextInput("0"), "valor_rec")
-            .appendField("De minimo:")
+            .appendField("De (")
             .appendField(new Blockly.FieldTextInput("0"), "d_min")
-            .appendField("De máximo:")
+            .appendField(",")
             .appendField(new Blockly.FieldTextInput("0"), "d_max")
-            .appendField("A mínimo")
+            .appendField(") a (")
             .appendField(new Blockly.FieldTextInput("0"), "a_min")
-            .appendField("A máximo")
-            .appendField(new Blockly.FieldTextInput("0"), "a_max");
+            .appendField(",")
+            .appendField(new Blockly.FieldTextInput("0"), "a_max")
+            .appendField(")");
         this.setOutput(true);
         this.setColour(290);
         this.setTooltip('');
@@ -58,6 +59,20 @@ Blockly.Blocks['zumbador'] = {
         this.setPreviousStatement(true);
         this.setNextStatement(true);
         this.setColour(290);
+        this.setTooltip('');
+        this.setHelpUrl('http://www.example.com/');
+    }
+};
+
+Blockly.Blocks['aleatorio'] = {
+    init: function () {
+        this.appendDummyInput()
+            .appendField("Generar aleatorio entre")
+            .appendField(new Blockly.FieldTextInput("0"), "MIN")
+            .appendField(" y ")
+            .appendField(new Blockly.FieldTextInput("10"), "MAX");
+        this.setOutput(true, "Number");
+        this.setColour(230);
         this.setTooltip('');
         this.setHelpUrl('http://www.example.com/');
     }

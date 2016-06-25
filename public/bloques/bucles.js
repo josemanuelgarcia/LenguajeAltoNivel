@@ -1,17 +1,4 @@
 
-Blockly.Blocks['bucle_if'] = {
-  init: function() {
-    this.appendValueInput("condicion")
-        .appendField("Si");
-    this.appendStatementInput("argumentos")
-        .appendField("Hacer");
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    this.setColour(180);
-    this.setTooltip('');
-    this.setHelpUrl('http://www.example.com/');
-  }
-};
 
 Blockly.Blocks['bucle_for'] = {
   init: function() {

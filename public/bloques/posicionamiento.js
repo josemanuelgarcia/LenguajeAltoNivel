@@ -22,7 +22,7 @@ Blockly.Blocks['establecer_posicion_inicial'] = {
         Blockly.FieldTextInput.nonnegativeIntegerValidator);  
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(290);
+    this.setColour(280);
     this.setTooltip('');
     this.setHelpUrl('http://www.example.com/');
   }
@@ -52,7 +52,7 @@ Blockly.Blocks['establecer_tamanio_tablero'] = {
         Blockly.FieldTextInput.nonnegativeIntegerValidator);   
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(290);
+    this.setColour(280);
     this.setTooltip('');
     this.setHelpUrl('http://www.example.com/');
   }

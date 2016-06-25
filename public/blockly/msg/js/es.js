@@ -392,4 +392,5 @@ Blockly.Msg.DEFINIR_SERVO = "Definir servo, %1 en el pin %2";
 Blockly.Msg.ESCRIBIR_PIN_ANALOGICO = "Escribir en pin analógilo %1 el valor %2";
 Blockly.Msg.LEER_PIN_ANALOGICO = "Leer pin analogico %1";
 Blockly.Msg.ESCRIBIR_PIN_DIGITAL = "Escribir en pin digital %1 el valor %2";
+Blockly.Msg.GENERAR_ALEATORIO = "Generar numero aleatorio entre %1 y %2";
 

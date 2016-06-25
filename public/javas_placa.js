@@ -66,7 +66,7 @@ Blockly.JavaScript['map'] = function (block) {
   var text_d_max = block.getFieldValue('d_max');
   var text_a_min = block.getFieldValue('a_min');
   var text_a_max = block.getFieldValue('a_max');
-  var code = 'map(' + text_valor_rec + ',' + text_d_min + ',' + text_d_max + ',' + text_a_min + ',' + text_a_max + ')\n;';
+  var code = 'map(' + text_valor_rec + ',' + text_d_min + ',' + text_d_max + ',' + text_a_min + ',' + text_a_max + ');\n';
   return code;
 };
 
@@ -89,6 +89,13 @@ Blockly.JavaScript['girar_servo'] = function (block) {
   var text_nombre = block.getFieldValue('NOMBRE');
   var text_grados = Blockly.JavaScript.statementToCode(block, 'GRADOS');
   var code = text_nombre + '.write(' + text_grados + ');\n';
+  return code;
+};
+
+Blockly.JavaScript['aleatorio'] = function (block) {
+  var text_minimo = block.getFieldValue('MIN');
+  var text_maximo = block.getFieldValue('MAX');
+  var code = 'random(' + text_minimo + ',' + text_maximo + ');\n';
   return code;
 };
 

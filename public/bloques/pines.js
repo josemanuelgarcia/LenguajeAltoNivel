@@ -21,7 +21,6 @@ Blockly.Blocks['leer_pin_digital'] = {
     this.setOutput(true);
     this.setColour(65);
     this.setTooltip('');
-    this.setHelpUrl('http://www.example.com/');
   }
 };
 

@@ -3,23 +3,26 @@
 
 <head>
     <meta charset="utf-8">
-    <script src="../blockly/blockly_uncompressed.js"></script>
-    <script src="../blockly/generators/javascript.js"></script>
-    <script src="../blockly/msg/js/es.js"></script>
-    <script src="../javascript.js"></script>
-    <script src="../bloques/ruedas.js"></script>
-    <script src="../bloques/pinza.js"></script>
-    <script src="../bloques/principal.js"></script>
-    <script src="../bloques/sensores.js"></script>
-    <script src="../bloques/posicionamiento.js"></script>
-    <script src="../blockly/blocks/logic.js"></script>
-    <script src="../blockly/blocks/loops.js"></script>
-    <script src="../blockly/blocks/math.js"></script>
-    <script src="../blockly/blocks/variables.js"></script>
+    <script src="../public/blockly/blockly_uncompressed.js"></script>
+    <script src="../public/blockly/generators/javascript.js"></script>
+    <script src="../public/blockly/msg/js/es.js"></script>
+    <script src="../public/javascript.js"></script>
+    <script src="../public/bloques/ruedas.js"></script>
+    <script src="../public/bloques/pinza.js"></script>
+    <script src="../public/bloques/principal.js"></script>
+    <script src="../public/bloques/sensores.js"></script>
+    <script src="../public/bloques/posicionamiento.js"></script>
+    <script src="../public/blockly/blocks/logic.js"></script>
+    <script src="../public/blockly/blocks/loops.js"></script>
+    <script src="../public/blockly/blocks/math.js"></script>
+    <script src="../public/blockly/blocks/variables.js"></script>
+    <script src="../public/bloques/otros.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
 
     <title>Lenguaje de alto nivel para robot arduino</title>
-    <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../styles.css" rel="stylesheet">
+    <link href="../public/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../public/styles.css" rel="stylesheet">
 
 </head>
 
@@ -27,7 +30,7 @@
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="index.html">Lenguaje de alto nivel para robot arduino</a>
+                <a class="navbar-brand" href="index.html">Inicio</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -45,6 +48,12 @@
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" onclick="guardarPrograma()">Guardar</a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="cargarPrograma()">Cargar</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -66,8 +75,6 @@
                         <block type="girar_hacia"></block>
                         <block type="mover_hacia"></block>
                         <block type="parar"></block>
-                        <block type="parar_tiempo"></block>
-                        <block type="ir_a"></block>
                         <block type="mover_casilla"></block>
                     </category>
                     <category name="Movimientos pinza">
@@ -90,6 +97,7 @@
                     <category name="Operaciones matematicas">
                         <block type="math_number"></block>
                         <block type="math_arithmetic"></block>
+                        <block type="aleatorio"></block>
                     </category>
                     <category name="Variables">
                         <block type="variables_get"></block>
@@ -98,6 +106,9 @@
                     <category name="Posicionamiento">
                         <block type="establecer_posicion_inicial"></block>
                         <block type="establecer_tamanio_tablero"></block>
+                    </category>
+                    <category name="Otros">
+                        <block type="esperar"></block>
                     </category>
                 </xml>
 
@@ -145,27 +156,7 @@
                                             </block>
                                         </value>
                                         <statement name="DO0">
-                                            <block type="controls_if" inline="true">
-                                                <mutation else="0"></mutation>
-                                                <value name="IF0">
-                                                    <block type="logic_compare">
-                                                        <field name="OP">EQ</field>
-                                                        <value name="A">
-                                                            <block type="detectar_linea">
-                                                                <field name="id_sensor">3</field>
-                                                            </block>
-                                                        </value>
-                                                        <value name="B">
-                                                            <block type="math_number">
-                                                                <field name="NUM">0</field>
-                                                            </block>
-                                                        </value>
-                                                    </block>
-                                                </value>
-                                                <statement name="DO0">
-                                                    <block type="parar"></block>
-                                                </statement>
-                                            </block>
+                                            <block type="parar"></block>
                                         </statement>
                                     </block>
                                 </statement>
@@ -186,19 +177,8 @@
                                                     </block>
                                                 </value>
                                                 <statement name="DO0">
-                                                    <block type="controls_if" inline="true">
-                                                        <mutation else="0"></mutation>
-                                                        <value name="IF0">
-                                                            <block type="detectar_linea">
-                                                                <field name="id_sensor">3</field>
-                                                            </block>
-                                                        </value>
-                                                        <statement name="DO0">
-                                                            <block type="mover_hacia">
-                                                                <field name="direccion">delante</field>
-                                                                <field name="metros">1</field>
-                                                            </block>
-                                                        </statement>
+                                                    <block type="mover_hacia">
+                                                        <field name="direccion">delante</field>
                                                     </block>
                                                 </statement>
                                             </block>
@@ -235,7 +215,7 @@
                                                                 <field name="OP">EQ</field>
                                                                 <value name="A">
                                                                     <block type="detectar_linea">
-                                                                        <field name="id_sensor">3</field>
+                                                                        <field name="id_sensor">2</field>
                                                                     </block>
                                                                 </value>
                                                                 <value name="B">
@@ -351,7 +331,6 @@
                                                         <statement name="DO0">
                                                             <block type="mover_hacia">
                                                                 <field name="direccion">delante</field>
-                                                                <field name="metros">1</field>
                                                             </block>
                                                         </statement>
                                                     </block>
@@ -507,7 +486,6 @@
                                         <statement name="DO0">
                                             <block type="mover_hacia">
                                                 <field name="direccion">delante</field>
-                                                <field name="metros">1</field>
                                             </block>
                                         </statement>
                                         <statement name="ELSE">
@@ -586,6 +564,21 @@
 
             
         } 
+
+        function guardarPrograma() {
+            var xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
+            var domToPretty = Blockly.Xml.domToPrettyText(xml);
+            var name=prompt("Intruduce un nombre para el prgrama","miPrograma");
+            window.localStorage.setItem(name, domToPretty);
+        }
+
+        function cargarPrograma() {
+            var name=prompt("Intruduce el nombre del programa","miPrograma");
+            var program = window.localStorage.getItem(name);
+            Blockly.mainWorkspace.clear();
+            var textToDom = Blockly.Xml.textToDom(program); 
+            Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, textToDom);
+        }
     </script>
 </body>
 

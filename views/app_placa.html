@@ -14,7 +14,7 @@
     <script src="../public/blockly/blocks/math.js"></script>
     <script src="../public/bloques/pines.js"></script>
     <script src="../public/bloques/servomotores.js"></script>
-    <script src="../public/bloques/complementos.js"></script>
+    <script src="../public/bloques/otros.js"></script>
     <script src="../public/blockly/blocks/variables.js"></script>
 
     <title>Lenguaje de alto nivel para robot arduino</title>
@@ -50,7 +50,7 @@
     <iframe id='iframe2' src='cabecera.txt' style="visibility:hidden;display:none;"> </iframe>
 
     <div class="container-fluid">
-        <br></br>
+        <br><br/>
         <div class="page-header">
             <center>
                 <h1>Editor de la placa</h1>
@@ -72,6 +72,7 @@
                     <category name="Operaciones matematicas">
                         <block type="math_number"></block>
                         <block type="math_arithmetic"></block>
+                        <block type="aleatorio"></block>
                     </category>
                     <category name="Variables">
                         <block type="variables_get"></block>
@@ -84,15 +85,15 @@
                         <block type="leer_pin_analogico"></block>
                         <block type="escribir_pin_analogico"></block>
                     </category>
-                    <category name="Complmentos">
+                    <category name="Servomotores">
+                        <block type="definir_servo"></block>
+                        <block type="girar_servo"></block>
+                    </category>
+                    <category name="Otros">
                         <block type="esperar"></block>
                         <block type="leer_ultrasonidos"></block>
                         <block type="map"></block>
                         <block type="zumbador"></block>
-                    </category>
-                    <category name="Servomotores">
-                        <block type="definir_servo"></block>
-                        <block type="girar_servo"></block>
                     </category>
                 </xml>
 
@@ -398,7 +399,7 @@
                         <button id="button_run" style="width:60%" class="btn btn-primary" onclick="run_code()">Generar codigo arduino</button>
                     </div>
                 </center>
-                <br></br>
+                <br><br/>
                 <textarea readonly id="codigo" class="form-control" style="height:630px"></textarea>
                 <div id="miDiv"></div>
             </div>
