@@ -1,7 +1,7 @@
 {
-  "name": "Lenguaje de alto nivel",
+  "name": "nodejs-ex",
   "version": "0.0.1",
-  "description": "Lenguaje de alto nivel para programarr un robt Arduino",
+  "description": "Node.js sample app for OpenShift 3",
   "main": "server.js",
   "dependencies": {
     "chai": "^3.5.0",
@@ -24,7 +24,8 @@
     "type": "git",
     "url": "http://github.com/openshift/nodejs-ex.git"
   },
-  "author": "Jose Manuel Garcia",
+  "author": "Steve Speicher <sspeiche@gmail.com>",
+  "license": "CC-BY-1.0",
   "bugs": {
     "url": "http://github.com/openshift/nodejs-ex/issues"
   },
