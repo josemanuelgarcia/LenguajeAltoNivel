@@ -3,23 +3,23 @@
 
 <head>
     <meta charset="utf-8">
-    <script src="../public/blockly/blockly_uncompressed.js"></script>
-    <script src="../public/blockly/generators/javascript.js"></script>
-    <script src="../public/javascript.js"></script>
-    <script src="../public/javas_placa.js"></script>
-    <script src="../public/blockly/msg/js/es.js"></script>
-    <script src="../public/bloques/principal.js"></script>
-    <script src="../public/blockly/blocks/logic.js"></script>
-    <script src="../public/blockly/blocks/loops.js"></script>
-    <script src="../public/blockly/blocks/math.js"></script>
-    <script src="../public/bloques/pines.js"></script>
-    <script src="../public/bloques/servomotores.js"></script>
-    <script src="../public/bloques/otros.js"></script>
-    <script src="../public/blockly/blocks/variables.js"></script>
+    <script src="/blockly/blockly_uncompressed.js"></script>
+    <script src="/blockly/generators/javascript.js"></script>
+    <script src="/javascript.js"></script>
+    <script src="/javas_placa.js"></script>
+    <script src="/blockly/msg/js/es.js"></script>
+    <script src="/bloques/principal.js"></script>
+    <script src="/blockly/blocks/logic.js"></script>
+    <script src="/blockly/blocks/loops.js"></script>
+    <script src="/blockly/blocks/math.js"></script>
+    <script src="/bloques/pines.js"></script>
+    <script src="/bloques/servomotores.js"></script>
+    <script src="/bloques/otros.js"></script>
+    <script src="/blockly/blocks/variables.js"></script>
 
     <title>Lenguaje de alto nivel para robot arduino</title>
-    <link href="../public/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../public/styles.css" rel="stylesheet">
+    <link  rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/styles.css" >
 
 </head>
 
@@ -27,7 +27,7 @@
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="index.html">Inicio</a>
+                <a class="navbar-brand" href="index">Inicio</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -42,6 +42,14 @@
                     </li>
                     <li>
                         <a href="#" onclick="cargarAbrirPuerta()">Abrir puerta con sensor</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" onclick="guardarPrograma()">Guardar</a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="cargarPrograma()">Cargar</a>
                     </li>
                 </ul>
             </div>
@@ -440,6 +448,21 @@
             Blockly.mainWorkspace.clear();
             Blockly.Xml.domToWorkspace(workspace,
             document.getElementById('abrirPuertaUltraS')); 
+        }
+
+        function guardarPrograma() {
+            var xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
+            var domToPretty = Blockly.Xml.domToPrettyText(xml);
+            var name=prompt("Intruduce un nombre para el prgrama","miPrograma");
+            window.localStorage.setItem(name, domToPretty);
+        }
+
+        function cargarPrograma() {
+            var name=prompt("Intruduce el nombre del programa","miPrograma");
+            var program = window.localStorage.getItem(name);
+            Blockly.mainWorkspace.clear();
+            var textToDom = Blockly.Xml.textToDom(program); 
+            Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, textToDom);
         }
     </script>
 </body>
