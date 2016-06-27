@@ -3,26 +3,26 @@
 
 <head>
     <meta charset="utf-8">
-    <script src="../public/blockly/blockly_uncompressed.js"></script>
-    <script src="../public/blockly/generators/javascript.js"></script>
-    <script src="../public/blockly/msg/js/es.js"></script>
-    <script src="../public/javascript.js"></script>
-    <script src="../public/bloques/ruedas.js"></script>
-    <script src="../public/bloques/pinza.js"></script>
-    <script src="../public/bloques/principal.js"></script>
-    <script src="../public/bloques/sensores.js"></script>
-    <script src="../public/bloques/posicionamiento.js"></script>
-    <script src="../public/blockly/blocks/logic.js"></script>
-    <script src="../public/blockly/blocks/loops.js"></script>
-    <script src="../public/blockly/blocks/math.js"></script>
-    <script src="../public/blockly/blocks/variables.js"></script>
-    <script src="../public/bloques/otros.js"></script>
+    <script src="/blockly/blockly_uncompressed.js"></script>
+    <script src="/blockly/generators/javascript.js"></script>
+    <script src="/blockly/msg/js/es.js"></script>
+    <script src="/javascript.js"></script>
+    <script src="/bloques/ruedas.js"></script>
+    <script src="/bloques/pinza.js"></script>
+    <script src="/bloques/principal.js"></script>
+    <script src="/bloques/sensores.js"></script>
+    <script src="/bloques/posicionamiento.js"></script>
+    <script src="/blockly/blocks/logic.js"></script>
+    <script src="/blockly/blocks/loops.js"></script>
+    <script src="/blockly/blocks/math.js"></script>
+    <script src="/blockly/blocks/variables.js"></script>
+    <script src="/bloques/otros.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
 
     <title>Lenguaje de alto nivel para robot arduino</title>
-    <link href="../public/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../public/styles.css" rel="stylesheet">
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/styles.css" rel="stylesheet">
 
 </head>
 
@@ -30,7 +30,7 @@
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="index.html">Inicio</a>
+                <a class="navbar-brand" href="index">Inicio</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -280,27 +280,7 @@
                                             </block>
                                         </value>
                                         <statement name="DO0">
-                                            <block type="controls_if" inline="true">
-                                                <mutation else="0"></mutation>
-                                                <value name="IF0">
-                                                    <block type="logic_compare">
-                                                        <field name="OP">EQ</field>
-                                                        <value name="A">
-                                                            <block type="detectar_linea">
-                                                                <field name="id_sensor">3</field>
-                                                            </block>
-                                                        </value>
-                                                        <value name="B">
-                                                            <block type="math_number">
-                                                                <field name="NUM">0</field>
-                                                            </block>
-                                                        </value>
-                                                    </block>
-                                                </value>
-                                                <statement name="DO0">
-                                                    <block type="parar"></block>
-                                                </statement>
-                                            </block>
+                                            <block type="parar"></block>
                                         </statement>
                                     </block>
                                 </statement>
@@ -321,18 +301,8 @@
                                                     </block>
                                                 </value>
                                                 <statement name="DO0">
-                                                    <block type="controls_if" inline="true">
-                                                        <mutation else="0"></mutation>
-                                                        <value name="IF0">
-                                                            <block type="detectar_linea">
-                                                                <field name="id_sensor">3</field>
-                                                            </block>
-                                                        </value>
-                                                        <statement name="DO0">
-                                                            <block type="mover_hacia">
-                                                                <field name="direccion">delante</field>
-                                                            </block>
-                                                        </statement>
+                                                    <block type="mover_hacia">
+                                                        <field name="direccion">delante</field>
                                                     </block>
                                                 </statement>
                                             </block>
@@ -369,7 +339,7 @@
                                                                 <field name="OP">EQ</field>
                                                                 <value name="A">
                                                                     <block type="detectar_linea">
-                                                                        <field name="id_sensor">3</field>
+                                                                        <field name="id_sensor">2</field>
                                                                     </block>
                                                                 </value>
                                                                 <value name="B">
@@ -390,8 +360,8 @@
                                                                 <mutation else="0"></mutation>
                                                                 <value name="IF0">
                                                                     <block type="distancia_obstaculo">
-                                                                        <field name="centimetros">8</field>
-                                                                        <field name="id_sensor">5</field>
+                                                                        <field name="centimetros">9</field>
+                                                                        <field name="id_sensor">2</field>
                                                                     </block>
                                                                 </value>
                                                                 <statement name="DO0">
@@ -421,7 +391,7 @@
                                                                                                                                         <next>
                                                                                                                                             <block type="girar_hacia">
                                                                                                                                                 <field name="direccion">izquierda</field>
-                                                                                                                                                <field name="grados">90</field>
+                                                                                                                                                <field name="grados">110</field>
                                                                                                                                             </block>
                                                                                                                                         </next>
                                                                                                                                     </block>
@@ -472,8 +442,8 @@
                                                 <field name="OP">EQ</field>
                                                 <value name="A">
                                                     <block type="distancia_obstaculo">
-                                                        <field name="centimetros">10</field>
-                                                        <field name="id_sensor">5</field>
+                                                        <field name="centimetros">20</field>
+                                                        <field name="id_sensor">2</field>
                                                     </block>
                                                 </value>
                                                 <value name="B">
@@ -486,6 +456,11 @@
                                         <statement name="DO0">
                                             <block type="mover_hacia">
                                                 <field name="direccion">delante</field>
+                                                <next>
+                                                    <block type="esperar">
+                                                        <field name="tiempo">2500</field>
+                                                    </block>
+                                                </next>
                                             </block>
                                         </statement>
                                         <statement name="ELSE">
@@ -508,7 +483,6 @@
                 <center>
                     <div id="botones_codigo" style="width:100%">
                         <button id="button_run" style="width:40%" class="btn btn-primary" onclick="run_code()">Generar codigo arduino</button>
-                        <button id="button_load" style="width:40%" class="btn btn-primary" onclick="load_code()">Cargar código</button>
                     </div>
                 </center>
                 <br><br/>
@@ -559,11 +533,6 @@
            Blockly.Xml.domToWorkspace(workspace,
            document.getElementById('laberintoCajas'));
         }
-         
-        function load_code() {
-
-            
-        } 
 
         function guardarPrograma() {
             var xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);

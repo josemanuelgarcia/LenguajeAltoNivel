@@ -16,7 +16,7 @@ Blockly.Blocks['distancia_obstaculo'] = {
         .appendField("Hay obstáculo en distancia ")
         .appendField(new Blockly.FieldTextInput("10"), "centimetros")
         .appendField("y sensor")
-        .appendField(new Blockly.FieldDropdown([["izquierda", "1"], ["centro", "2"], ["derecha", "2"]]), "id_sensor");
+        .appendField(new Blockly.FieldDropdown([["izquierda", "1"], ["centro", "2"], ["derecha", "3"]]), "id_sensor");
     this.setOutput(true);
     this.setTooltip('');
     this.setHelpUrl('http://www.example.com/');

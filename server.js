@@ -74,6 +74,10 @@ app.get('/app_placa', function (req, res) {
   res.render('app_placa.html');
 });
 
+app.get('/index', function (req, res) {
+  res.render('index.html');
+});
+
 app.get('/app_robot', function (req, res) {
   res.render('app_robot.html');
 });

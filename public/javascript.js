@@ -1,29 +1,34 @@
-var array_bloques = [8];
+var array_bloques = [10];
 
-var array_codigo = ["void girar(String lado, int grados) {\nif(lado==\"horario\"){\n servoD.write(0);\n servoI.write(0);\n delay(7.86*grados);\n} else{\nservoD.write(180);\nservoI.write(180);\ndelay(5.56*grados);\n}\nservoD.write(90);\nservoI.write(90);\n}\n",
-    "void mover_hacia(String direccion) {\nif(direccion==\"delante\"){\n servoD.write(110);\n servoI.write(70);\n} else{\nservoD.write(0);\nservoI.write(180);\n}\n}\n",
-    "void parar_todo() {\n  servoD.write(90);\n  servoI.write(90);\n}\n",
-    "void actualizarTodosLosSensores() {\n  for(int i=0; i < 3; i++){\n   sensor[i] =  digitalRead(pinesSensores[i]);\n  }\n  for(int i=0; i < 4; i++){\n   delay(15);\n   for(int i=0; i < 3; i++){\n    if (digitalRead(pinesSensores[i]) == LINEA )\n      sensor[i] = LINEA;\n    }\n  }\n}\n",
-    "bool hay_linea(int id_sensor) {\n  actualizarTodosLosSensores();\n  return sensor[id_sensor-1] == LINEA;\n}\n",
-    "void cerrar_pinza() {\n  while ( gradosPinza < GMAX) {\n    gradosPinza = gradosPinza+1;\n    servoP.write(gradosPinza);\n  }\n}\n",
-    "void abrir_pinza() {\n  while ( gradosPinza > GMIN) {\n    gradosPinza = gradosPinza-1;\n    servoP.write(gradosPinza);\n  }\n}\n",
-    "void mover_pinza(int coordenada) {\n\tif ( coordenada < 0 || coordenada > 5 )\n\t\treturn;\n\t int movimiento = coordenada - posicionY;\n\tint tiempoY = tiempoPaso  * coordenada;\n\tif(coordenada==0) {\n\t\twhile(analogRead(A0)){\n\t\t\tservoPMove.write(0);\n\t\t}\n\t} else {\n\t\tif (movimiento < 0) {\n\t\t\tservoPMove.write(0);\n\t\tdelay(-tiempoY);\n\t\t} else {\n\t\t\tservoPMove.write(180);\n\t\t\tdelay(tiempoY);\n\t\t}\n\t}\n\tservoPMove.write(90);\n\tposicionY = coordenada;\n}\n",
-    "bool hay_obstaculo(int distancia_param, int id_sensor) {\n}\n"
+var array_codigo = ["void girar(String lado, int grados) {\n\tif(lado==\"horario\"){\n\t\tservoD.write(0);\n\t\tservoI.write(0);\n\t\tdelay(7.86*grados);\n\t} else{\n\t\tservoD.write(180);\n\t\tservoI.write(180);\n\t\tdelay(5.56*grados);\n\t}\n\tservoD.write(90);\n\tservoI.write(90);\n}\n\n",
+    "void mover_hacia(String direccion) {\n\tif(direccion==\"delante\"){\n\t\tservoD.write(110);\n\t\tservoI.write(70);\n\t} else{\n\t\tservoD.write(0);\n\t\tservoI.write(180);\n\t}\n}\n\n",
+    "void parar_todo() {\n  servoD.write(90);\n  servoI.write(90);\n}\n\n",
+    "void actualizarTodosLosSensores() {\n  for(int i=0; i < 3; i++){\n   sensor[i] =  digitalRead(pinesSensores[i]);\n  }\n  for(int i=0; i < 4; i++){\n   delay(15);\n   for(int i=0; i < 3; i++){\n    if (digitalRead(pinesSensores[i]) == LINEA )\n      sensor[i] = LINEA;\n    }\n  }\n}\n\n",
+    "bool hay_linea(int id_sensor) {\n  actualizarTodosLosSensores();\n  return sensor[id_sensor-1] == LINEA;\n}\n\n",
+    "void cerrar_pinza() {\n  while ( gradosPinza < GMAX) {\n    gradosPinza = gradosPinza+1;\n    servoP.write(gradosPinza);\n  }\n}\n\n",
+    "void abrir_pinza() {\n  while ( gradosPinza > GMIN) {\n    gradosPinza = gradosPinza-1;\n    servoP.write(gradosPinza);\n  }\n}\n\n",
+    "void mover_pinza(int coordenada) {\n\tif ( coordenada < 0 || coordenada > 5 )\n\t\treturn;\n\t int movimiento = coordenada - posicionY;\n\tint tiempoY = tiempoPaso  * coordenada;\n\tif(coordenada==0) {\n\t\twhile(analogRead(A0)){\n\t\t\tservoPMove.write(0);\n\t\t}\n\t} else {\n\t\tif (movimiento < 0) {\n\t\t\tservoPMove.write(0);\n\t\tdelay(-tiempoY);\n\t\t} else {\n\t\t\tservoPMove.write(180);\n\t\t\tdelay(tiempoY);\n\t\t}\n\t}\n\tservoPMove.write(90);\n\tposicionY = coordenada;\n}\n\n",
+    "bool hay_obstaculo(int distancia_param, int id_sensor) {\n\tdigitalWrite(pinesTrig[id_sensor-1], LOW);\n\tdelayMicroseconds(5);\n\tdigitalWrite(pinesTrig[id_sensor-1], HIGH);\n\tdelayMicroseconds(10);\n\tlong tiempoRespuesta = pulseIn(pinesEcho[id_sensor-1], HIGH);\n\tlong distancia = int(0.017 * tiempoRespuesta);\n\treturn distancia_param<distancia;\n}\n\n",
+    "void mover_casilla(String direccion, int numCasillas) {\n}\n\n",
+    "void avanzar_casilla() {\n}\n\n"
 
 ];
 
 Blockly.JavaScript['bloque_principal'] = function (block) {
+    array_bloques = [];
+    array_bloques.push(8);
     var statements_variables = Blockly.JavaScript.statementToCode(block, 'variables');
     var statements_cuerpo = Blockly.JavaScript.statementToCode(block, 'cuerpo');
-
     var code = statements_variables + '\nvoid loop() {\n' + statements_cuerpo + '}\n\n';
 
-    //Va hasta 9 porque de momento no hay mas metodos 
+
+    //Va hasta 11 porque son los metodos predeterminados que existen 
     for (i = 1; i < 10; i++) {
         if (array_bloques.indexOf(i) != -1) {
             code += array_codigo[i - 1];
         }
     }
+
     return code;
 };
 
@@ -173,7 +178,6 @@ Blockly.JavaScript['detectar_linea'] = function (block) {
 Blockly.JavaScript['distancia_obstaculo'] = function (block) {
     var text_centimetros = block.getFieldValue('centimetros');
     var dropdown_id_sensor = block.getFieldValue('id_sensor');
-    // TODO: Assemble JavaScript into code variable.
     var code = 'hay_obstaculo(' + text_centimetros + ',' + dropdown_id_sensor + ')';
     array_bloques.push(9);
     return code;
@@ -182,7 +186,6 @@ Blockly.JavaScript['distancia_obstaculo'] = function (block) {
 Blockly.JavaScript['establecer_posicion_inicial'] = function (block) {
     var text_coordenadax = block.getFieldValue('coordenadaX');
     var text_coordenaday = block.getFieldValue('coordenadaY');
-    // TODO: Assemble JavaScript into code variable.
     var code = 'int posX =' + text_coordenadax + ';\nint posY= ' + text_coordenaday + ';\n';
     return code;
 };
@@ -190,7 +193,6 @@ Blockly.JavaScript['establecer_posicion_inicial'] = function (block) {
 Blockly.JavaScript['establecer_tamanio_tablero'] = function (block) {
     var text_tamx = block.getFieldValue('tamX');
     var text_tamy = block.getFieldValue('tamY');
-    // TODO: Assemble JavaScript into code variable.
     var code = 'int tablero[' + text_tamx + '][' + text_tamy + '];\n';
     return code;
 };
@@ -199,6 +201,14 @@ Blockly.JavaScript['mover_casilla'] = function (block) {
     var dropdown_direccion = block.getFieldValue('direccion');
     var text_casillas = block.getFieldValue('casillas');
     var code = 'mover_casilla(' + dropdown_direccion + ',' + text_casillas + ');\n';
+    array_bloques.push(10);
+    array_bloques.push(11);
+    return code;
+};
+
+Blockly.JavaScript['esperar'] = function (block) {
+    var text_tiempo = block.getFieldValue('tiempo');
+    var code = 'delay(' + text_tiempo + ');\n';
     return code;
 };
 

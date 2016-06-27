@@ -121,22 +121,15 @@ void mover_pinza(int coordenada) {
   posicionY = coordenada;
 }
 
-
 bool hay_obstaculo(int distancia_param, int id_sensor) {
   digitalWrite(pinesTrig[id_sensor-1], LOW); /* Por seguridad volvemos a poner el Trig a LOW*/
   delayMicroseconds(5);
   digitalWrite(pinesTrig[id_sensor-1], HIGH); /* Emitimos el pulso ultrasónico */
   delayMicroseconds(10);
-  //Hacemos varias medidas 
-  int medida=pinesEcho[id_sensor-1];
-  
- 
-  int distancia1 = int(0.017 * pulseIn(medida, HIGH));
-  int distancia2 = int(0.017 * pulseIn(medida, HIGH));
-  int distancia3 = int(0.017 * pulseIn(medida, HIGH));
-  int distancia4 = int(0.017 * pulseIn(medida, HIGH));
-  
-  int distancia=(distancia1+distancia2+distanci3+distancia4)/4;
+  long tiempoRespuesta = pulseIn(pinesEcho[id_sensor-1], HIGH); /* Medimos la longitud del
+   pulso entrante Cuanto tiempo tarda la entrada en pasar de HIGH a LOW
+   retorna microsegundos */
+  long distancia = int(0.017 * tiempoRespuesta);
   return distancia_param<distancia;
 }
 
@@ -160,7 +153,7 @@ void mover_casilla(String direccion, int numCasillas) {
           }
           girar("derecha",90);
           break;
-      case 'ATRAS':
+      case 'DERECHA':
             girar("derecha", 180);
             for(int i=0; i < numCasillas; i++){
                 avanzar_casilla();

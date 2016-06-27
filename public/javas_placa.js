@@ -2,6 +2,9 @@ var servos_variables = "";
 var metodos_auxiliares = '';
 
 Blockly.JavaScript['bloque_principal_placa'] = function (block) {
+  servos_variables = "";
+  metodos_auxiliares = '';
+
   var statements_variables = Blockly.JavaScript.statementToCode(block, 'variables');
   var statements_pines = Blockly.JavaScript.statementToCode(block, 'pines');
   var statements_codigo = Blockly.JavaScript.statementToCode(block, 'código');

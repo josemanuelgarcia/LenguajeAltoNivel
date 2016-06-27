@@ -8,12 +8,12 @@ Servo servoD;
 Servo servoP;
 Servo servoPMove;
 
-int gradosPinza = GMIN;
-const long tiempoPaso = 5000 / 5;
+int gradosPinza = 60;
+const long tiempoPaso = 1000;
 int posicionY = 10;
 
 //Cambiar a analogicos
-int pinesSensores[] = {1,2,3};
+int pinesSensores[] = {1,2};
 int sensor[3];
 
 int pinesTrig[] = {8,10,12};
