@@ -474,16 +474,38 @@
             var xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
             var domToPretty = Blockly.Xml.domToPrettyText(xml);
             var name=prompt("Intruduce un nombre para el prgrama","miPrograma");
-            window.localStorage.setItem(name, domToPretty);
+            //window.localStorage.setItem(name, domToPretty);
+            var txtFile = "c:/"+name+".xml";
+            writeTextFile(txtFile,domToPretty );      
         }
 
         function cargarPrograma() {
-            var name=prompt("Intruduce el nombre del programa","miPrograma");
-            var program = window.localStorage.getItem(name);
+            var name=prompt("Intruduce el directorio del programa","c:/miPrograma.xml");
+            var program = readTextFile(name);
             Blockly.mainWorkspace.clear();
             var textToDom = Blockly.Xml.textToDom(program); 
             Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, textToDom);
         }
+
+        function writeTextFile(filepath, output) {
+            var txtFile = new File(filepath);
+            txtFile.open("w"); //
+            txtFile.writeln(output);
+            txtFile.close();
+        }
+
+        function readTextFile(filepath) {
+            var str = "";
+            var txtFile = new File(filepath);
+            txtFile.open("r");
+            while (!txtFile.eof) {
+                // read each line of text
+                str += txtFile.readln() + "\n";
+            }
+            return str;
+        }
+
+
     </script>
 </body>
 
