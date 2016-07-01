@@ -2,7 +2,6 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
     <script src="/blockly/blockly_uncompressed.js"></script>
     <script src="/blockly/generators/javascript.js"></script>
     <script src="/javascript.js"></script>
@@ -18,8 +17,13 @@
     <script src="/blockly/blocks/variables.js"></script>
 
     <title>Lenguaje de alto nivel para robot arduino</title>
-    <link  rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/styles.css" >
+    <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/styles.css">
+
+
+    <title>Lenguaje de alto nivel para robot arduino</title>
+    <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/styles.css">
 
 </head>
 
@@ -81,6 +85,7 @@
                         <block type="math_number"></block>
                         <block type="math_arithmetic"></block>
                         <block type="aleatorio"></block>
+                        <block type="math_arithmetic_2"></block>
                     </category>
                     <category name="Variables">
                         <block type="variables_get"></block>
@@ -107,6 +112,21 @@
 
                 <xml id="startBlocks" style="display: none">
                     <block type="bloque_principal_placa"></block>
+                </xml>
+
+                <xml id="math_arithmetic_2">
+                    <block type="math_arithmetic">
+                        <value name="A">
+                            <block type="math_number">
+                                <field name="NUM">0</field>
+                            </block>
+                        </value>
+                        <value name="B">
+                            <block type="math_number">
+                                <field name="NUM">0</field>
+                            </block>
+                        </value>
+                    </block>
                 </xml>
 
                 <xml id="encenderApagarLed" style="display: none">
