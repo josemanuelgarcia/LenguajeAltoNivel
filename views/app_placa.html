@@ -488,7 +488,7 @@
         }
 
         function writeTextFile(filepath, output) {
-            var txtFile = new File(filepath);
+            var txtFile = new File(filepath, {type : 'text/html'});
             txtFile.open("w"); //
             txtFile.writeln(output);
             txtFile.close();
@@ -496,7 +496,7 @@
 
         function readTextFile(filepath) {
             var str = "";
-            var txtFile = new File(filepath);
+            var txtFile = new File(filepath, {type : 'text/html'});
             txtFile.open("r");
             while (!txtFile.eof) {
                 // read each line of text
