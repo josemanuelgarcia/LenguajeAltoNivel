@@ -475,12 +475,22 @@
             var domToPretty = Blockly.Xml.domToPrettyText(xml);
             var name=prompt("Intruduce un nombre para el prgrama","miPrograma");
             //window.localStorage.setItem(name, domToPretty);
-            download(name+".txt",domToPretty);
+            download(name+".xml",domToPretty);
         }
 
         function cargarPrograma() {
             var name=prompt("Intruduce el directorio del programa","c:/miPrograma.xml");
-            var program = readTextFile(name);
+            var reader = new FileReader();
+            reader.onload = function(event) {
+                var contents = event.target.result;
+                console.log("File contents: " + contents);
+            };
+
+            reader.onerror = function(event) {
+                console.error("File could not be read! Code " + event.target.error.code);
+            };
+
+            var program =  reader.readAsText(file);
             Blockly.mainWorkspace.clear();
             var textToDom = Blockly.Xml.textToDom(program); 
             Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, textToDom);
@@ -500,8 +510,6 @@
                 pom.click();
             }
         }
-
-
     </script>
 </body>
 
