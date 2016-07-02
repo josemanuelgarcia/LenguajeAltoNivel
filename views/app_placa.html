@@ -480,20 +480,29 @@
 
         function cargarPrograma() {
             var name=prompt("Intruduce el directorio del programa","c:/miPrograma.xml");
-            var reader = new FileReader();
-            reader.onload = function(event) {
-                var contents = event.target.result;
-                console.log("File contents: " + contents);
-            };
 
-            reader.onerror = function(event) {
-                console.error("File could not be read! Code " + event.target.error.code);
-            };
 
-            var program =  reader.readAsText(file);
+            var program =  readTextFile(name);
             Blockly.mainWorkspace.clear();
             var textToDom = Blockly.Xml.textToDom(program); 
             Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, textToDom);
+        }
+
+        function readTextFile(file) {
+            var rawFile = new XMLHttpRequest();
+            rawFile.open("GET", file, false);
+            rawFile.onreadystatechange = function ()
+            {
+                if(rawFile.readyState === 4)
+                {
+                    if(rawFile.status === 200 || rawFile.status == 0)
+                    {
+                        var allText = rawFile.responseText;
+                        return allText;
+                    }
+                }
+            }
+            rawFile.send(null);
         }
 
         function download(filename, text) {
