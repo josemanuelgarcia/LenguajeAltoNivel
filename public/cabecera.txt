@@ -8,13 +8,12 @@ Servo servoD;
 Servo servoP;
 Servo servoPMove;
 
-int gradosPinza = 60;
+int gradosPinza = GMIN;
 const long tiempoPaso = 1000;
 int posicionY = 10;
 
 //Cambiar a analogicos
-int pinesSensores[] = {1,2};
-int sensor[3];
+int pinesSensores[] = {2,3};
 
 int pinesTrig[] = {8,10,12};
 int pinesEcho[] = {9,11,13};
@@ -30,8 +29,7 @@ void setup() {
     servoD.attach(5);
     servoP.attach(6);
     servoPMove.attach(7);
-            
-    pinMode(1 , INPUT);    
+               
     pinMode(2 , INPUT);
     pinMode(3 , INPUT);
     

@@ -30,7 +30,7 @@
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="index.html">Inicio</a>
+                <a class="navbar-brand" href="index">Inicio</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -45,6 +45,9 @@
                     </li>
                     <li>
                         <a href="#" onclick="cargarLaberintoCajas()">Laberinto cajas</a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="cargarPosicionamiento()">Posicionamiento</a>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -203,7 +206,7 @@
                                                 </value>
                                                 <statement name="DO0">
                                                     <block type="girar_hacia">
-                                                        <field name="direccion">derecha</field>
+                                                        <field name="direccion">horario</field>
                                                         <field name="grados">10</field>
                                                     </block>
                                                 </statement>
@@ -227,7 +230,7 @@
                                                         </value>
                                                         <statement name="DO0">
                                                             <block type="girar_hacia">
-                                                                <field name="direccion">izquierda</field>
+                                                                <field name="direccion">antihorario</field>
                                                                 <field name="grados">10</field>
                                                             </block>
                                                         </statement>
@@ -327,7 +330,7 @@
                                                 </value>
                                                 <statement name="DO0">
                                                     <block type="girar_hacia">
-                                                        <field name="direccion">derecha</field>
+                                                        <field name="direccion">horario</field>
                                                         <field name="grados">10</field>
                                                     </block>
                                                 </statement>
@@ -351,7 +354,7 @@
                                                         </value>
                                                         <statement name="DO0">
                                                             <block type="girar_hacia">
-                                                                <field name="direccion">izquierda</field>
+                                                                <field name="direccion">antihorario</field>
                                                                 <field name="grados">10</field>
                                                             </block>
                                                         </statement>
@@ -378,7 +381,7 @@
                                                                                                         <field name="DIST">3</field>
                                                                                                         <next>
                                                                                                             <block type="girar_hacia">
-                                                                                                                <field name="direccion">derecha</field>
+                                                                                                                <field name="direccion">horario</field>
                                                                                                                 <field name="grados">90</field>
                                                                                                                 <next>
                                                                                                                     <block type="mover_pinza">
@@ -390,7 +393,7 @@
                                                                                                                                         <field name="DIST">3</field>
                                                                                                                                         <next>
                                                                                                                                             <block type="girar_hacia">
-                                                                                                                                                <field name="direccion">izquierda</field>
+                                                                                                                                                <field name="direccion">antihorario</field>
                                                                                                                                                 <field name="grados">110</field>
                                                                                                                                             </block>
                                                                                                                                         </next>
@@ -448,7 +451,7 @@
                                                 </value>
                                                 <value name="B">
                                                     <block type="math_number">
-                                                        <field name="NUM">0</field>
+                                                        <field name="NUM">1</field>
                                                     </block>
                                                 </value>
                                             </block>
@@ -465,13 +468,53 @@
                                         </statement>
                                         <statement name="ELSE">
                                             <block type="girar_hacia">
-                                                <field name="direccion">derecha</field>
+                                                <field name="direccion">horario</field>
                                                 <field name="grados">180</field>
                                             </block>
                                         </statement>
                                     </block>
                                 </next>
                             </block>>
+                        </value>
+                    </block>
+                </xml>
+
+                <xml id="posicion_ejer" style="display: none">
+                    <block type="bloque_principal">
+                        <value name="variables">
+                            <block type="establecer_tamanio_tablero">
+                                <field name="tamX">2</field>
+                                <field name="tamY">2</field>
+                                <next>
+                                    <block type="establecer_posicion_inicial">
+                                        <field name="coordenadaX">0</field>
+                                        <field name="coordenadaY">0</field>
+                                    </block>
+                                </next>
+                            </block>
+                        </value>
+                        <value name="cuerpo">
+                            <block type="controls_if" inline="true">
+                                <mutation else="1"></mutation>
+                                <value name="IF0">
+                                    <block type="distancia_obstaculo">
+                                        <field name="centimetros">25</field>
+                                        <field name="id_sensor">centro</field>
+                                    </block>
+                                </value>
+                                <statement name="DO0">
+                                    <block type="mover_casilla">
+                                        <field name="direccion">ADELANTE</field>
+                                        <field name="text_casillas">1</field>
+                                    </block>
+                                </statement>
+                                <statement name="ELSE">
+                                    <block type="mover_casilla">
+                                        <field name="direccion">IZQUIERDA</field>
+                                        <field name="text_casillas">1</field>
+                                    </block>
+                                </statement>
+                            </block>
                         </value>
                     </block>
                 </xml>
@@ -532,6 +575,12 @@
             Blockly.mainWorkspace.clear();
            Blockly.Xml.domToWorkspace(workspace,
            document.getElementById('laberintoCajas'));
+        }
+
+        function cargarPosicionamiento(){
+            Blockly.mainWorkspace.clear();
+           Blockly.Xml.domToWorkspace(workspace,
+           document.getElementById('posicion_ejer'));
         }
 
         function guardarPrograma() {

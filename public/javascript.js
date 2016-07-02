@@ -1,16 +1,16 @@
 var array_bloques = [10];
 
-var array_codigo = ["void girar(String lado, int grados) {\n\tif(lado==\"horario\"){\n\t\tservoD.write(0);\n\t\tservoI.write(0);\n\t\tdelay(7.86*grados);\n\t} else{\n\t\tservoD.write(180);\n\t\tservoI.write(180);\n\t\tdelay(5.56*grados);\n\t}\n\tservoD.write(90);\n\tservoI.write(90);\n}\n\n",
-    "void mover_hacia(String direccion) {\n\tif(direccion==\"delante\"){\n\t\tservoD.write(110);\n\t\tservoI.write(70);\n\t} else{\n\t\tservoD.write(0);\n\t\tservoI.write(180);\n\t}\n}\n\n",
+var array_codigo = ["void girar(String lado, int grados) {\n\tif(lado==\"horario\"){\n\t\tservoD.write(0);\n\t\tservoI.write(0);\n\t\tdelay(8.2*grados);\n\t} else{\n\t\tservoD.write(180);\n\t\tservoI.write(180);\n\t\tdelay(8.3*grados);\n\t}\n\tservoD.write(90);\n\tservoI.write(90);\n}\n\n",
+    "void mover_hacia(String direccion) {\n\tif(direccion==\"delante\"){\n\t\tservoD.write(110);\n\t\tservoI.write(67);\n\t} else{\n\t\tservoD.write(70);\n\t\tservoI.write(113);\n\t}\n}\n\n",
     "void parar_todo() {\n  servoD.write(90);\n  servoI.write(90);\n}\n\n",
-    "void actualizarTodosLosSensores() {\n  for(int i=0; i < 3; i++){\n   sensor[i] =  digitalRead(pinesSensores[i]);\n  }\n  for(int i=0; i < 4; i++){\n   delay(15);\n   for(int i=0; i < 3; i++){\n    if (digitalRead(pinesSensores[i]) == LINEA )\n      sensor[i] = LINEA;\n    }\n  }\n}\n\n",
+    "void actualizarTodosLosSensores() {\n  for(int i=0; i < 2; i++){\n   sensor[i] =  digitalRead(pinesSensores[i]);\n  }\n  for(int i=0; i < 4; i++){\n   delay(15);\n   for(int i=0; i < 2; i++){\n    if (digitalRead(pinesSensores[i]) == LINEA )\n      sensor[i] = LINEA;\n    }\n  }\n}\n\n",
     "bool hay_linea(int id_sensor) {\n  actualizarTodosLosSensores();\n  return sensor[id_sensor-1] == LINEA;\n}\n\n",
     "void cerrar_pinza() {\n  while ( gradosPinza < GMAX) {\n    gradosPinza = gradosPinza+1;\n    servoP.write(gradosPinza);\n  }\n}\n\n",
     "void abrir_pinza() {\n  while ( gradosPinza > GMIN) {\n    gradosPinza = gradosPinza-1;\n    servoP.write(gradosPinza);\n  }\n}\n\n",
-    "void mover_pinza(int coordenada) {\n\tif ( coordenada < 0 || coordenada > 5 )\n\t\treturn;\n\t int movimiento = coordenada - posicionY;\n\tint tiempoY = tiempoPaso  * coordenada;\n\tif(coordenada==0) {\n\t\twhile(analogRead(A0)){\n\t\t\tservoPMove.write(0);\n\t\t}\n\t} else {\n\t\tif (movimiento < 0) {\n\t\t\tservoPMove.write(0);\n\t\tdelay(-tiempoY);\n\t\t} else {\n\t\t\tservoPMove.write(180);\n\t\t\tdelay(tiempoY);\n\t\t}\n\t}\n\tservoPMove.write(90);\n\tposicionY = coordenada;\n}\n\n",
+    "void mover_pinza(int coordenada) {\n\tif ( coordenada < 0 || coordenada > 5 )\n\t\treturn;\n\t int movimiento = coordenada - posicionY;\n\tint tiempoY = tiempoPaso  * coordenada;\n\tif(coordenada==0) {\n\t\twhile(analogRead(A0)){\n\t\t\tservoPMove.write(0);\n\t\t}\n\t} else {\n\t\tif (movimiento < 0) {\n\t\t\tservoPMove.write(0);\n\t\t\tdelay(-tiempoY);\n\t\t} else {\n\t\t\tservoPMove.write(180);\n\t\t\tdelay(tiempoY);\n\t\t}\n\t}\n\tservoPMove.write(90);\n\tposicionY = coordenada;\n}\n\n",
     "bool hay_obstaculo(int distancia_param, int id_sensor) {\n\tdigitalWrite(pinesTrig[id_sensor-1], LOW);\n\tdelayMicroseconds(5);\n\tdigitalWrite(pinesTrig[id_sensor-1], HIGH);\n\tdelayMicroseconds(10);\n\tlong tiempoRespuesta = pulseIn(pinesEcho[id_sensor-1], HIGH);\n\tlong distancia = int(0.017 * tiempoRespuesta);\n\treturn distancia_param<distancia;\n}\n\n",
-    "void mover_casilla(String direccion, int numCasillas) {\n}\n\n",
-    "void avanzar_casilla() {\n}\n\n"
+    "void mover_casilla(String direccion, int numCasillas) {\n\tif (direccion == \"ADELANTE\" && (posY + numCasillas < tableroY)) {\n\t\tfor (int i = 0; i < numCasillas; i++) {\n\t\t\tavanzar_casilla();\n\t\t\tposY++;\n\t\t\tparar_todo();\n\t\t}\n\t}\n\tif (direccion == \"ADELANTE\" && (posY - numCasillas >=0)) {\n\tgirar(\"horario\", 90);\n\t\tfor (int i = 0; i < numCasillas; i++) {\n\t\t\tavanzar_casilla();\n\t\t\tposY--;\n\t\t\tparar_todo();\n\t\t}\n\tgirar(\"antihorario\", 90);\n\t}\n\tif (direccion == \"IZQUIERDA\" && (posX - numCasillas >=0)) {\n\tgirar(\"antihorario\", 90);\n\t\tfor (int i = 0; i < numCasillas; i++) {\n\t\t\tavanzar_casilla();\n\t\t\tposX--;\n\t\t\tparar_todo();\n\t\t}\n\tgirar(\"horario\", 90);\n\t}\n\tif (direccion == \"DERECHA\" && (posX + numCasillas < tableroX)) {\n\tgirar(\"horario\", 180);\n\t\tfor (int i = 0; i < numCasillas; i++) {\n\t\t\tavanzar_casilla();\n\t\t\tposX++;\n\t\t\tparar_todo();\n\t\t}\n\tgirar(\"antihorario\", 180);\n\t}\n}\n\n",
+    "void avanzar_casilla() {\n\tint ruedas_delante = 0;\n\tint ruedas_detras = 0;\n\twhile (0 == ruedas_delante) {\n\t\tmover_hacia(\"delante\");\n\t\tif (hay_linea(1) && hay_linea(2)) {\n\t\t\truedas_delante = 1;\n\t\t\tdelay(2000);\n\t\t\tparar_todo();\n\t\t}\n\t}\n}\n"
 
 ];
 
@@ -20,7 +20,6 @@ Blockly.JavaScript['bloque_principal'] = function (block) {
     var statements_variables = Blockly.JavaScript.statementToCode(block, 'variables');
     var statements_cuerpo = Blockly.JavaScript.statementToCode(block, 'cuerpo');
     var code = statements_variables + '\nvoid loop() {\n' + statements_cuerpo + '}\n\n';
-
 
     //Va hasta 11 porque son los metodos predeterminados que existen 
     for (i = 1; i < 10; i++) {
@@ -201,6 +200,7 @@ Blockly.JavaScript['mover_casilla'] = function (block) {
     var dropdown_direccion = block.getFieldValue('direccion');
     var text_casillas = block.getFieldValue('casillas');
     var code = 'mover_casilla(' + dropdown_direccion + ',' + text_casillas + ');\n';
+    array_bloques.push(2);
     array_bloques.push(10);
     array_bloques.push(11);
     return code;
