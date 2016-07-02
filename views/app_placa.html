@@ -475,8 +475,7 @@
             var domToPretty = Blockly.Xml.domToPrettyText(xml);
             var name=prompt("Intruduce un nombre para el prgrama","miPrograma");
             //window.localStorage.setItem(name, domToPretty);
-            var txtFile = "c:/"+name+".xml";
-            new File(domToPretty,txtFile);   
+            download(name+".txt",domToPretty);
         }
 
         function cargarPrograma() {
@@ -487,22 +486,19 @@
             Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, textToDom);
         }
 
-        function writeTextFile(filepath, output) {
-            var txtFile = new File(output,filepath);
-            txtFile.open("w"); //
-            txtFile.writeln(output);
-            txtFile.close();
-        }
+        function download(filename, text) {
+            var pom = document.createElement('a');
+            pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+            pom.setAttribute('download', filename);
 
-        function readTextFile(filepath) {
-            var str = "";
-            var txtFile = new File([""], filepath);
-            txtFile.open("r");
-            while (!txtFile.eof) {
-                // read each line of text
-                str += txtFile.readln() + "\n";
+            if (document.createEvent) {
+                var event = document.createEvent('MouseEvents');
+                event.initEvent('click', true, true);
+                pom.dispatchEvent(event);
             }
-            return str;
+            else {
+                pom.click();
+            }
         }
 
 
