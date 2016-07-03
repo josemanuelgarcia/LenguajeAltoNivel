@@ -16,7 +16,7 @@ Blockly.Blocks['bloque_principal_placa'] = {
     this.appendStatementInput("variables")
         .appendField("Variables");
     this.appendStatementInput("pines")
-        .appendField("Definir pines");
+        .appendField("Definir pines y servomotores");
     this.appendStatementInput("código")
         .appendField("Codigo");
     this.setColour(160);
