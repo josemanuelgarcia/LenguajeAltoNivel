@@ -1,4 +1,4 @@
-var array_bloques = [10];
+var array_bloques = [11];
 
 var array_codigo = ["void girar(String lado, int grados) {\n\tif(lado==\"horario\"){\n\t\tservoD.write(0);\n\t\tservoI.write(0);\n\t\tdelay(8.2*grados);\n\t} else{\n\t\tservoD.write(180);\n\t\tservoI.write(180);\n\t\tdelay(8.3*grados);\n\t}\n\tservoD.write(90);\n\tservoI.write(90);\n}\n\n",
     "void mover_hacia(String direccion) {\n\tif(direccion==\"delante\"){\n\t\tservoD.write(110);\n\t\tservoI.write(67);\n\t} else{\n\t\tservoD.write(70);\n\t\tservoI.write(113);\n\t}\n}\n\n",
@@ -22,7 +22,7 @@ Blockly.JavaScript['bloque_principal'] = function (block) {
     var code = statements_variables + '\nvoid loop() {\n' + statements_cuerpo + '}\n\n';
 
     //Va hasta 11 porque son los metodos predeterminados que existen 
-    for (i = 1; i < 10; i++) {
+    for (i = 1; i < 12; i++) {
         if (array_bloques.indexOf(i) != -1) {
             code += array_codigo[i - 1];
         }
@@ -104,7 +104,7 @@ Blockly.JavaScript['controls_if'] = function (block) {
     }
     if (block.elseCount_ == 1) {
         var code_else = Blockly.JavaScript.statementToCode(block, 'ELSE');
-        code += 'else {' + code_else + '}\n';
+        code += 'else {\n' + code_else + '}\n';
     }
     return code;
 };
