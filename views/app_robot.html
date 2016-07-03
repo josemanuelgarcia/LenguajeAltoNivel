@@ -592,9 +592,9 @@
 
         function cargarPrograma() {
             var name=prompt("Intruduce el nombre del programa","miPrograma");
-            var program = window.localStorage.getItem(name);
+            //var program = window.localStorage.getItem(name);
             Blockly.mainWorkspace.clear();
-            var textToDom = Blockly.Xml.textToDom(program); 
+            var textToDom = Blockly.Xml.textToDom(name); 
             Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, textToDom);
         }
 
