@@ -192,14 +192,14 @@ Blockly.JavaScript['establecer_posicion_inicial'] = function (block) {
 Blockly.JavaScript['establecer_tamanio_tablero'] = function (block) {
     var text_tamx = block.getFieldValue('tamX');
     var text_tamy = block.getFieldValue('tamY');
-    var code = 'int tablero[' + text_tamx + '][' + text_tamy + '];\n';
+    var code = 'int tableroX =' + text_tamx + ';\nint tableroY=' + text_tamy + ';\n';
     return code;
 };
 
 Blockly.JavaScript['mover_casilla'] = function (block) {
     var dropdown_direccion = block.getFieldValue('direccion');
     var text_casillas = block.getFieldValue('casillas');
-    var code = 'mover_casilla(' + dropdown_direccion + ',' + text_casillas + ');\n';
+    var code = 'mover_casilla("' + dropdown_direccion + '",' + text_casillas + ');\n';
     array_bloques.push(2);
     array_bloques.push(10);
     array_bloques.push(11);
