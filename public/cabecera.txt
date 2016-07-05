@@ -23,25 +23,4 @@ int LINEA = 0;
 int NO_LINEA = 1;
 
 
-void setup() { 
-
-    Serial.begin(9600);
-    servoI.attach(4);
-    servoD.attach(5);
-    servoP.attach(6);
-    servoPMove.attach(7);
-               
-    pinMode(2 , INPUT);
-    pinMode(3 , INPUT);
-    
-    //Ultrasonidos
-    for(int i=0; i<3;i++){
-          pinMode(pinesTrig[i] , OUTPUT);
-          pinMode(pinesEcho[i], INPUT);
-    }
-    
-    parar_todo();
-    mover_pinza(0);
-    mover_pinza(3);
-
 

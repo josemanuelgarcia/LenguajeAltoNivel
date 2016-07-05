@@ -14,7 +14,7 @@ var array_codigo = ["void girar(String lado, int grados) {\n\tif(lado==\"horario
 
 ];
 
-var setup ="";
+var setup ="void setup() { \n\tSerial.begin(9600);\n\tservoI.attach(4);\n\tservoD.attach(5);\n\tservoP.attach(6);\n\tpinMode(2 , INPUT);\n\tpinMode(3 , INPUT);\n\t\n\tfor(int i=0; i<3;i++){\n\t\tpinMode(pinesTrig[i] , OUTPUT);\n\t\tpinMode(pinesEcho[i], INPUT);\n\t}\n\tparar_todo();\n\tmover_pinza(0);\n\tmover_pinza(3);\n";
 
 Blockly.JavaScript['bloque_principal'] = function (block) {
     array_bloques = [];
@@ -22,7 +22,7 @@ Blockly.JavaScript['bloque_principal'] = function (block) {
     array_bloques.push(3);
     var statements_variables = Blockly.JavaScript.statementToCode(block, 'variables');
     var statements_cuerpo = Blockly.JavaScript.statementToCode(block, 'cuerpo');
-    var code = statements_variables + '}\n\nvoid loop() {\n' + statements_cuerpo + '}\n\n';
+    var code = setup+statements_variables + '}\n\nvoid loop() {\n' + statements_cuerpo + '}\n\n';
 
     //Va hasta 11 porque son los metodos predeterminados que existen 
     for (i = 1; i < 12; i++) {
