@@ -7,7 +7,7 @@ Blockly.Blocks['mover_pinza'] = {
         {
           "type": "field_input",
           "name": "DIST",
-          "text": "10"
+          "text": "3"
         }
       ],
       "previousStatement": null,
@@ -20,8 +20,6 @@ Blockly.Blocks['mover_pinza'] = {
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(330);
-    this.setTooltip('');
-    this.setHelpUrl('http://www.example.com/');
   }
 };
 
@@ -33,8 +31,6 @@ Blockly.Blocks['abrir_pinza'] = {
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(330);
-    this.setTooltip('');
-    this.setHelpUrl('http://www.example.com/');
   }
 };
 
@@ -45,7 +41,5 @@ Blockly.Blocks['cerrar_pinza'] = {
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(330);
-    this.setTooltip('');
-    this.setHelpUrl('http://www.example.com/');
   }
 };

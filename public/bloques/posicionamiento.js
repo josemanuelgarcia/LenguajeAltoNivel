@@ -23,8 +23,6 @@ Blockly.Blocks['establecer_posicion_inicial'] = {
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(280);
-    this.setTooltip('');
-    this.setHelpUrl('http://www.example.com/');
   }
 };
 
@@ -53,8 +51,6 @@ Blockly.Blocks['establecer_tamanio_tablero'] = {
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(280);
-    this.setTooltip('');
-    this.setHelpUrl('http://www.example.com/');
   }
 };
 

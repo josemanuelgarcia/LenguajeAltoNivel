@@ -9,17 +9,20 @@ var array_codigo = ["void girar(String lado, int grados) {\n\tif(lado==\"horario
     "void abrir_pinza() {\n  while ( gradosPinza > GMIN) {\n    gradosPinza = gradosPinza-1;\n    servoP.write(gradosPinza);\n  }\n}\n\n",
     "void mover_pinza(int coordenada) {\n\tif ( coordenada < 0 || coordenada > 5 )\n\t\treturn;\n\t int movimiento = coordenada - posicionY;\n\tint tiempoY = tiempoPaso  * coordenada;\n\tif(coordenada==0) {\n\t\twhile(analogRead(A0)){\n\t\t\tservoPMove.write(0);\n\t\t}\n\t} else {\n\t\tif (movimiento < 0) {\n\t\t\tservoPMove.write(0);\n\t\t\tdelay(-tiempoY);\n\t\t} else {\n\t\t\tservoPMove.write(180);\n\t\t\tdelay(tiempoY);\n\t\t}\n\t}\n\tservoPMove.write(90);\n\tposicionY = coordenada;\n}\n\n",
     "bool hay_obstaculo(int distancia_param, int id_sensor) {\n\tdigitalWrite(pinesTrig[id_sensor-1], LOW);\n\tdelayMicroseconds(5);\n\tdigitalWrite(pinesTrig[id_sensor-1], HIGH);\n\tdelayMicroseconds(10);\n\tlong tiempoRespuesta = pulseIn(pinesEcho[id_sensor-1], HIGH);\n\tlong distancia = int(0.017 * tiempoRespuesta);\n\treturn distancia_param<distancia;\n}\n\n",
-    "void mover_casilla(String direccion, int numCasillas) {\n\tif (direccion == \"ADELANTE\" && (posY + numCasillas < tableroY)) {\n\t\tfor (int i = 0; i < numCasillas; i++) {\n\t\t\tavanzar_casilla();\n\t\t\tposY++;\n\t\t\tparar_todo();\n\t\t}\n\t}\n\tif (direccion == \"ADELANTE\" && (posY - numCasillas >=0)) {\n\tgirar(\"horario\", 90);\n\t\tfor (int i = 0; i < numCasillas; i++) {\n\t\t\tavanzar_casilla();\n\t\t\tposY--;\n\t\t\tparar_todo();\n\t\t}\n\tgirar(\"antihorario\", 90);\n\t}\n\tif (direccion == \"IZQUIERDA\" && (posX - numCasillas >=0)) {\n\tgirar(\"antihorario\", 90);\n\t\tfor (int i = 0; i < numCasillas; i++) {\n\t\t\tavanzar_casilla();\n\t\t\tposX--;\n\t\t\tparar_todo();\n\t\t}\n\tgirar(\"horario\", 90);\n\t}\n\tif (direccion == \"DERECHA\" && (posX + numCasillas < tableroX)) {\n\tgirar(\"horario\", 180);\n\t\tfor (int i = 0; i < numCasillas; i++) {\n\t\t\tavanzar_casilla();\n\t\t\tposX++;\n\t\t\tparar_todo();\n\t\t}\n\tgirar(\"antihorario\", 180);\n\t}\n}\n\n",
+    "void mover_casilla(String direccion, int numCasillas) {\n\tif (direccion == \"ADELANTE\" && (posY + numCasillas < tableroY)) {\n\t\tfor (int i = 0; i < numCasillas; i++) {\n\t\t\tavanzar_casilla();\n\t\t\tposY++;\n\t\t\tparar_todo();\n\t\t}\n\t}\n\tif (direccion == \"ATRAS\" && (posY - numCasillas >=0)) {\n\tgirar(\"horario\", 90);\n\t\tfor (int i = 0; i < numCasillas; i++) {\n\t\t\tavanzar_casilla();\n\t\t\tposY--;\n\t\t\tparar_todo();\n\t\t}\n\tgirar(\"antihorario\", 90);\n\t}\n\tif (direccion == \"IZQUIERDA\" && (posX - numCasillas >=0)) {\n\tgirar(\"antihorario\", 90);\n\t\tfor (int i = 0; i < numCasillas; i++) {\n\t\t\tavanzar_casilla();\n\t\t\tposX--;\n\t\t\tparar_todo();\n\t\t}\n\tgirar(\"horario\", 90);\n\t}\n\tif (direccion == \"DERECHA\" && (posX + numCasillas < tableroX)) {\n\tgirar(\"horario\", 180);\n\t\tfor (int i = 0; i < numCasillas; i++) {\n\t\t\tavanzar_casilla();\n\t\t\tposX++;\n\t\t\tparar_todo();\n\t\t}\n\tgirar(\"antihorario\", 180);\n\t}\n}\n\n",
     "void avanzar_casilla() {\n\tint ruedas_delante = 0;\n\tint ruedas_detras = 0;\n\twhile (0 == ruedas_delante) {\n\t\tmover_hacia(\"delante\");\n\t\tif (hay_linea(1) && hay_linea(2)) {\n\t\t\truedas_delante = 1;\n\t\t\tdelay(2000);\n\t\t\tparar_todo();\n\t\t}\n\t}\n}\n"
 
 ];
 
+var setup ="";
+
 Blockly.JavaScript['bloque_principal'] = function (block) {
     array_bloques = [];
     array_bloques.push(8);
+    array_bloques.push(3);
     var statements_variables = Blockly.JavaScript.statementToCode(block, 'variables');
     var statements_cuerpo = Blockly.JavaScript.statementToCode(block, 'cuerpo');
-    var code = statements_variables + '\nvoid loop() {\n' + statements_cuerpo + '}\n\n';
+    var code = statements_variables + '}\n\nvoid loop() {\n' + statements_cuerpo + '}\n\n';
 
     //Va hasta 11 porque son los metodos predeterminados que existen 
     for (i = 1; i < 12; i++) {
@@ -200,7 +203,11 @@ Blockly.JavaScript['mover_casilla'] = function (block) {
     var dropdown_direccion = block.getFieldValue('direccion');
     var text_casillas = block.getFieldValue('casillas');
     var code = 'mover_casilla("' + dropdown_direccion + '",' + text_casillas + ');\n';
+    array_bloques.push(1);
     array_bloques.push(2);
+    array_bloques.push(3);
+    array_bloques.push(4);
+    array_bloques.push(5);
     array_bloques.push(10);
     array_bloques.push(11);
     return code;

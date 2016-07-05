@@ -6,8 +6,6 @@ Blockly.Blocks['bloque_principal'] = {
     this.appendStatementInput("cuerpo")
         .appendField("Codigo");
     this.setColour(160);
-    this.setTooltip('');
-    this.setHelpUrl('http://www.example.com/');
   }
 };
 
@@ -20,7 +18,5 @@ Blockly.Blocks['bloque_principal_placa'] = {
     this.appendStatementInput("código")
         .appendField("Codigo");
     this.setColour(160);
-    this.setTooltip('');
-    this.setHelpUrl('http://www.example.com/');
   }
 };

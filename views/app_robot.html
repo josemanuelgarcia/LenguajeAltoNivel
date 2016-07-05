@@ -487,7 +487,7 @@
                                 <field name="tamY">2</field>
                                 <next>
                                     <block type="establecer_posicion_inicial">
-                                        <field name="coordenadaX">0</field>
+                                        <field name="coordenadaX">1</field>
                                         <field name="coordenadaY">0</field>
                                     </block>
                                 </next>
@@ -499,7 +499,7 @@
                                 <value name="IF0">
                                     <block type="distancia_obstaculo">
                                         <field name="centimetros">25</field>
-                                        <field name="id_sensor">centro</field>
+                                        <field name="id_sensor">2</field>
                                     </block>
                                 </value>
                                 <statement name="DO0">
@@ -518,8 +518,6 @@
                         </value>
                     </block>
                 </xml>
-
-
             </div>
 
             <div id="codigo_generado" class="col-md-5">
@@ -591,8 +589,7 @@
         }
 
         function cargarPrograma() {
-            var name=prompt("Intruduce el nombre del programa","miPrograma");
-            //var program = window.localStorage.getItem(name);
+            var name=prompt("Intruduce código xml a cargar","");
             Blockly.mainWorkspace.clear();
             var textToDom = Blockly.Xml.textToDom(name); 
             Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, textToDom);

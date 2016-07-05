@@ -7,8 +7,6 @@ Blockly.Blocks['esperar'] = {
         this.setPreviousStatement(true);
         this.setNextStatement(true);
         this.setColour(290);
-        this.setTooltip('');
-        this.setHelpUrl('http://www.example.com/');
     }
 };
 
@@ -21,8 +19,6 @@ Blockly.Blocks['leer_ultrasonidos'] = {
             .appendField(new Blockly.FieldTextInput("0"), "P_trig");
         this.setOutput(true);
         this.setColour(290);
-        this.setTooltip('');
-        this.setHelpUrl('http://www.example.com/');
     }
 };
 
@@ -42,8 +38,6 @@ Blockly.Blocks['map'] = {
             .appendField(")");
         this.setOutput(true);
         this.setColour(290);
-        this.setTooltip('');
-        this.setHelpUrl('http://www.example.com/');
     }
 };
 
@@ -59,8 +53,6 @@ Blockly.Blocks['zumbador'] = {
         this.setPreviousStatement(true);
         this.setNextStatement(true);
         this.setColour(290);
-        this.setTooltip('');
-        this.setHelpUrl('http://www.example.com/');
     }
 };
 
@@ -73,8 +65,6 @@ Blockly.Blocks['aleatorio'] = {
             .appendField(new Blockly.FieldTextInput("10"), "MAX");
         this.setOutput(true, "Number");
         this.setColour(230);
-        this.setTooltip('');
-        this.setHelpUrl('http://www.example.com/');
     }
 };
 

@@ -8,8 +8,6 @@ Blockly.Blocks['definir_pin_digital'] = {
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(65);
-    this.setTooltip('');
-    this.setHelpUrl('http://www.example.com/');
   }
 };
 
@@ -20,7 +18,6 @@ Blockly.Blocks['leer_pin_digital'] = {
       .appendField(new Blockly.FieldTextInput("0"), "n_pin");
     this.setOutput(true);
     this.setColour(65);
-    this.setTooltip('');
   }
 };
 
@@ -50,8 +47,6 @@ init: function () {
     
     this.setNextStatement(true);
     this.setColour(65);
-    this.setTooltip('');
-    this.setHelpUrl('http://www.example.com/');
   }
 };
 
@@ -62,8 +57,6 @@ Blockly.Blocks['leer_pin_analogico'] = {
       .appendField(new Blockly.FieldTextInput("0"), "n_pin");
     this.setOutput(true);
     this.setColour(65);
-    this.setTooltip('');
-    this.setHelpUrl('http://www.example.com/');
   }
 };
 
@@ -92,8 +85,6 @@ Blockly.Blocks['escribir_pin_analogico'] = {
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(65);
-    this.setTooltip('');
-    this.setHelpUrl('http://www.example.com/');
   }
 };
 

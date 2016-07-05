@@ -23,8 +23,6 @@ Blockly.Blocks['definir_servo'] = {
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(0);
-    this.setTooltip('');
-    this.setHelpUrl('http://www.example.com/');
   }
 };
 
@@ -47,8 +45,6 @@ Blockly.Blocks['girar_servo'] = {
             "previousStatement": null,
             "nextStatement": null,
             "colour": 0,
-            "tooltip": Blockly.Msg.GIRAR_SERVO,
-            "helpUrl": Blockly.Msg.GIRAR_SERVO
         });
     }
 

@@ -6,8 +6,6 @@ Blockly.Blocks['parar'] = {
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(200);
-    this.setTooltip('');
-    this.setHelpUrl('http://www.example.com/');
   }
 };
 
@@ -23,8 +21,6 @@ Blockly.Blocks['girar_hacia'] = {
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(200);
-    this.setTooltip('');
-    this.setHelpUrl('http://www.example.com/');
   }
 };
 
@@ -36,8 +32,6 @@ Blockly.Blocks['mover_hacia'] = {
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(200);
-    this.setTooltip('');
-    this.setHelpUrl('http://www.example.com/');
   }
 };
 
@@ -51,7 +45,5 @@ Blockly.Blocks['mover_casilla'] = {
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(200);
-    this.setTooltip('');
-    this.setHelpUrl('http://www.example.com/');
   }
 };

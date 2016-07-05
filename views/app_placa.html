@@ -114,21 +114,6 @@
                     <block type="bloque_principal_placa"></block>
                 </xml>
 
-                <xml id="math_arithmetic_2">
-                    <block type="math_arithmetic">
-                        <value name="A">
-                            <block type="math_number">
-                                <field name="NUM">0</field>
-                            </block>
-                        </value>
-                        <value name="B">
-                            <block type="math_number">
-                                <field name="NUM">0</field>
-                            </block>
-                        </value>
-                    </block>
-                </xml>
-
                 <xml id="encenderApagarLed" style="display: none">
                     <block type="bloque_principal_placa">
                         <value name="variables">
@@ -474,13 +459,11 @@
             var xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
             var domToPretty = Blockly.Xml.domToPrettyText(xml);
             var name=prompt("Intruduce un nombre para el prgrama","miPrograma");
-            //window.localStorage.setItem(name, domToPretty);
             download(name+".xml",domToPretty);
         }
 
         function cargarPrograma() {
-            var name=prompt("Intruduce el directorio del programa","c:/miPrograma.xml");
-
+            var name=prompt("Intruduce el códido XML a cargar","");
 
             var program =  readTextFile(name);
             Blockly.mainWorkspace.clear();
@@ -488,22 +471,6 @@
             Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, textToDom);
         }
 
-        function readTextFile(file) {
-            var rawFile = new XMLHttpRequest();
-            rawFile.open("GET", file, false);
-            rawFile.onreadystatechange = function ()
-            {
-                if(rawFile.readyState === 4)
-                {
-                    if(rawFile.status === 200 || rawFile.status == 0)
-                    {
-                        var allText = rawFile.responseText;
-                        return allText;
-                    }
-                }
-            }
-            rawFile.send(null);
-        }
 
         function download(filename, text) {
             var pom = document.createElement('a');

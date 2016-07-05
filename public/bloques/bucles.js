@@ -10,8 +10,6 @@ Blockly.Blocks['bucle_for'] = {
     this.setPreviousStatement(true, "Boolean");
     this.setNextStatement(true);
     this.setColour(180);
-    this.setTooltip('');
-    this.setHelpUrl('http://www.example.com/');
   }
 };
 
@@ -24,8 +22,6 @@ Blockly.Blocks['bucle_while'] = {
     this.setPreviousStatement(true, "Boolean");
     this.setNextStatement(true);
     this.setColour(180);
-    this.setTooltip('');
-    this.setHelpUrl('http://www.example.com/');
   }
 };
 

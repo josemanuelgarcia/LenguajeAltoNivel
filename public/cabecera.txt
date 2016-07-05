@@ -14,6 +14,7 @@ int posicionY = 10;
 
 //Cambiar a analogicos
 int pinesSensores[] = {2,3};
+int sensor[2];
 
 int pinesTrig[] = {8,10,12};
 int pinesEcho[] = {9,11,13};
@@ -42,7 +43,5 @@ void setup() {
     parar_todo();
     mover_pinza(0);
     mover_pinza(3);
-
-}
 
 
