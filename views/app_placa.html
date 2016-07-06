@@ -38,14 +38,19 @@
                     <li>
                         <a href="#" onclick="limpiarWorkSpace()">Limpiar Workspace</a>
                     </li>
-                    <li>
-                        <a href="#" onclick="cargarEncenderApagarLed()">Encender/Apagar Led</a>
-                    </li>
-                    <li>
-                        <a href="#" onclick="cargarEncenderApagarLedLuminosidad()">Encender/Apagar Led con sensor</a>
-                    </li>
-                    <li>
-                        <a href="#" onclick="cargarAbrirPuerta()">Abrir puerta con sensor</a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ejemplos <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="#" onclick="cargarEncenderApagarLed()">Encender/Apagar Led</a>
+                            </li>
+                            <li>
+                                <a href="#" onclick="cargarEncenderApagarLedLuminosidad()">Encender/Apagar Led con sensor</a>
+                            </li>
+                            <li>
+                                <a href="#" onclick="cargarAbrirPuerta()">Abrir puerta con sensor</a>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -63,13 +68,13 @@
 
     <div class="container-fluid">
         <br><br/>
-        <div class="page-header">
-            <center>
-                <h1>Editor de la placa</h1>
-            </center>
-        </div>
+        <center>
+            <div id="botones_codigo" style="width:100%">
+                <button id="button_run" style="width:60%" class="btn btn-primary" onclick="run_code()">Generar codigo arduino</button>
+            </div>
+        </center>
         <div class="row-fluid">
-            <div id="blockly_editor" class="col-md-7">
+            <div id="blockly_editor" class="col-md-9">
                 <div id="blocklyDiv" style="height:700px"></div>
                 <xml id="toolbox" style="display: none">
                     <category name="Bucles">
@@ -406,17 +411,6 @@
                     </block>
                 </xml>
             </div>
-            <div id="codigo_generado" class="col-md-5">
-                <center>
-                    <div id="botones_codigo" style="width:100%">
-                        <button id="button_run" style="width:60%" class="btn btn-primary" onclick="run_code()">Generar codigo arduino</button>
-                    </div>
-                </center>
-                <br><br/>
-                <textarea readonly id="codigo" class="form-control" style="height:630px"></textarea>
-                <div id="miDiv"></div>
-            </div>
-        </div>
     </div>
 
     <script>
@@ -425,11 +419,12 @@
          toolbox: document.getElementById('toolbox')});
           Blockly.Xml.domToWorkspace(workspace,
         document.getElementById('startBlocks'));
+
         function run_code() {
 			code = Blockly.JavaScript.workspaceToCode(workspace);
             var div = document.getElementById("codigo");          
-            div.textContent = "#include <Servo.h>\n"+code.replace(/var /g,"int ");                
-		}
+            window.alert("#include <Servo.h>\n"+code.replace(/var /g,"int ");                
+		}   
 
         function limpiarWorkSpace(){
             Blockly.mainWorkspace.clear();
