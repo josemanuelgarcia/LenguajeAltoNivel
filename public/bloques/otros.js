@@ -13,10 +13,10 @@ Blockly.Blocks['esperar'] = {
 Blockly.Blocks['leer_ultrasonidos'] = {
     init: function () {
         this.appendDummyInput()
-            .appendField("Leer sensor ultrasonidos, Pin Echo")
-            .appendField(new Blockly.FieldTextInput("0"), "p_echo")
-            .appendField("Pin Tig")
-            .appendField(new Blockly.FieldTextInput("0"), "P_trig");
+            .appendField("Leer sensor ultrasonidos, Pin Trig")
+            .appendField(new Blockly.FieldTextInput("0"), "p_trig")
+            .appendField("Pin Echo")
+            .appendField(new Blockly.FieldTextInput("0"), "P_echo");
         this.setOutput(true);
         this.setColour(290);
     }

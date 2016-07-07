@@ -68,7 +68,7 @@
         <br><br/>
         <div class="row-fluid">
             <div id="blockly_editor" class="col-md-9">
-                <div id="blocklyDiv" style="height:700px"></div>
+                <div id="blocklyDiv" style="height:750px"></div>
                 <xml id="toolbox" style="display: none">
                     <category name="Bucles">
                         <block type="controls_repeat">
@@ -410,7 +410,7 @@
                     </div>
                 </center>
                 <br><br/>
-                <textarea readonly id="codigo" class="form-control" style="height:630px"></textarea>
+                <textarea readonly id="codigo" class="form-control" style="height:680px"></textarea>
                 <div id="miDiv"></div>
             </div>
         </div>
@@ -426,7 +426,7 @@
         function run_code() {
 			code = Blockly.JavaScript.workspaceToCode(workspace);
             var div = document.getElementById("codigo");          
-            window.alert("#include <Servo.h>\n"+code.replace(/var /g,"int "));                
+            div.textContent ="#include <Servo.h>\n"+code.replace(/var /g,"int ");                
 		}   
 
         function limpiarWorkSpace(){
@@ -438,19 +438,26 @@
         function cargarEncenderApagarLed() {    
             Blockly.mainWorkspace.clear();
             Blockly.Xml.domToWorkspace(workspace,
-            document.getElementById('encenderApagarLed'));        
+            document.getElementById('encenderApagarLed'));
+            alert("Este programa enciende y apaga un led al activarse un pulsador.\nPara llevar a cabo este ejemplo se debn de conetar a la placa los siguientes elementos:\n-Un led en el"+
+            " pin digital13.\n-Un pulsador en el pin digital 2.");     
         }
 
         function cargarEncenderApagarLedLuminosidad() {
             Blockly.mainWorkspace.clear();
             Blockly.Xml.domToWorkspace(workspace,
             document.getElementById('encenderApagarLedLuminosidad')); 
+            alert("Este programa enciende y apaga un led en función de la lud recibida por un sensor de luminosidad.\nPara llevar a cabo este ejemplo se debn de conetar a la placa los"+
+            " siguientes elementos:\n-Un led alpin digital 13.\n-Un sensor de luminosidad al pin analógico A0.");
         }
 
         function cargarAbrirPuerta() {
             Blockly.mainWorkspace.clear();
             Blockly.Xml.domToWorkspace(workspace,
             document.getElementById('abrirPuertaUltraS')); 
+            alert("Este programa trata de simular la apertura y ciere de una puerta, con la detección de una persona. Para ello se va a utilizar un servomotor y un sensor de ultrasonidos.\n"+
+            "Para llevar a cabo este ejemplo se debn de conetar a la placa lossiguientes elementos:\n-Un servomotor conectado al pin digital10.\n-Un sensor de ultrsonidos con el "+
+            "pin Trig conectado al pin 12 de la placa y el Echo conectado al pin digital 13 e la placa");
         }
 
         function guardarPrograma() {
