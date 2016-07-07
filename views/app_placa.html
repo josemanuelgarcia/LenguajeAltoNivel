@@ -65,11 +65,7 @@
 
     <div class="container-fluid">
         <br><br/>
-        <center>
-            <div id="botones_codigo" style="width:100%">
-                <button id="button_run" style="width:60%" class="btn btn-primary" onclick="run_code()">Generar codigo arduino</button>
-            </div>
-        </center>
+        <br><br/>
         <div class="row-fluid">
             <div id="blockly_editor" class="col-md-9">
                 <div id="blocklyDiv" style="height:700px"></div>
@@ -87,7 +83,6 @@
                         <block type="math_number"></block>
                         <block type="math_arithmetic"></block>
                         <block type="aleatorio"></block>
-                        <block type="math_arithmetic_2"></block>
                     </category>
                     <category name="Variables">
                         <block type="variables_get"></block>
@@ -408,9 +403,20 @@
                     </block>
                 </xml>
             </div>
+            <div id="codigo_generado" class="col-md-3">
+                <center>
+                    <div id="botones_codigo" style="width:100%">
+                        <button id="button_run" style="width:40%" class="btn btn-primary" onclick="run_code()">Generar codigo arduino</button>
+                    </div>
+                </center>
+                <br><br/>
+                <textarea readonly id="codigo" class="form-control" style="height:630px"></textarea>
+                <div id="miDiv"></div>
+            </div>
         </div>
+    </div>
 
-        <script>
+    <script>
         var workspace = Blockly.inject('blocklyDiv',
         {media: '../../media/',
          toolbox: document.getElementById('toolbox')});
