@@ -4,7 +4,6 @@
 <head>
     <script src="/blockly/blockly_uncompressed.js"></script>
     <script src="/blockly/generators/javascript.js"></script>
-    <script src="/javascript.js"></script>
     <script src="/javas_placa.js"></script>
     <script src="/blockly/msg/js/es.js"></script>
     <script src="/bloques/principal.js"></script>
@@ -55,6 +54,9 @@
                     </li>
                     <li>
                         <a href="#" onclick="cargarPrograma()">Cargar</a>
+                    </li>
+                    <li>
+                        <a id="boton_esconder" href="#">Esconder generador codigo</a>
                     </li>
                 </ul>
             </div>
@@ -489,6 +491,11 @@
             var textToDom = Blockly.Xml.textToDom(program); 
             Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, textToDom);
         }
+
+        $("boton_esconder").click(function(){
+            $("codigo_generado").toggle();
+        });
+        
     </script>
     <script src="/jquery-2.0.0.min.js" type="text/javascript"></script>
     <script src="/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
