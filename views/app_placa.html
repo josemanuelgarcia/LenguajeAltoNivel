@@ -462,19 +462,9 @@
         function guardarPrograma() {
             var xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
             var domToPretty = Blockly.Xml.domToPrettyText(xml);
-            var name=prompt("Intruduce un nombre para el prgrama","miPrograma");
+            var name=prompt("Intruduce un nombre para el programa","miPrograma");
             download(name+".xml",domToPretty);
         }
-
-        function cargarPrograma() {
-            var name=prompt("Intruduce el códido XML a cargar","");
-
-            var program =  readTextFile(name);
-            Blockly.mainWorkspace.clear();
-            var textToDom = Blockly.Xml.textToDom(program); 
-            Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, textToDom);
-        }
-
 
         function download(filename, text) {
             var pom = document.createElement('a');
@@ -489,6 +479,15 @@
             else {
                 pom.click();
             }
+        }
+
+        function cargarPrograma() {
+            var name=prompt("Intruduce el códido XML a cargar","");
+
+            var program =  readTextFile(name);
+            Blockly.mainWorkspace.clear();
+            var textToDom = Blockly.Xml.textToDom(program); 
+            Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, textToDom);
         }
     </script>
     <script src="/jquery-2.0.0.min.js" type="text/javascript"></script>

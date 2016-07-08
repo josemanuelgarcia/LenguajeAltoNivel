@@ -585,7 +585,7 @@
         function guardarPrograma() {
             var xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
             var domToPretty = Blockly.Xml.domToPrettyText(xml);
-            var name=prompt("Intruduce un nombre para el prgrama","miPrograma");
+            var name=prompt("Intruduce un nombre para el programa","miPrograma");
             download(name+".xml",domToPretty);
         }
 
