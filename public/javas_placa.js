@@ -55,7 +55,7 @@ Blockly.JavaScript['esperar'] = function (block) {
 
 Blockly.JavaScript['leer_ultrasonidos'] = function (block) {
   var text_p_echo = block.getFieldValue('p_echo');
-  var text_p_trig = block.getFieldValue('P_trig');
+  var text_p_trig = block.getFieldValue('p_trig');
   var code = 'leerUltrasonidos(' + text_p_trig + ',' + text_p_echo + ')';
   metodos_auxiliares += 'int leerUltrasonidos(int trig, int echo) {\n\tdigitalWrite(trig, LOW);\n\tdelayMicroseconds(5);\n'
     + '\tdigitalWrite(trig, HIGH);\n\tdelayMicroseconds(10);\n'

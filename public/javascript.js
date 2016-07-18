@@ -14,7 +14,7 @@ var array_codigo = ["void girar(String lado, int grados) {\n\tif(lado==\"horario
 
 ];
 
-var setup ="void setup() { \n\tSerial.begin(9600);\n\tservoI.attach(4);\n\tservoD.attach(5);\n\tservoP.attach(6);\n\tpinMode(2 , INPUT);\n\tpinMode(3 , INPUT);\n\t\n\tfor(int i=0; i<3;i++){\n\t\tpinMode(pinesTrig[i] , OUTPUT);\n\t\tpinMode(pinesEcho[i], INPUT);\n\t}\n\tparar_todo();\n\tmover_pinza(0);\n\tmover_pinza(3);\n";
+var setup ="void setup() { \n\tSerial.begin(9600);\n\tservoI.attach(4);\n\tservoD.attach(5);\n\tservoP.attach(6);\n\tservoPMove.attach(7);\n\tpinMode(2 , INPUT);\n\tpinMode(3 , INPUT);\n\t\n\tfor(int i=0; i<3;i++){\n\t\tpinMode(pinesTrig[i] , OUTPUT);\n\t\tpinMode(pinesEcho[i], INPUT);\n\t}\n\tparar_todo();\n\tmover_pinza(0);\n\tmover_pinza(3);\n";
 
 Blockly.JavaScript['bloque_principal'] = function (block) {
     array_bloques = [];

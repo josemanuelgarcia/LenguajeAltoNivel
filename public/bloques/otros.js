@@ -16,7 +16,7 @@ Blockly.Blocks['leer_ultrasonidos'] = {
             .appendField("Leer sensor ultrasonidos, Pin Trig")
             .appendField(new Blockly.FieldTextInput("0"), "p_trig")
             .appendField("Pin Echo")
-            .appendField(new Blockly.FieldTextInput("0"), "P_echo");
+            .appendField(new Blockly.FieldTextInput("0"), "p_echo");
         this.setOutput(true);
         this.setColour(290);
     }
