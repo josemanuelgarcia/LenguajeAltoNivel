@@ -480,13 +480,11 @@
                 pom.click();
             }
         }
-
+        
         function cargarPrograma() {
-            var name=prompt("Intruduce el códido XML a cargar","");
-
-            var program =  readTextFile(name);
+            var name=prompt("Intruduce código XML a cargar","");
             Blockly.mainWorkspace.clear();
-            var textToDom = Blockly.Xml.textToDom(program); 
+            var textToDom = Blockly.Xml.textToDom(name); 
             Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, textToDom);
         }
     </script>
